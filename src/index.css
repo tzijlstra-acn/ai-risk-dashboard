@@ -3,14 +3,12 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    @apply dark;
-  }
   body {
     @apply bg-surface-900 text-white font-body;
   }
-  * {
-    @apply border-surface-600;
+  /* Default border colour for the design system */
+  *, ::before, ::after {
+    --tw-border-color: #22223A;
   }
 }
 
