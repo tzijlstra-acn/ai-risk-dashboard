@@ -26,35 +26,35 @@
     "id": "aud-003",
     "timestamp": "2025-03-12T11:00:00Z",
     "event": "Shadow AI incident escalated to MRM",
-    "model": "Copilot for Credit Decisions",
+    "model": "GitHub Copilot (ungoverned) — Credit Decisioning",
     "actor": "System",
     "role": "System",
     "type": "incident",
     "status": "auto-flagged",
-    "details": "Automated CASB detection of unauthorized LLM API calls from Corporate Credit department. Customer credit data exposure confirmed."
+    "details": "Automated CASB detection of ungoverned Copilot usage in Corporate Credit. Customer credit data exposure confirmed. Credit/lending touch forces Critical severity."
   },
   {
     "id": "aud-004",
     "timestamp": "2025-03-11T14:30:00Z",
     "event": "Governance status changed to 'Non-Compliant'",
-    "model": "Liquidity Risk Forecasting",
+    "model": "Liquidity Risk Model",
     "actor": "System",
     "role": "System",
     "type": "change",
     "status": "auto-flagged",
-    "details": "Validation overdue by 276 days. SR 11-7 mandates annual re-validation for High-tier models. Automatic escalation triggered."
+    "details": "Validation overdue. SR 11-7 mandates annual re-validation for High-tier models. Automatic escalation triggered to CRO."
   },
   {
     "id": "aud-005",
     "timestamp": "2025-03-10T10:00:00Z",
-    "event": "New vendor assessment submitted",
-    "model": "Behavox Quantum",
+    "event": "Vendor DORA assessment submitted",
+    "model": "IBM Watson (Vendor)",
     "actor": "Lars Hendriksen",
     "role": "MRM Validator",
     "type": "validation",
     "status": "pending",
-    "pendingHours": 72,
-    "details": "DORA third-party risk assessment for Behavox submitted. Single-provider dependency noted. DORA non-compliance flag requires CRO escalation."
+    "pendingHours": 96,
+    "details": "DORA third-party risk assessment for IBM Watson submitted. Single-provider dependency and non-compliance flag require CRO escalation. Contract ends 30 Apr 2025."
   },
   {
     "id": "aud-006",
@@ -76,7 +76,7 @@
     "role": "System",
     "type": "change",
     "status": "auto-flagged",
-    "details": "Validation due date passed with no submission. SR 11-7 High-tier escalation triggered. MRM team notified by email."
+    "details": "Validation due date passed with no submission (overdue 187 days). SR 11-7 High-tier escalation triggered. MRM team notified by email."
   },
   {
     "id": "aud-008",
@@ -93,12 +93,12 @@
     "id": "aud-009",
     "timestamp": "2025-03-06T09:00:00Z",
     "event": "Acceptable Use Policy review initiated",
-    "model": "Google DeepMind (Vendor)",
+    "model": "Google Cloud AI (Vendor)",
     "actor": "Emma Johansson",
     "role": "MRM Validator",
     "type": "change",
     "status": "pending",
-    "pendingHours": 96,
+    "pendingHours": 168,
     "details": "AUP non-compliance flag raised for Gemini Ultra. Legal reviewing Google's updated data processing terms. Pending CRO sign-off to continue or suspend service."
   },
   {
@@ -115,19 +115,19 @@
   {
     "id": "aud-011",
     "timestamp": "2025-03-04T14:45:00Z",
-    "event": "Incident report filed",
-    "model": "ChatGPT Integration — Wealth Advisory",
+    "event": "Shadow AI incident report filed",
+    "model": "ChatGPT Enterprise (unlicensed) — Wealth Advisory",
     "actor": "System",
     "role": "System",
     "type": "incident",
     "status": "auto-flagged",
-    "details": "Shadow AI incident detected via DLP alert. PII and Customer Credit data transmitted to external OpenAI API without approved data processing agreement."
+    "details": "Shadow AI incident detected via DLP alert. PII and Customer Credit data transmitted to external OpenAI endpoint without approved data processing agreement."
   },
   {
     "id": "aud-012",
     "timestamp": "2025-03-03T08:00:00Z",
     "event": "Validation change request rejected",
-    "model": "HR Recruitment Screening",
+    "model": "HR Attrition Predictor",
     "actor": "Sophie van der Berg",
     "role": "CRO",
     "type": "approval",
@@ -167,5 +167,117 @@
     "status": "pending",
     "pendingHours": 600,
     "details": "External red-team commissioned to run hallucination and factual accuracy testing on Claude 3.7 for legal document summarisation. Results pending."
+  },
+  {
+    "id": "aud-016",
+    "timestamp": "2025-02-18T13:05:00Z",
+    "event": "Validation completed",
+    "model": "Sanctions Screening Engine",
+    "actor": "Annika Müller",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "approved",
+    "details": "Annual validation passed. Fuzzy-matching thresholds re-tuned; false-positive rate reduced 12% with no loss in true-positive recall."
+  },
+  {
+    "id": "aud-017",
+    "timestamp": "2025-02-14T15:40:00Z",
+    "event": "Shadow AI incident escalated to MRM",
+    "model": "Undisclosed SME Lending Scorecard",
+    "actor": "System",
+    "role": "System",
+    "type": "incident",
+    "status": "auto-flagged",
+    "details": "Ungoverned lending scorecard detected in SME Lending. Credit/lending touch forces Critical. Regulatory disclosure assessment initiated."
+  },
+  {
+    "id": "aud-018",
+    "timestamp": "2025-02-10T11:20:00Z",
+    "event": "Model change request rejected",
+    "model": "FX Rate Forecaster",
+    "actor": "Annika Müller",
+    "role": "CRO",
+    "type": "approval",
+    "status": "rejected",
+    "details": "Recalibration request rejected. Backtesting evidence insufficient and validation already overdue. Full revalidation required before any change."
+  },
+  {
+    "id": "aud-019",
+    "timestamp": "2025-02-06T09:50:00Z",
+    "event": "New GenAI asset registered",
+    "model": "Regulatory Q&A Bot",
+    "actor": "Emma Johansson",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "pending",
+    "pendingHours": 60,
+    "details": "Self-hosted Llama 3 assistant registered in inventory. Awaiting governance approval and DORA ICT classification sign-off."
+  },
+  {
+    "id": "aud-020",
+    "timestamp": "2025-02-01T14:10:00Z",
+    "event": "Vendor assessment completed",
+    "model": "Microsoft Azure AI (Vendor)",
+    "actor": "Lars Hendriksen",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "approved",
+    "details": "DORA register entry confirmed for Azure OpenAI Service and GitHub Copilot for Business. Concentration risk noted — largest single AI vendor by spend."
+  },
+  {
+    "id": "aud-021",
+    "timestamp": "2025-01-27T10:00:00Z",
+    "event": "Governance status changed to 'Approved'",
+    "model": "Market Risk VaR Model",
+    "actor": "Nathalie Dupont",
+    "role": "MRM Validator",
+    "type": "approval",
+    "status": "approved",
+    "details": "Independent validation and challenger backtesting complete. Model approved for regulatory VaR reporting for the trading book."
+  },
+  {
+    "id": "aud-022",
+    "timestamp": "2025-01-20T16:25:00Z",
+    "event": "Data classification updated",
+    "model": "Voice Biometrics Authentication",
+    "actor": "Isabel Fernandez",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "approved",
+    "details": "Data classification confirmed as PII. GDPR Article 9 biometric data controls verified with enrolment consent flows."
+  },
+  {
+    "id": "aud-023",
+    "timestamp": "2025-01-12T08:30:00Z",
+    "event": "Shadow AI incident report filed",
+    "model": "DeepSeek R1 — Quant Research Prototyping",
+    "actor": "System",
+    "role": "System",
+    "type": "incident",
+    "status": "auto-flagged",
+    "details": "Foreign-hosted LLM API detected from Quantitative Research. Data residency risk (outside EU/EEA). Escalated to CISO for review."
+  },
+  {
+    "id": "aud-024",
+    "timestamp": "2025-01-05T12:00:00Z",
+    "event": "Validation completed",
+    "model": "IFRS 9 ECL Engine",
+    "actor": "Sophie van der Berg",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "approved",
+    "details": "Annual validation passed. Staging logic and forward-looking macro overlays reviewed and signed off for year-end reporting."
+  },
+  {
+    "id": "aud-025",
+    "timestamp": "2024-12-18T15:15:00Z",
+    "event": "New vendor onboarded to DORA register",
+    "model": "Anthropic (Vendor)",
+    "actor": "Emma Johansson",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "pending",
+    "pendingHours": 72,
+    "details": "Anthropic onboarding to DORA vendor register in progress. Subcontractor mapping (AWS) submitted; awaiting final CRO sign-off to complete registration."
   }
 ]

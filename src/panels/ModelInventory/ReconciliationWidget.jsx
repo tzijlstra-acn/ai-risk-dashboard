@@ -3,21 +3,39 @@ import { ChevronDown, ChevronUp, AlertTriangle, CheckCircle, XCircle } from 'luc
 import { Card } from '../../components/ui/Card';
 import { Badge } from '../../components/ui/Badge';
 
-// Mock MRM System-of-Record data
+// Mock MRM System-of-Record comparison data
 // TODO: Replace mock comparison with live MRM API call here
 const MRM_SOR_EXTRAS = [
-  { id: 'sor-ext-001', name: 'Counterparty Credit Risk Model (CCR)', department: 'Derivatives', mrm_tier: 'High' },
-  { id: 'sor-ext-002', name: 'Retail PD Scorecard v2', department: 'Retail Credit Risk', mrm_tier: 'Medium' },
+  {
+    id: 'sor-ext-001',
+    name: 'Counterparty Credit Risk Model (CCR)',
+    department: 'Derivatives',
+    mrm_tier: 'High',
+    reason: 'Registered in MRM SoR but not yet ingested into the dashboard inventory feed.',
+  },
+  {
+    id: 'sor-ext-002',
+    name: 'Retail PD Scorecard v2',
+    department: 'Retail Credit Risk',
+    mrm_tier: 'Medium',
+    reason: 'Superseded by PD/LGD Model v4 in dashboard; still open in MRM SoR pending decommission sign-off.',
+  },
 ];
 
 const DASHBOARD_EXTRAS = [
-  { id: 'inv-011', name: 'GPU Compute Cluster (GenAI R&D)', note: 'Not yet registered in MRM SoR' },
+  {
+    id: 'inv-024',
+    name: 'IT Anomaly Detection',
+    department: 'Technology',
+    mrm_tier: 'Low',
+    reason: 'Discovered via infrastructure scan; MRM SoR registration not yet raised (GPU-hosted, Low tier).',
+  },
 ];
 
 export function ReconciliationWidget({ totalInDashboard = 0 }) {
   const [open, setOpen] = useState(true);
 
-  const totalInSoR = totalInDashboard + MRM_SOR_EXTRAS.length;
+  const totalInSoR = totalInDashboard + MRM_SOR_EXTRAS.length - DASHBOARD_EXTRAS.length;
   const discrepancyCount = MRM_SOR_EXTRAS.length + DASHBOARD_EXTRAS.length;
 
   return (
@@ -53,54 +71,70 @@ export function ReconciliationWidget({ totalInDashboard = 0 }) {
       </div>
 
       {open && (
-        <div className="space-y-3">
-          {/* In SoR but not in dashboard */}
-          {MRM_SOR_EXTRAS.length > 0 && (
-            <div>
-              <p className="text-xs font-mono text-severity-stale uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <AlertTriangle className="w-3 h-3" />
-                In MRM SoR but missing from dashboard ({MRM_SOR_EXTRAS.length})
-              </p>
-              {MRM_SOR_EXTRAS.map((item) => (
-                <div key={item.id} className="flex items-center justify-between px-3 py-2 bg-severity-stale/10 border border-severity-stale/20 rounded-lg mb-1">
-                  <div>
-                    <span className="text-white text-sm font-medium">{item.name}</span>
-                    <span className="text-white/40 text-xs ml-2">— {item.department}</span>
-                  </div>
-                  <Badge severity="High" label={`SR 11-7 ${item.mrm_tier}`} size="sm" />
-                </div>
-              ))}
+        <>
+          {discrepancyCount > 0 ? (
+            <div className="overflow-x-auto rounded-xl border border-surface-600">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-surface-600 bg-surface-700">
+                    <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">In Dashboard</th>
+                    <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">In MRM SoR</th>
+                    <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {MRM_SOR_EXTRAS.map((item) => (
+                    <tr key={item.id} className="border-b border-surface-600/50">
+                      <td className="px-4 py-3">
+                        <span className="flex items-center gap-1.5 text-white/30 text-xs"><XCircle className="w-3.5 h-3.5" /> Missing</span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-3.5 h-3.5 text-severity-healthy flex-shrink-0" />
+                          <span className="text-white text-sm font-medium">{item.name}</span>
+                          <Badge severity={item.mrm_tier === 'High' ? 'Critical' : item.mrm_tier === 'Medium' ? 'Medium' : 'Low'} label={`SR 11-7 ${item.mrm_tier}`} size="sm" />
+                        </div>
+                        <p className="text-white/40 text-[11px] mt-1">{item.department} — {item.reason}</p>
+                      </td>
+                      <td className="px-4 py-3">
+                        <Badge severity="Stale" label="Not in dashboard" size="sm" />
+                      </td>
+                    </tr>
+                  ))}
+                  {DASHBOARD_EXTRAS.map((item) => (
+                    <tr key={item.id} className="border-b border-surface-600/50">
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <CheckCircle className="w-3.5 h-3.5 text-severity-healthy flex-shrink-0" />
+                          <span className="text-white text-sm font-medium">{item.name}</span>
+                          <Badge severity={item.mrm_tier === 'High' ? 'Critical' : item.mrm_tier === 'Medium' ? 'Medium' : 'Low'} label={`SR 11-7 ${item.mrm_tier}`} size="sm" />
+                        </div>
+                        <p className="text-white/40 text-[11px] mt-1">{item.department} — {item.reason}</p>
+                      </td>
+                      <td className="px-4 py-3">
+                        <span className="flex items-center gap-1.5 text-white/30 text-xs"><XCircle className="w-3.5 h-3.5" /> Missing</span>
+                      </td>
+                      <td className="px-4 py-3">
+                        <Badge severity="Medium" label="Not in MRM SoR" size="sm" />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
-          )}
-
-          {/* In dashboard but not in SoR */}
-          {DASHBOARD_EXTRAS.length > 0 && (
-            <div>
-              <p className="text-xs font-mono text-severity-medium uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                <XCircle className="w-3 h-3" />
-                In dashboard but not in MRM SoR ({DASHBOARD_EXTRAS.length})
-              </p>
-              {DASHBOARD_EXTRAS.map((item) => (
-                <div key={item.id} className="flex items-center justify-between px-3 py-2 bg-severity-medium/10 border border-severity-medium/20 rounded-lg">
-                  <span className="text-white text-sm font-medium">{item.name}</span>
-                  <span className="text-white/40 text-xs">{item.note}</span>
-                </div>
-              ))}
-            </div>
-          )}
-
-          {discrepancyCount === 0 && (
+          ) : (
             <div className="flex items-center gap-2 text-severity-healthy text-sm px-3 py-2 bg-severity-healthy/10 rounded-lg">
               <CheckCircle className="w-4 h-4" />
               Dashboard is fully reconciled with MRM SoR
             </div>
           )}
 
-          <p className="text-xs text-white/20 font-mono mt-2">
+          <p className="text-xs text-white/20 font-mono mt-2 flex items-center gap-1.5">
+            <AlertTriangle className="w-3 h-3" />
             {/* TODO: Replace mock comparison with live MRM API call here */}
             Mock data — replace with live MRM API comparison
           </p>
-        </div>
+        </>
       )}
     </Card>
   );

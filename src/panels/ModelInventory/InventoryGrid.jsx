@@ -70,16 +70,31 @@ const COLUMNS = [
   {
     key: 'validationStatus',
     label: 'Validation',
-    render: (val) => <Badge severity={validationSeverity(val)} label={val} size="sm" />,
+    render: (val, row) => (
+      <div className="flex flex-col gap-1">
+        <Badge severity={validationSeverity(val)} label={val} size="sm" />
+        <span className={`text-[11px] font-mono ${row.lastValidatedDate && isStale(row.lastValidatedDate) ? 'text-severity-stale' : 'text-white/40'}`}>
+          {row.lastValidatedDate ? formatDate(row.lastValidatedDate) : 'Never validated'}
+        </span>
+      </div>
+    ),
   },
   {
-    key: 'lastValidatedDate',
-    label: 'Last Validated',
-    render: (val) => (
-      <span className={`text-xs font-mono ${val && isStale(val) ? 'text-severity-critical' : 'text-white/60'}`}>
-        {val ? formatDate(val) : '—'}
-      </span>
-    ),
+    key: 'riskScore',
+    label: 'Risk',
+    render: (val) => {
+      const score = val ?? 0;
+      const color = score >= 70 ? 'bg-severity-critical' : score >= 50 ? 'bg-severity-high' : score >= 30 ? 'bg-severity-medium' : 'bg-severity-healthy';
+      const text = score >= 70 ? 'text-severity-critical' : score >= 50 ? 'text-severity-high' : score >= 30 ? 'text-severity-medium' : 'text-severity-healthy';
+      return (
+        <div className="w-16">
+          <span className={`text-xs font-mono font-bold ${text}`}>{score}</span>
+          <div className="w-full bg-surface-600 rounded-full h-1 overflow-hidden mt-1">
+            <div className={`h-full rounded-full ${color}`} style={{ width: `${score}%` }} />
+          </div>
+        </div>
+      );
+    },
   },
   {
     key: 'dataClassification',

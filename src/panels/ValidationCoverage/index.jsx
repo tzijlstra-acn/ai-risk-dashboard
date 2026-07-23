@@ -5,7 +5,66 @@ import { CoverageGauges } from './CoverageGauges';
 import { Card } from '../../components/ui/Card';
 import { FreshnessStamp } from '../../components/ui/FreshnessStamp';
 import { Badge } from '../../components/ui/Badge';
-import { formatDate } from '../../utils/date';
+import { formatDate, daysUntil } from '../../utils/date';
+
+function tierSeverity(tier) {
+  return tier === 'High' ? 'Critical' : tier === 'Medium' ? 'Medium' : 'Low';
+}
+
+function OverdueTable({ rows }) {
+  const max = Math.max(...rows.map((r) => r.days), 1);
+  return (
+    <div>
+      <p className="text-xs font-mono text-white/40 uppercase tracking-wider mb-2">Most Overdue</p>
+      <div className="space-y-1.5">
+        {rows.map((r) => (
+          <div key={r.name} className="flex items-center gap-2">
+            <div className="w-40 flex-shrink-0 flex items-center gap-2 min-w-0">
+              <Badge severity={tierSeverity(r.tier)} label={r.tier} size="sm" />
+              <span className="text-white text-xs truncate">{r.name}</span>
+            </div>
+            <div className="flex-1 bg-surface-700 rounded-full h-4 overflow-hidden relative">
+              <div
+                className={`h-full rounded-full ${r.days > 90 ? 'bg-severity-critical/60' : 'bg-severity-stale/60'}`}
+                style={{ width: `${(r.days / max) * 100}%` }}
+              />
+            </div>
+            <span className={`w-14 text-right text-xs font-mono font-bold flex-shrink-0 ${r.days > 90 ? 'text-severity-critical' : 'text-severity-stale'}`}>
+              {r.days}d
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ComingDueTable({ rows }) {
+  return (
+    <div>
+      <p className="text-xs font-mono text-white/40 uppercase tracking-wider mb-2">Coming Due</p>
+      <div className="space-y-1.5">
+        {rows.map((r) => {
+          const dleft = daysUntil(r.dueDate);
+          return (
+            <div key={r.name} className="flex items-center justify-between gap-2 bg-surface-700 rounded-lg px-3 py-1.5">
+              <div className="flex items-center gap-2 min-w-0">
+                <Badge severity={tierSeverity(r.tier)} label={r.tier} size="sm" />
+                <span className="text-white text-xs truncate">{r.name}</span>
+              </div>
+              <div className="flex items-center gap-2 flex-shrink-0">
+                <span className="text-white/40 text-[11px] font-mono">{formatDate(r.dueDate)}</span>
+                <span className={`text-xs font-mono font-bold ${dleft < 14 ? 'text-severity-stale' : 'text-white/50'}`}>
+                  {dleft < 0 ? `${Math.abs(dleft)}d late` : `${dleft}d`}
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 export function ValidationCoveragePanel() {
   const { data: validationData, isLoading: valLoading } = useValidation();
@@ -50,6 +109,16 @@ export function ValidationCoveragePanel() {
       ) : (
         <>
           <CoverageGauges data={validationData} onGaugeClick={handleGaugeClick} />
+
+          {/* Overdue + Coming Due tables */}
+          <div className="mt-4 grid grid-cols-1 lg:grid-cols-2 gap-5 border-t border-surface-600 pt-4">
+            {validationData?.overdueByDays?.length > 0 && (
+              <OverdueTable rows={validationData.overdueByDays} />
+            )}
+            {validationData?.upcomingDue?.length > 0 && (
+              <ComingDueTable rows={validationData.upcomingDue} />
+            )}
+          </div>
 
           {/* Filtered inventory table */}
           {activeGauge && filteredInventory.length > 0 && (

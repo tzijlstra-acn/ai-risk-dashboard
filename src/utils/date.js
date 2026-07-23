@@ -4,6 +4,32 @@
  */
 
 /**
+ * REFERENCE_DATE — the "as-of" date for the mock data world.
+ * All countdown / days-remaining calculations are measured relative to this
+ * so the cockpit reads correctly against the seeded 2025 mock data.
+ * TODO: Remove and use live clock once wired to real APIs.
+ */
+export const REFERENCE_DATE = '2025-03-15T09:00:00Z';
+
+/**
+ * Days from the reference date until the given ISO date.
+ * Positive = in the future, negative = overdue/past.
+ * @param {string} iso - ISO 8601 date string
+ * @param {string} from - reference ISO date (defaults to REFERENCE_DATE)
+ * @returns {number}
+ */
+export function daysUntil(iso, from = REFERENCE_DATE) {
+  if (!iso) return NaN;
+  try {
+    const target = new Date(iso);
+    const ref = new Date(from);
+    return Math.round((target - ref) / (1000 * 60 * 60 * 24));
+  } catch {
+    return NaN;
+  }
+}
+
+/**
  * Format an ISO date string as a human-readable date.
  * @param {string} iso - ISO 8601 date string
  * @returns {string} Formatted date, e.g. "15 Mar 2025"

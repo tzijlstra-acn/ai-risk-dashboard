@@ -1,25 +1,9 @@
 {
-  "traditionalML": {
-    "total": 18,
-    "validated": 13,
-    "pending": 3,
-    "overdue": 2,
-    "coveragePct": 72
-  },
-  "genAI_LLM": {
-    "total": 7,
-    "validated": 3,
-    "pending": 2,
-    "overdue": 2,
-    "coveragePct": 43
-  },
-  "overall": {
-    "total": 25,
-    "validated": 16,
-    "pending": 5,
-    "overdue": 4,
-    "coveragePct": 64
-  },
+  "traditionalML": { "total": 18, "validated": 12, "pending": 3, "overdue": 3, "coveragePct": 67, "byTier": { "High": {"total":8,"validated":5,"overdue":2}, "Medium": {"total":7,"validated":5,"overdue":1}, "Low": {"total":3,"validated":2,"overdue":0} } },
+  "genAI_LLM": { "total": 7, "validated": 2, "pending": 3, "overdue": 2, "coveragePct": 29 },
+  "overall": { "total": 25, "validated": 14, "pending": 6, "overdue": 5, "coveragePct": 56, "governanceCoverage": 64 },
+  "overdueByDays": [{"name":"AML Transaction Screening","days":187,"tier":"High"},{"name":"FX Rate Forecaster","days":134,"tier":"Medium"},{"name":"PD/LGD Model v4","days":98,"tier":"High"},{"name":"Customer Churn Predictor","days":67,"tier":"Medium"},{"name":"Trade Research Assistant","days":45,"tier":"Low"}],
+  "upcomingDue": [{"name":"Credit Scoring Engine","dueDate":"2025-04-15","tier":"High"},{"name":"Real-Time Fraud Detection","dueDate":"2025-04-28","tier":"High"},{"name":"Contract Intelligence Suite","dueDate":"2025-05-01","tier":"Medium"},{"name":"Liquidity Risk Model","dueDate":"2025-05-22","tier":"High"},{"name":"Document Summarisation Engine","dueDate":"2025-07-10","tier":"Medium"}],
   "dataFreshness": "2025-03-15T09:00:00Z",
   "note_genai": "DORA and SR 11-7 require additional robustness and hallucination testing for GenAI/LLM models"
 }

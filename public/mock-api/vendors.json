@@ -15,6 +15,7 @@
     "doraSubcontractors": ["Microsoft Azure (hosting)", "Cloudflare (CDN/DDoS)"],
     "contractEndDate": "2025-12-31",
     "lastAssessmentDate": "2024-11-20T10:00:00Z",
+    "annualSpend": 2400000,
     "dataFreshness": "2025-03-15T07:00:00Z"
   },
   {
@@ -32,11 +33,12 @@
     "doraSubcontractors": ["Amazon Web Services (hosting)"],
     "contractEndDate": "2026-03-31",
     "lastAssessmentDate": "2025-01-15T10:00:00Z",
+    "annualSpend": 1150000,
     "dataFreshness": "2025-03-15T07:00:00Z"
   },
   {
     "id": "vnd-003",
-    "name": "Google DeepMind",
+    "name": "Google Cloud AI",
     "category": "Cloud AI",
     "doraStatus": "Registered",
     "riskScore": 61,
@@ -50,11 +52,32 @@
     "doraSubcontractors": ["Google Cloud (GCP)", "Mandiant (security)"],
     "contractEndDate": "2025-06-30",
     "lastAssessmentDate": "2024-09-10T10:00:00Z",
+    "annualSpend": 1850000,
     "dataFreshness": "2025-03-15T07:00:00Z"
   },
   {
     "id": "vnd-004",
-    "name": "Meta AI",
+    "name": "Microsoft Azure AI",
+    "category": "Cloud AI",
+    "doraStatus": "Registered",
+    "riskScore": 48,
+    "singleProviderDependency": true,
+    "foundationModelsSupplied": ["GPT-4", "Proprietary in-house"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "Azure OpenAI Service", "type": "Cloud AI Service", "renewalDate": "2026-02-28" },
+      { "name": "GitHub Copilot for Business", "type": "SaaS", "renewalDate": "2025-11-30" },
+      { "name": "Azure ML / GPU Compute", "type": "GPU Instance", "renewalDate": "2026-02-28" }
+    ],
+    "doraSubcontractors": ["Microsoft Azure (global regions)"],
+    "contractEndDate": "2026-02-28",
+    "lastAssessmentDate": "2025-02-05T10:00:00Z",
+    "annualSpend": 4200000,
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-005",
+    "name": "Meta (Llama)",
     "category": "Model Provider",
     "doraStatus": "Pending",
     "riskScore": 44,
@@ -67,11 +90,49 @@
     "doraSubcontractors": ["Microsoft Azure (compute)"],
     "contractEndDate": "2026-01-31",
     "lastAssessmentDate": "2025-02-01T10:00:00Z",
+    "annualSpend": 320000,
     "dataFreshness": "2025-03-15T07:00:00Z"
   },
   {
-    "id": "vnd-005",
-    "name": "Moody's Analytics",
+    "id": "vnd-006",
+    "name": "Accenture FS-Comply",
+    "category": "SaaS",
+    "doraStatus": "Registered",
+    "riskScore": 41,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Proprietary in-house"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "FS-Comply AML Screening", "type": "Cloud AI Service", "renewalDate": "2026-06-30" },
+      { "name": "FS-Comply Advisory", "type": "SaaS", "renewalDate": "2026-06-30" }
+    ],
+    "doraSubcontractors": ["Microsoft Azure (EU regions)"],
+    "contractEndDate": "2026-06-30",
+    "lastAssessmentDate": "2025-01-28T10:00:00Z",
+    "annualSpend": 980000,
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-007",
+    "name": "Bloomberg AI",
+    "category": "SaaS",
+    "doraStatus": "Registered",
+    "riskScore": 37,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["GPT-4", "Proprietary in-house"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "Bloomberg GPT / Terminal AI", "type": "SaaS", "renewalDate": "2026-04-30" }
+    ],
+    "doraSubcontractors": ["Amazon Web Services", "Bloomberg private cloud"],
+    "contractEndDate": "2026-04-30",
+    "lastAssessmentDate": "2024-12-18T10:00:00Z",
+    "annualSpend": 1420000,
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-008",
+    "name": "Moody's Analytics AI",
     "category": "SaaS",
     "doraStatus": "Registered",
     "riskScore": 35,
@@ -85,23 +146,45 @@
     "doraSubcontractors": ["Amazon Web Services"],
     "contractEndDate": "2025-11-30",
     "lastAssessmentDate": "2024-12-10T10:00:00Z",
+    "annualSpend": 760000,
     "dataFreshness": "2025-03-15T07:00:00Z"
   },
   {
-    "id": "vnd-006",
-    "name": "Behavox",
+    "id": "vnd-009",
+    "name": "Wolters Kluwer",
     "category": "SaaS",
+    "doraStatus": "Pending",
+    "riskScore": 54,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Mistral Large", "Proprietary in-house"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "OneSumX Sanctions Screening", "type": "Cloud AI Service", "renewalDate": "2025-08-31" },
+      { "name": "Contract Intelligence", "type": "Cloud AI Service", "renewalDate": "2025-08-31" }
+    ],
+    "doraSubcontractors": ["Microsoft Azure (EU)", "OpenText (content)"],
+    "contractEndDate": "2025-08-31",
+    "lastAssessmentDate": "2024-10-30T10:00:00Z",
+    "annualSpend": 610000,
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-010",
+    "name": "IBM Watson",
+    "category": "Cloud AI",
     "doraStatus": "Non-Compliant",
-    "riskScore": 79,
+    "riskScore": 72,
     "singleProviderDependency": true,
-    "foundationModelsSupplied": ["Mistral Large"],
+    "foundationModelsSupplied": ["Proprietary in-house", "Fine-tuned BERT"],
     "acceptableUsePolicyCompliant": false,
     "services": [
-      { "name": "Behavox Quantum", "type": "Cloud AI Service", "renewalDate": "2025-04-15" }
+      { "name": "Watson Trade Surveillance", "type": "Cloud AI Service", "renewalDate": "2025-04-30" },
+      { "name": "Watson Document Classification", "type": "Cloud AI Service", "renewalDate": "2025-04-30" }
     ],
-    "doraSubcontractors": ["OVHcloud (EU data residency)", "Elastic (search)"],
-    "contractEndDate": "2025-04-15",
+    "doraSubcontractors": ["IBM Cloud", "Red Hat OpenShift"],
+    "contractEndDate": "2025-04-30",
     "lastAssessmentDate": "2024-07-22T10:00:00Z",
+    "annualSpend": 890000,
     "dataFreshness": "2025-03-14T15:00:00Z"
   }
 ]

@@ -1,12 +1,16 @@
 import React from 'react';
-import { Shield, FileText, Database, TrendingUp, Lock } from 'lucide-react';
+import { Shield, FileText, Link } from 'lucide-react';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
 import { FoundationModelBadge } from '../components/ui/FoundationModelBadge';
 import { FEATURE_FLAGS } from '../featureFlags';
 import { REGULATIONS, FOUNDATION_MODELS } from '../brand';
 import { useInventory } from '../hooks/useInventory';
+import { useVendors } from '../hooks/useVendors';
 import { RoleGuard } from '../auth/RoleGuard';
+import { formatDate } from '../utils/date';
+
+const GENAI_MODELS = ['GPT-4', 'Claude 3.7', 'Gemini Ultra', 'Llama 3', 'Mistral Large'];
 
 const REGULATION_INFO = {
   DORA: {
@@ -14,36 +18,42 @@ const REGULATION_INFO = {
     description: 'EU regulation requiring financial entities to manage ICT risks. AI systems classified as critical ICT functions must undergo annual testing and third-party risk assessments.',
     status: 'In Force (Jan 2025)',
     severity: 'Critical',
+    lastReviewed: '2025-03-01',
   },
   'SR 11-7': {
     full: 'SR Letter 11-7 — Model Risk Management',
     description: 'Federal Reserve guidance establishing standards for model risk management. All High-tier models require independent validation, challenger models, and documented governance.',
     status: 'Active',
     severity: 'High',
+    lastReviewed: '2025-02-20',
   },
   GDPR: {
     full: 'General Data Protection Regulation',
     description: 'EU data protection regulation. AI systems processing personal data must implement data minimisation, purpose limitation, and automated decision-making disclosures (Art. 22).',
     status: 'Active',
     severity: 'High',
+    lastReviewed: '2025-02-10',
   },
   GLBA: {
     full: 'Gramm-Leach-Bliley Act',
     description: 'US federal law requiring financial institutions to explain data sharing practices and protect customer information used in AI/ML model training and inference.',
     status: 'Active',
     severity: 'Medium',
+    lastReviewed: '2024-12-15',
   },
   'ECOA/Reg B': {
     full: 'Equal Credit Opportunity Act / Regulation B',
     description: 'Prohibits discrimination in credit decisions. AI credit models must produce explainable adverse action reasons and undergo disparate impact testing.',
     status: 'Active',
     severity: 'High',
+    lastReviewed: '2025-01-30',
   },
   'PCI-DSS': {
     full: 'Payment Card Industry Data Security Standard',
     description: 'Security standards for payment data. AI models processing cardholder data must operate within PCI-DSS scope with appropriate access controls and audit logging.',
     status: 'v4.0 Active (Mar 2024)',
     severity: 'Medium',
+    lastReviewed: '2024-11-25',
   },
 };
 
@@ -57,20 +67,57 @@ const MATURITY_LEVELS = [
 
 export function Govern() {
   const { data: inventory } = useInventory();
+  const { data: vendors } = useVendors();
 
-  // Foundation model registry — unique models in use
+  // Regulation compliance summary
+  const complianceRows = React.useMemo(() => {
+    if (!inventory) return [];
+    return REGULATIONS.map((reg) => {
+      const inScope = inventory.filter((a) => a.regulations?.includes(reg));
+      const gaps = inScope.filter(
+        (a) => a.validationStatus === 'Overdue' || a.governanceStatus === 'Non-Compliant'
+      );
+      const status = gaps.length === 0 ? 'Compliant' : gaps.length <= 2 ? 'At Risk' : 'Action Required';
+      return {
+        reg,
+        info: REGULATION_INFO[reg],
+        inScope: inScope.length,
+        gaps: gaps.length,
+        status,
+        severity: gaps.length === 0 ? 'Healthy' : gaps.length <= 2 ? 'Medium' : 'Critical',
+      };
+    });
+  }, [inventory]);
+
+  // Foundation model registry — unique models in use with vendor/AUP/concentration detail
   const modelsInUse = React.useMemo(() => {
     if (!inventory) return [];
+    const vendorByName = {};
+    (vendors ?? []).forEach((v) => { vendorByName[v.name] = v; });
+
     const modelMap = {};
     inventory.forEach((asset) => {
       if (!modelMap[asset.foundationModel]) {
-        modelMap[asset.foundationModel] = { model: asset.foundationModel, assets: [], vendors: new Set() };
+        modelMap[asset.foundationModel] = {
+          model: asset.foundationModel, assets: [], vendors: new Set(),
+        };
       }
       modelMap[asset.foundationModel].assets.push(asset.name);
       if (asset.vendor) modelMap[asset.foundationModel].vendors.add(asset.vendor);
     });
-    return Object.values(modelMap);
-  }, [inventory]);
+
+    return Object.values(modelMap).map((m) => {
+      const vendorRecords = [...m.vendors].map((n) => vendorByName[n]).filter(Boolean);
+      const aupCompliant = vendorRecords.length === 0 || vendorRecords.every((v) => v.acceptableUsePolicyCompliant);
+      const concentration = vendorRecords.some((v) => v.singleProviderDependency);
+      return {
+        ...m,
+        isGenAI: GENAI_MODELS.includes(m.model),
+        aupCompliant,
+        concentration,
+      };
+    }).sort((a, b) => b.assets.length - a.assets.length);
+  }, [inventory, vendors]);
 
   return (
     <div className="space-y-6">
@@ -86,6 +133,42 @@ export function Govern() {
         </div>
         <FileText className="w-5 h-5 text-brand-purple/60 group-hover:text-brand-purple transition-colors flex-shrink-0 ml-4" />
       </a>
+
+      {/* Regulation compliance summary table */}
+      <Card
+        title="Regulation Compliance Summary"
+        subtitle="Coverage and gaps across the AI asset portfolio, per regulation"
+      >
+        <div className="overflow-x-auto rounded-xl border border-surface-600">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-surface-600 bg-surface-700">
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Regulation</th>
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Status</th>
+                <th className="px-4 py-2.5 text-right text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Assets in Scope</th>
+                <th className="px-4 py-2.5 text-right text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Gaps</th>
+                <th className="px-4 py-2.5 text-right text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Last Reviewed</th>
+              </tr>
+            </thead>
+            <tbody>
+              {complianceRows.map((row) => (
+                <tr key={row.reg} className="border-b border-surface-600/50 hover:bg-surface-700/40">
+                  <td className="px-4 py-3">
+                    <span className="text-white font-medium text-sm">{row.reg}</span>
+                    <p className="text-white/40 text-[11px]">{row.info.full}</p>
+                  </td>
+                  <td className="px-4 py-3">
+                    <Badge severity={row.severity} label={row.status} size="sm" />
+                  </td>
+                  <td className="px-4 py-3 text-right text-white font-mono text-sm">{row.inScope}</td>
+                  <td className={`px-4 py-3 text-right font-mono text-sm font-bold ${row.gaps > 0 ? 'text-severity-critical' : 'text-severity-healthy'}`}>{row.gaps}</td>
+                  <td className="px-4 py-3 text-right text-white/50 font-mono text-xs">{formatDate(row.info.lastReviewed)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </Card>
 
       {/* Policy framework */}
       <div>
@@ -143,25 +226,47 @@ export function Govern() {
         subtitle="All LLM/GenAI foundation models in use across the AI asset portfolio"
         actions={<Badge severity="Healthy" label={`${modelsInUse.length} models`} size="sm" />}
       >
-        <div className="space-y-3">
-          {modelsInUse.map(({ model, assets, vendors }) => (
-            <div key={model} className="flex items-start justify-between py-3 border-b border-surface-600/50">
-              <div className="flex items-center gap-3">
-                <FoundationModelBadge model={model} />
-                <div>
-                  <p className="text-white/60 text-xs">{assets.length} asset(s)</p>
-                  {vendors.size > 0 && (
-                    <p className="text-white/30 text-xs">via {[...vendors].join(', ')}</p>
-                  )}
-                </div>
-              </div>
-              <div className="text-right">
-                <p className="text-white/40 text-xs font-mono truncate max-w-xs">
-                  {assets.slice(0, 2).join(', ')}{assets.length > 2 ? ` +${assets.length - 2} more` : ''}
-                </p>
-              </div>
-            </div>
-          ))}
+        <div className="overflow-x-auto rounded-xl border border-surface-600">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b border-surface-600 bg-surface-700">
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Foundation Model</th>
+                <th className="px-4 py-2.5 text-right text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Assets</th>
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">Vendor(s)</th>
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">AUP</th>
+                <th className="px-4 py-2.5 text-left text-xs font-mono font-medium text-white/40 uppercase tracking-wider">DORA Concentration</th>
+              </tr>
+            </thead>
+            <tbody>
+              {modelsInUse.map((m) => (
+                <tr key={m.model} className="border-b border-surface-600/50 hover:bg-surface-700/40">
+                  <td className="px-4 py-3">
+                    <div className="flex items-center gap-2">
+                      <FoundationModelBadge model={m.model} />
+                      {m.isGenAI && <Badge severity="Grey" label="GenAI" size="sm" />}
+                    </div>
+                    <p className="text-white/30 text-[11px] mt-1 truncate max-w-xs">
+                      {m.assets.slice(0, 2).join(', ')}{m.assets.length > 2 ? ` +${m.assets.length - 2} more` : ''}
+                    </p>
+                  </td>
+                  <td className="px-4 py-3 text-right text-white font-mono font-bold">{m.assets.length}</td>
+                  <td className="px-4 py-3 text-white/60 text-xs">
+                    {m.vendors.size > 0 ? [...m.vendors].join(', ') : 'In-house'}
+                  </td>
+                  <td className="px-4 py-3">
+                    <Badge severity={m.aupCompliant ? 'Healthy' : 'Critical'} label={m.aupCompliant ? 'Compliant' : 'Not covered'} size="sm" />
+                  </td>
+                  <td className="px-4 py-3">
+                    {m.concentration ? (
+                      <span className="flex items-center gap-1.5 text-severity-high text-xs"><Link className="w-3 h-3" /> Single-provider</span>
+                    ) : (
+                      <span className="text-white/30 text-xs">—</span>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </Card>
 

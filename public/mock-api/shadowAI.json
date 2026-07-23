@@ -1,7 +1,7 @@
 [
   {
     "id": "shd-001",
-    "name": "ChatGPT Integration — Wealth Advisory",
+    "name": "ChatGPT Enterprise (unlicensed) — Wealth Advisory",
     "severity": "Critical",
     "detectedDate": "2025-02-14T11:30:00Z",
     "department": "Wealth Management",
@@ -12,7 +12,7 @@
     "trafficVolume": "~2,400 queries/day",
     "foundationModel": "GPT-4",
     "remediationSteps": [
-      "Immediate: Disable unauthorized ChatGPT API access from corporate network",
+      "Immediate: Disable unlicensed ChatGPT Enterprise access from corporate network",
       "Conduct data exposure assessment for all queries sent since January 2025",
       "Engage DPO for GDPR Article 33 notification assessment (72-hour window)",
       "Onboard to approved AI catalogue via MRM team before re-enabling",
@@ -23,7 +23,7 @@
   },
   {
     "id": "shd-002",
-    "name": "Copilot for Credit Decisions",
+    "name": "GitHub Copilot (ungoverned) — Credit Decisioning",
     "severity": "Critical",
     "detectedDate": "2025-01-28T09:15:00Z",
     "department": "Corporate Credit",
@@ -31,7 +31,7 @@
     "touchesCustomerData": true,
     "touchesCreditLending": true,
     "dataClassificationsTouched": ["Customer Credit", "Restricted", "PII"],
-    "trafficVolume": "~580 queries/day",
+    "trafficVolume": "~580 completions/day",
     "foundationModel": "GPT-4",
     "remediationSteps": [
       "Immediately suspend use pending MRM validation",
@@ -86,7 +86,7 @@
   },
   {
     "id": "shd-005",
-    "name": "Midjourney — Marketing Assets",
+    "name": "Midjourney API — Marketing Assets",
     "severity": "Low",
     "detectedDate": "2025-02-20T10:00:00Z",
     "department": "Marketing",
@@ -106,7 +106,7 @@
   },
   {
     "id": "shd-006",
-    "name": "Claude.ai — HR Policy Drafting",
+    "name": "Claude.ai (personal account) — HR Policy Drafting",
     "severity": "Medium",
     "detectedDate": "2025-03-05T13:20:00Z",
     "department": "Human Resources",
@@ -146,7 +146,7 @@
   },
   {
     "id": "shd-008",
-    "name": "Undisclosed Lending Scorecard Tool",
+    "name": "Undisclosed SME Lending Scorecard",
     "severity": "Critical",
     "detectedDate": "2025-03-10T08:45:00Z",
     "department": "SME Lending",
@@ -162,6 +162,89 @@
       "Notify MRM team and CRO within 24 hours",
       "Assess ECOA/Reg B fair lending obligations",
       "Prepare supervisory notification if material adverse impact confirmed"
+    ],
+    "status": "Active",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-009",
+    "name": "DeepSeek R1 — Quant Research Prototyping",
+    "severity": "High",
+    "detectedDate": "2025-02-26T15:10:00Z",
+    "department": "Quantitative Research",
+    "owner": "y.nakamura@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Confidential", "Restricted"],
+    "trafficVolume": "~260 queries/day",
+    "foundationModel": "Other",
+    "remediationSteps": [
+      "Assess data residency risk — model API hosted outside EU/EEA",
+      "Verify no proprietary trading strategies were transmitted",
+      "Add DeepSeek endpoints to network egress blocklist",
+      "Escalate to CISO for foreign-hosted model risk review"
+    ],
+    "status": "Active",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-010",
+    "name": "Otter.ai — Board Meeting Transcription",
+    "severity": "High",
+    "detectedDate": "2025-02-11T12:30:00Z",
+    "department": "Company Secretariat",
+    "owner": "l.moreau@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Confidential", "Restricted"],
+    "trafficVolume": "~12 meetings/week",
+    "foundationModel": "Unknown",
+    "remediationSteps": [
+      "Determine whether MNPI or board-confidential material was processed",
+      "Engage Company Secretary and General Counsel",
+      "Delete cloud-stored recordings per retention policy",
+      "Onboard approved enterprise transcription with EU data residency"
+    ],
+    "status": "Under Investigation",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-011",
+    "name": "Jasper AI — Campaign Copywriting",
+    "severity": "Low",
+    "detectedDate": "2025-03-03T09:40:00Z",
+    "department": "Marketing",
+    "owner": "s.romano@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Public", "Internal"],
+    "trafficVolume": "~70 generations/week",
+    "foundationModel": "GPT-4",
+    "remediationSteps": [
+      "Review generated marketing copy for compliance and disclaimer accuracy",
+      "Add Jasper AI to approved tools list with content-review workflow",
+      "Confirm no customer data used in prompt inputs"
+    ],
+    "status": "Remediated",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-012",
+    "name": "Personal Gemini — Collections Scripting",
+    "severity": "Critical",
+    "detectedDate": "2025-03-08T10:20:00Z",
+    "department": "Collections & Recoveries",
+    "owner": "b.ilic@bank.nl",
+    "touchesCustomerData": true,
+    "touchesCreditLending": true,
+    "dataClassificationsTouched": ["Customer Credit", "PII"],
+    "trafficVolume": "~340 queries/day",
+    "foundationModel": "Gemini Ultra",
+    "remediationSteps": [
+      "Suspend use and confirm whether customer arrears data was transmitted",
+      "Assess consumer protection and fair debt collection implications",
+      "Engage DPO for GDPR exposure assessment",
+      "Route collections automation through approved MRM-validated tooling"
     ],
     "status": "Active",
     "dataFreshness": "2025-03-15T06:00:00Z"

@@ -1,7 +1,8 @@
 import React from 'react';
-import { AlertTriangle, Link } from 'lucide-react';
+import { AlertTriangle, Link, CalendarClock } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { FoundationModelBadge } from '../../components/ui/FoundationModelBadge';
+import { formatDate, daysUntil } from '../../utils/date';
 
 function doraSeverity(status) {
   switch (status) {
@@ -12,7 +13,17 @@ function doraSeverity(status) {
   }
 }
 
+export function formatSpend(amount) {
+  if (amount == null) return '—';
+  if (amount >= 1000000) return `€${(amount / 1000000).toFixed(1)}M`;
+  if (amount >= 1000) return `€${Math.round(amount / 1000)}k`;
+  return `€${amount}`;
+}
+
 export function VendorCard({ vendor, onClick }) {
+  const contractDays = daysUntil(vendor.contractEndDate);
+  const contractSoon = !isNaN(contractDays) && contractDays >= 0 && contractDays < 90;
+  const contractExpired = !isNaN(contractDays) && contractDays < 0;
   return (
     <div
       onClick={() => onClick(vendor)}
@@ -61,8 +72,35 @@ export function VendorCard({ vendor, onClick }) {
         </div>
       </div>
 
+      {/* Commercial + contract */}
+      <div className="grid grid-cols-2 gap-2 mb-3 pt-3 border-t border-surface-600/50">
+        <div>
+          <p className="text-[10px] text-white/30 font-mono uppercase">Annual Spend</p>
+          <p className="text-white text-sm font-display font-bold">{formatSpend(vendor.annualSpend)}</p>
+        </div>
+        <div>
+          <p className="text-[10px] text-white/30 font-mono uppercase">Contract Ends</p>
+          <p className={`text-xs font-medium flex items-center gap-1 ${contractExpired ? 'text-severity-critical' : contractSoon ? 'text-severity-stale' : 'text-white/70'}`}>
+            {(contractSoon || contractExpired) && <CalendarClock className="w-3 h-3" />}
+            {formatDate(vendor.contractEndDate)}
+          </p>
+          {!isNaN(contractDays) && (
+            <p className={`text-[10px] font-mono ${contractExpired ? 'text-severity-critical' : contractSoon ? 'text-severity-stale' : 'text-white/30'}`}>
+              {contractExpired ? `${Math.abs(contractDays)}d overdue` : `${contractDays}d left`}
+            </p>
+          )}
+        </div>
+      </div>
+      <p className="text-[10px] text-white/30 font-mono mb-2">Last assessed {formatDate(vendor.lastAssessmentDate)}</p>
+
       {/* Warning flags */}
       <div className="space-y-1">
+        {contractSoon && (
+          <div className="flex items-center gap-1.5 text-xs text-severity-stale">
+            <CalendarClock className="w-3 h-3" />
+            Contract renewal due within 90 days
+          </div>
+        )}
         {vendor.singleProviderDependency && (
           <div className="flex items-center gap-1.5 text-xs text-severity-high">
             <Link className="w-3 h-3" />
