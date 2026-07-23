@@ -74,6 +74,19 @@ export function Govern() {
 
   return (
     <div className="space-y-6">
+      {/* Client story banner */}
+      <a
+        href="/ai-risk-dashboard/client-story.html"
+        className="flex items-center justify-between bg-gradient-to-r from-brand-black to-brand-violet border border-brand-purple/30 rounded-xl p-4 hover:border-brand-purple/60 transition-colors group"
+      >
+        <div>
+          <p className="text-xs font-mono text-brand-pink uppercase tracking-widest mb-1">Client Story</p>
+          <p className="text-white font-display font-semibold">AI Risk Management — Why Your Bank Needs This</p>
+          <p className="text-white/50 text-xs mt-1">Regulatory landscape · Accenture framework · Business case · 14-week delivery approach</p>
+        </div>
+        <FileText className="w-5 h-5 text-brand-purple/60 group-hover:text-brand-purple transition-colors flex-shrink-0 ml-4" />
+      </a>
+
       {/* Policy framework */}
       <div>
         <h2 className="text-white font-display font-semibold text-base mb-4 flex items-center gap-2">
