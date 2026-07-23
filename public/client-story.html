@@ -487,6 +487,9 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 .reg-tml-dot.past{background:rgba(26,122,82,.15);border-color:rgba(26,122,82,.4);color:#1A7A52}
 .reg-tml-dot.now{background:rgba(239,68,68,.2);border-color:#EF4444;color:#EF4444;animation:pulse-dot 1.4s ease-in-out infinite}
 .reg-tml-dot.upcoming{background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.5);color:#D97706}
+.reg-tml-dot.critical{background:rgba(239,68,68,.25);border-color:#EF4444;color:#fff;font-size:14px;animation:pulse-dot .65s ease-in-out infinite;box-shadow:0 0 0 4px rgba(239,68,68,.18),0 0 18px rgba(239,68,68,.28)}
+.reg-tml-label.critical-label{color:#EF4444;font-weight:700}
+.reg-tml-sub.critical-sub{color:#EF4444;font-weight:700;font-size:10px}
 .reg-tml-label{font-size:11px;font-weight:600;color:var(--tp);text-align:center;font-family:'Space Grotesk',sans-serif}
 .reg-tml-sub{font-size:9px;color:var(--tm);text-align:center;font-family:'JetBrains Mono',monospace}
 .ob-matrix{width:100%;border-collapse:collapse;font-size:12px;margin:24px 0}
@@ -613,22 +616,22 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 
   <!-- SIDEBAR -->
   <nav class="sidebar" aria-label="Page sections">
-    <div class="sidebar-label">The Challenge</div>
-    <a class="nav-item active" href="#moment"><span class="nav-num">1</span>The AI Governance Moment</a>
-    <a class="nav-item" href="#regulators"><span class="nav-num">2</span>What Regulators Expect</a>
-    <a class="nav-item" href="#today"><span class="nav-num">3</span>Where Banks Are Today</a>
+    <div class="sidebar-label">The Situation</div>
+    <a class="nav-item active" href="#moment"><span class="nav-num">1</span>Why Now</a>
+    <a class="nav-item" href="#regulators"><span class="nav-num">2</span>Obligations</a>
+    <a class="nav-item" href="#today"><span class="nav-num">3</span>Industry Gap</a>
 
-    <div class="sidebar-label">The Framework</div>
-    <a class="nav-item" href="#what-is"><span class="nav-num">4</span>What AI Risk Mgmt Is</a>
-    <a class="nav-item" href="#maturity"><span class="nav-num">5</span>The Maturity Path</a>
-    <a class="nav-item" href="#cockpit"><span class="nav-num">6</span>The AI Risk Cockpit</a>
-    <a class="nav-item" href="#requires"><span class="nav-num">7</span>What It Requires</a>
+    <div class="sidebar-label">The Solution</div>
+    <a class="nav-item" href="#what-is"><span class="nav-num">4</span>NIST Framework</a>
+    <a class="nav-item" href="#maturity"><span class="nav-num">5</span>Integration Depth</a>
+    <a class="nav-item" href="#cockpit"><span class="nav-num">6</span>Live Dashboard</a>
+    <a class="nav-item" href="#requires"><span class="nav-num">7</span>Prerequisites</a>
 
-    <div class="sidebar-label">The Engagement</div>
-    <a class="nav-item" href="#team"><span class="nav-num">8</span>Team &amp; Skills</a>
-    <a class="nav-item" href="#timeline"><span class="nav-num">9</span>Project Timeline</a>
-    <a class="nav-item" href="#investment"><span class="nav-num">10</span>Investment &amp; Value</a>
-    <a class="nav-item" href="#next-steps"><span class="nav-num">11</span>Next Steps</a>
+    <div class="sidebar-label">The Proposal</div>
+    <a class="nav-item" href="#team"><span class="nav-num">8</span>The Team</a>
+    <a class="nav-item" href="#timeline"><span class="nav-num">9</span>14-Week Plan</a>
+    <a class="nav-item" href="#investment"><span class="nav-num">10</span>Investment &amp; ROI</a>
+    <a class="nav-item" href="#next-steps"><span class="nav-num">11</span>Get Started</a>
 
     <div class="sidebar-cta">
       <p>Ready to start? Commission a structured discovery with the NFR AI team.</p>
@@ -639,7 +642,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
   <!-- MAIN -->
   <main class="main">
 
-    <div class="group-divider">The Challenge</div>
+    <div class="group-divider">The Situation</div>
 
     <!-- ═══════════════ 1. THE AI GOVERNANCE MOMENT -->
     <section class="section" id="moment">
@@ -650,8 +653,8 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
         <p class="hero-sub-line">Most institutions do. The question is what you're doing about it — before supervisors find out for you.</p>
         <div class="stat-hero-grid">
           <div class="stat-hero"><b>2%</b><span>of global annual turnover — DORA maximum fine ceiling · ECB/DNB/BaFin · in force Jan 2025</span></div>
-          <div class="stat-hero"><b>73%</b><span>of AI assets unregistered at peer institutions · Accenture NFR benchmark, 25+ EMEA FSI engagements, 2023–24</span></div>
-          <div class="stat-hero"><b>18 mo</b><span>average remediation timeline after a supervisory finding on AI model governance</span></div>
+          <div class="stat-hero"><b>73%</b><span>of AI assets unregistered · Accenture NFR Practice proprietary benchmark, n=25+ EMEA financial institutions, 2023–24¹</span></div>
+          <div class="stat-hero"><b>18 mo</b><span>median remediation timeline post supervisory finding · Accenture NFR Practice, n=3+ EMEA supervised entity programmes, 2022–24¹</span></div>
           <div class="stat-hero"><b>Aug '26</b><span>EU AI Act compliance deadline for high-risk AI systems already in production</span></div>
         </div>
         <div class="hero-2col">
@@ -671,17 +674,17 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
     <section class="section" id="regulators">
       <div class="section-header"><span class="section-tag">Regulatory Landscape</span><h2>The obligations are live. The deadlines are not negotiable.</h2></div>
       <div class="reg-timeline">
-        <div class="reg-tml-item"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">GDPR</div><div class="reg-tml-sub">2018</div></div>
+        <div class="reg-tml-item" id="tml-gdpr"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">GDPR</div><div class="reg-tml-sub">2018</div></div>
         <div class="reg-tml-line"></div>
-        <div class="reg-tml-item"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">SR 11-7</div><div class="reg-tml-sub">Active</div></div>
+        <div class="reg-tml-item" id="tml-sr117"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">SR 11-7</div><div class="reg-tml-sub">Active</div></div>
         <div class="reg-tml-line"></div>
-        <div class="reg-tml-item"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">PCI-DSS v4</div><div class="reg-tml-sub">Mar 2024</div></div>
+        <div class="reg-tml-item" id="tml-pci"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">PCI-DSS v4</div><div class="reg-tml-sub">Mar 2024</div></div>
         <div class="reg-tml-line"></div>
-        <div class="reg-tml-item"><div class="reg-tml-dot now">◆</div><div class="reg-tml-label">DORA</div><div class="reg-tml-sub">Jan 2025 — NOW</div></div>
+        <div class="reg-tml-item" id="tml-dora"><div class="reg-tml-dot past">✓</div><div class="reg-tml-label">DORA</div><div class="reg-tml-sub">In force</div></div>
         <div class="reg-tml-line"></div>
-        <div class="reg-tml-item"><div class="reg-tml-dot upcoming">⚠</div><div class="reg-tml-label">EU AI Act</div><div class="reg-tml-sub">Aug 2026</div></div>
+        <div class="reg-tml-item" id="tml-aiact"><div class="reg-tml-dot upcoming">⚠</div><div class="reg-tml-label">EU AI Act</div><div class="reg-tml-sub">Aug 2026</div></div>
         <div class="reg-tml-line"></div>
-        <div class="reg-tml-item"><div class="reg-tml-dot upcoming">?</div><div class="reg-tml-label">Basel IV AI</div><div class="reg-tml-sub">TBC</div></div>
+        <div class="reg-tml-item" id="tml-basel"><div class="reg-tml-dot upcoming">?</div><div class="reg-tml-label">Basel IV AI</div><div class="reg-tml-sub">TBC</div></div>
       </div>
       <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:4px">Compliance obligation by asset type</h3>
       <p style="font-size:12px;color:var(--tm);margin-bottom:12px">●●● High obligation &nbsp;·&nbsp; ●● Medium &nbsp;·&nbsp; ● Indicative</p>
@@ -702,7 +705,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
         <div class="consequence-card"><div class="c-label">DORA</div><div class="c-fine">2% turnover or €10M</div><div class="c-desc">Maximum fine for ICT risk management failures · enforced by ECB, DNB, BaFin</div></div>
         <div class="consequence-card"><div class="c-label">SR 11-7 MRA</div><div class="c-fine">MRM Order</div><div class="c-desc">Model Risk Management Order under Fed/OCC — immediate remediation with regulatory oversight</div></div>
         <div class="consequence-card"><div class="c-label">EU AI Act</div><div class="c-fine">€35M or 7%</div><div class="c-desc">For prohibited AI practices · €15M or 3% for high-risk non-compliance (Art. 99)</div></div>
-        <div class="consequence-card"><div class="c-label">Peer incident</div><div class="c-fine">&gt;€10M cost</div><div class="c-desc">Mid-size European bank, 2024: AI model register failure → 18-month remediation programme</div></div>
+        <div class="consequence-card"><div class="c-label">ECB Supervisory Priority</div><div class="c-fine">Top-3 Finding</div><div class="c-desc">Model risk governance ranked among the top 3 supervisory improvement areas for significant institutions — ECB Annual Report on Supervisory Activities, 2023</div></div>
       </div>
     </section>
 
@@ -731,7 +734,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
               <text x="400" y="172" text-anchor="middle" fill="rgba(255,255,255,.3)" font-family="Space Grotesk,sans-serif" font-size="9" font-weight="700">3%</text>
               <text x="400" y="183" text-anchor="middle" fill="rgba(255,255,255,.2)" font-family="Inter,sans-serif" font-size="8">L5</text>
             </svg>
-            <p style="font-size:11px;color:rgba(255,255,255,.3);margin-top:8px;font-family:'JetBrains Mono',monospace">Accenture NFR Practice benchmark, 25+ EMEA FSI engagements, 2023–24</p>
+            <p style="font-size:10px;color:rgba(255,255,255,.25);margin-top:8px;font-family:'JetBrains Mono',monospace;line-height:1.5">¹ Accenture NFR Practice · proprietary engagement data · n=25+ EMEA FSI · 2023–24 · not independently audited</p>
           </div>
           <div>
             <p style="font-size:14px;color:rgba(255,255,255,.6);line-height:1.7;margin-bottom:24px">The governance gap is wider than most CROs realise. Shadow AI detection rate at peer institutions: <strong style="color:#FF50C8;font-family:'Space Grotesk',sans-serif;font-size:18px">8%</strong>. One in twelve unauthorised AI tools is ever flagged.</p>
@@ -743,12 +746,13 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
               <div class="ind-bar-row"><span class="ind-bar-label">Vendor AI Oversight</span><div class="ind-bar-track"><div class="ind-bar-fill" style="width:41%;background:#F97316"></div></div><span class="ind-bar-pct" style="color:#F97316">41%</span></div>
               <div class="ind-bar-row"><span class="ind-bar-label">Shadow AI Detection</span><div class="ind-bar-track"><div class="ind-bar-fill" style="width:8%;background:#EF4444"></div></div><span class="ind-bar-pct" style="color:#EF4444">8%</span></div>
             </div>
+            <p style="font-size:10px;color:rgba(255,255,255,.22);margin-top:18px;font-family:'JetBrains Mono',monospace;line-height:1.6">¹ Accenture NFR Practice · proprietary engagement data · n=25+ EMEA financial institutions · 2023–24 · not independently audited. All figures are directional benchmarks, not statistical samples.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="group-divider">The Framework</div>
+    <div class="group-divider">The Solution</div>
 
     <!-- ═══════════════ 4. WHAT AI RISK MANAGEMENT IS -->
     <section class="section" id="what-is">
@@ -1074,7 +1078,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
       </div>
     </section>
 
-    <div class="group-divider">The Engagement</div>
+    <div class="group-divider">The Proposal</div>
 
     <!-- ═══════════════ 7. TEAM & SKILLS -->
     <section class="section" id="team">
@@ -1473,6 +1477,67 @@ netBg('ctaCanvas',{n:35,link:120,sparkMs:380,ringMs:3000,scanV:.15});
   }
   window.addEventListener('scroll',update,{passive:true});
   update();
+}());
+</script>
+<script>
+/* ── Live regulatory timeline — classifies each item based on today's date ── */
+(function () {
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  var regs = [
+    { id: 'tml-gdpr',  enforce: '2018-05-25', pastLabel: '2018' },
+    { id: 'tml-sr117', enforce: '2011-01-01', pastLabel: 'Active' },
+    { id: 'tml-pci',   enforce: '2024-03-31', pastLabel: 'Mar 2024' },
+    { id: 'tml-dora',  enforce: '2025-01-17', pastLabel: 'In force' },
+    { id: 'tml-aiact', enforce: '2026-08-02', pastLabel: 'In force' },
+    { id: 'tml-basel', enforce: null,          pastLabel: 'TBC' },
+  ];
+
+  regs.forEach(function (reg) {
+    var item = document.getElementById(reg.id);
+    if (!item) return;
+    var dot   = item.querySelector('.reg-tml-dot');
+    var label = item.querySelector('.reg-tml-label');
+    var sub   = item.querySelector('.reg-tml-sub');
+
+    if (!reg.enforce) {
+      dot.className = 'reg-tml-dot upcoming';
+      dot.textContent = '?';
+      sub.textContent = 'TBC';
+      return;
+    }
+
+    var enforceDate = new Date(reg.enforce);
+    var diffDays = Math.round((enforceDate - today) / 86400000);
+
+    if (diffDays < 0) {
+      /* Already in force */
+      dot.className = 'reg-tml-dot past';
+      dot.textContent = '✓';
+      sub.textContent = reg.pastLabel;
+    } else if (diffDays === 0) {
+      /* Today */
+      dot.className = 'reg-tml-dot critical';
+      dot.textContent = '!';
+      sub.textContent = 'TODAY';
+      sub.className = 'reg-tml-sub critical-sub';
+      label.className = 'reg-tml-label critical-label';
+    } else if (diffDays <= 90) {
+      /* Imminent — within 90 days */
+      dot.className = 'reg-tml-dot critical';
+      dot.textContent = '!';
+      sub.textContent = diffDays + (diffDays === 1 ? ' day' : ' days');
+      sub.className = 'reg-tml-sub critical-sub';
+      label.className = 'reg-tml-label critical-label';
+    } else {
+      /* Upcoming */
+      dot.className = 'reg-tml-dot upcoming';
+      dot.textContent = '⚠';
+      var d = enforceDate;
+      sub.textContent = d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+    }
+  });
 }());
 </script>
 </body>
