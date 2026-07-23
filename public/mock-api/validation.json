@@ -1,0 +1,25 @@
+{
+  "traditionalML": {
+    "total": 18,
+    "validated": 13,
+    "pending": 3,
+    "overdue": 2,
+    "coveragePct": 72
+  },
+  "genAI_LLM": {
+    "total": 7,
+    "validated": 3,
+    "pending": 2,
+    "overdue": 2,
+    "coveragePct": 43
+  },
+  "overall": {
+    "total": 25,
+    "validated": 16,
+    "pending": 5,
+    "overdue": 4,
+    "coveragePct": 64
+  },
+  "dataFreshness": "2025-03-15T09:00:00Z",
+  "note_genai": "DORA and SR 11-7 require additional robustness and hallucination testing for GenAI/LLM models"
+}

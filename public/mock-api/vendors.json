@@ -1,0 +1,107 @@
+[
+  {
+    "id": "vnd-001",
+    "name": "OpenAI",
+    "category": "Model Provider",
+    "doraStatus": "Registered",
+    "riskScore": 68,
+    "singleProviderDependency": true,
+    "foundationModelsSupplied": ["GPT-4"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "GPT-4 API", "type": "API", "renewalDate": "2025-12-31" },
+      { "name": "ChatGPT Enterprise", "type": "SaaS", "renewalDate": "2025-09-30" }
+    ],
+    "doraSubcontractors": ["Microsoft Azure (hosting)", "Cloudflare (CDN/DDoS)"],
+    "contractEndDate": "2025-12-31",
+    "lastAssessmentDate": "2024-11-20T10:00:00Z",
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-002",
+    "name": "Anthropic",
+    "category": "Model Provider",
+    "doraStatus": "Pending",
+    "riskScore": 52,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Claude 3.7"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "Claude API (Bedrock)", "type": "API", "renewalDate": "2026-03-31" }
+    ],
+    "doraSubcontractors": ["Amazon Web Services (hosting)"],
+    "contractEndDate": "2026-03-31",
+    "lastAssessmentDate": "2025-01-15T10:00:00Z",
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-003",
+    "name": "Google DeepMind",
+    "category": "Cloud AI",
+    "doraStatus": "Registered",
+    "riskScore": 61,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Gemini Ultra"],
+    "acceptableUsePolicyCompliant": false,
+    "services": [
+      { "name": "Vertex AI Platform", "type": "Cloud AI Service", "renewalDate": "2025-06-30" },
+      { "name": "Gemini API", "type": "API", "renewalDate": "2025-06-30" }
+    ],
+    "doraSubcontractors": ["Google Cloud (GCP)", "Mandiant (security)"],
+    "contractEndDate": "2025-06-30",
+    "lastAssessmentDate": "2024-09-10T10:00:00Z",
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-004",
+    "name": "Meta AI",
+    "category": "Model Provider",
+    "doraStatus": "Pending",
+    "riskScore": 44,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Llama 3"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "Llama 3 (self-hosted via Azure)", "type": "GPU Instance", "renewalDate": "2026-01-31" }
+    ],
+    "doraSubcontractors": ["Microsoft Azure (compute)"],
+    "contractEndDate": "2026-01-31",
+    "lastAssessmentDate": "2025-02-01T10:00:00Z",
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-005",
+    "name": "Moody's Analytics",
+    "category": "SaaS",
+    "doraStatus": "Registered",
+    "riskScore": 35,
+    "singleProviderDependency": false,
+    "foundationModelsSupplied": ["Fine-tuned BERT"],
+    "acceptableUsePolicyCompliant": true,
+    "services": [
+      { "name": "RiskCalc ECL Engine", "type": "Embedded SDK", "renewalDate": "2025-11-30" },
+      { "name": "CreditLens", "type": "SaaS", "renewalDate": "2025-11-30" }
+    ],
+    "doraSubcontractors": ["Amazon Web Services"],
+    "contractEndDate": "2025-11-30",
+    "lastAssessmentDate": "2024-12-10T10:00:00Z",
+    "dataFreshness": "2025-03-15T07:00:00Z"
+  },
+  {
+    "id": "vnd-006",
+    "name": "Behavox",
+    "category": "SaaS",
+    "doraStatus": "Non-Compliant",
+    "riskScore": 79,
+    "singleProviderDependency": true,
+    "foundationModelsSupplied": ["Mistral Large"],
+    "acceptableUsePolicyCompliant": false,
+    "services": [
+      { "name": "Behavox Quantum", "type": "Cloud AI Service", "renewalDate": "2025-04-15" }
+    ],
+    "doraSubcontractors": ["OVHcloud (EU data residency)", "Elastic (search)"],
+    "contractEndDate": "2025-04-15",
+    "lastAssessmentDate": "2024-07-22T10:00:00Z",
+    "dataFreshness": "2025-03-14T15:00:00Z"
+  }
+]

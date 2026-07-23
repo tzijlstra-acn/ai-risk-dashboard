@@ -1,0 +1,171 @@
+[
+  {
+    "id": "aud-001",
+    "timestamp": "2025-03-14T16:42:00Z",
+    "event": "Governance status changed to 'Approved'",
+    "model": "Credit Scoring Engine",
+    "actor": "Sophie van der Berg",
+    "role": "MRM Validator",
+    "type": "approval",
+    "status": "approved",
+    "details": "Annual validation complete. No material issues found. Model approved for continued use in retail credit scoring."
+  },
+  {
+    "id": "aud-002",
+    "timestamp": "2025-03-13T09:15:00Z",
+    "event": "Validation record submitted for review",
+    "model": "Customer Service Chatbot",
+    "actor": "Pieter de Vries",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "pending",
+    "pendingHours": 54,
+    "details": "Initial validation package submitted. Hallucination testing and DORA ICT risk assessment pending CRO sign-off."
+  },
+  {
+    "id": "aud-003",
+    "timestamp": "2025-03-12T11:00:00Z",
+    "event": "Shadow AI incident escalated to MRM",
+    "model": "Copilot for Credit Decisions",
+    "actor": "System",
+    "role": "System",
+    "type": "incident",
+    "status": "auto-flagged",
+    "details": "Automated CASB detection of unauthorized LLM API calls from Corporate Credit department. Customer credit data exposure confirmed."
+  },
+  {
+    "id": "aud-004",
+    "timestamp": "2025-03-11T14:30:00Z",
+    "event": "Governance status changed to 'Non-Compliant'",
+    "model": "Liquidity Risk Forecasting",
+    "actor": "System",
+    "role": "System",
+    "type": "change",
+    "status": "auto-flagged",
+    "details": "Validation overdue by 276 days. SR 11-7 mandates annual re-validation for High-tier models. Automatic escalation triggered."
+  },
+  {
+    "id": "aud-005",
+    "timestamp": "2025-03-10T10:00:00Z",
+    "event": "New vendor assessment submitted",
+    "model": "Behavox Quantum",
+    "actor": "Lars Hendriksen",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "pending",
+    "pendingHours": 72,
+    "details": "DORA third-party risk assessment for Behavox submitted. Single-provider dependency noted. DORA non-compliance flag requires CRO escalation."
+  },
+  {
+    "id": "aud-006",
+    "timestamp": "2025-03-09T08:45:00Z",
+    "event": "Foundation model registry updated",
+    "model": "Document Summarisation Engine",
+    "actor": "Emma Johansson",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "approved",
+    "details": "Claude 3.7 added to foundation model registry. AUP sign-off obtained from Legal. Data residency confirmed as EU (AWS Frankfurt)."
+  },
+  {
+    "id": "aud-007",
+    "timestamp": "2025-03-08T16:00:00Z",
+    "event": "Validation status changed to 'Overdue'",
+    "model": "AML Transaction Screening",
+    "actor": "System",
+    "role": "System",
+    "type": "change",
+    "status": "auto-flagged",
+    "details": "Validation due date passed with no submission. SR 11-7 High-tier escalation triggered. MRM team notified by email."
+  },
+  {
+    "id": "aud-008",
+    "timestamp": "2025-03-07T13:20:00Z",
+    "event": "Model change request approved",
+    "model": "Real-Time Fraud Detection",
+    "actor": "Annika Müller",
+    "role": "CRO",
+    "type": "approval",
+    "status": "approved",
+    "details": "Version 4.2.1 champion-challenger swap approved. New champion model shows 8% improvement in precision without degrading recall."
+  },
+  {
+    "id": "aud-009",
+    "timestamp": "2025-03-06T09:00:00Z",
+    "event": "Acceptable Use Policy review initiated",
+    "model": "Google DeepMind (Vendor)",
+    "actor": "Emma Johansson",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "pending",
+    "pendingHours": 96,
+    "details": "AUP non-compliance flag raised for Gemini Ultra. Legal reviewing Google's updated data processing terms. Pending CRO sign-off to continue or suspend service."
+  },
+  {
+    "id": "aud-010",
+    "timestamp": "2025-03-05T11:30:00Z",
+    "event": "SR 11-7 tier classification updated",
+    "model": "Trade Surveillance Platform",
+    "actor": "Lars Hendriksen",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "approved",
+    "details": "Tier reclassified from Low to Medium following expanded scope to derivatives surveillance. Annual validation schedule updated."
+  },
+  {
+    "id": "aud-011",
+    "timestamp": "2025-03-04T14:45:00Z",
+    "event": "Incident report filed",
+    "model": "ChatGPT Integration — Wealth Advisory",
+    "actor": "System",
+    "role": "System",
+    "type": "incident",
+    "status": "auto-flagged",
+    "details": "Shadow AI incident detected via DLP alert. PII and Customer Credit data transmitted to external OpenAI API without approved data processing agreement."
+  },
+  {
+    "id": "aud-012",
+    "timestamp": "2025-03-03T08:00:00Z",
+    "event": "Validation change request rejected",
+    "model": "HR Recruitment Screening",
+    "actor": "Sophie van der Berg",
+    "role": "CRO",
+    "type": "approval",
+    "status": "rejected",
+    "details": "Validation package incomplete. ECOA/Reg B disparate impact analysis missing. Resubmit with full fairness testing documentation."
+  },
+  {
+    "id": "aud-013",
+    "timestamp": "2025-02-28T16:00:00Z",
+    "event": "DORA mapping completed",
+    "model": "Real-Time Fraud Detection",
+    "actor": "Annika Müller",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "approved",
+    "details": "ICT risk assessment completed per DORA Article 6. Fraud detection system classified as critical ICT function."
+  },
+  {
+    "id": "aud-014",
+    "timestamp": "2025-02-25T10:30:00Z",
+    "event": "Model retirement initiated",
+    "model": "Legacy Credit Bureau API v1",
+    "actor": "Sophie van der Berg",
+    "role": "MRM Validator",
+    "type": "change",
+    "status": "approved",
+    "details": "Legacy FICO API wrapper decommissioned. Migration to Credit Scoring Engine v3 complete. Model inventory updated."
+  },
+  {
+    "id": "aud-015",
+    "timestamp": "2025-02-20T09:15:00Z",
+    "event": "Hallucination test suite commissioned",
+    "model": "Document Summarisation Engine",
+    "actor": "Emma Johansson",
+    "role": "MRM Validator",
+    "type": "validation",
+    "status": "pending",
+    "pendingHours": 600,
+    "details": "External red-team commissioned to run hallucination and factual accuracy testing on Claude 3.7 for legal document summarisation. Results pending."
+  }
+]

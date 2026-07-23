@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply dark;
+  }
+  body {
+    @apply bg-surface-900 text-white font-body;
+  }
+  * {
+    @apply border-surface-600;
+  }
+}
+
+@layer utilities {
+  .scrollbar-dark {
+    scrollbar-width: thin;
+    scrollbar-color: #22223A transparent;
+  }
+  .scrollbar-dark::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-dark::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-dark::-webkit-scrollbar-thumb {
+    background-color: #22223A;
+    border-radius: 3px;
+  }
+}

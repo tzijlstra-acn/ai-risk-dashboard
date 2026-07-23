@@ -1,0 +1,169 @@
+[
+  {
+    "id": "shd-001",
+    "name": "ChatGPT Integration — Wealth Advisory",
+    "severity": "Critical",
+    "detectedDate": "2025-02-14T11:30:00Z",
+    "department": "Wealth Management",
+    "owner": "j.vanhouten@bank.nl",
+    "touchesCustomerData": true,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["PII", "Customer Credit", "Confidential"],
+    "trafficVolume": "~2,400 queries/day",
+    "foundationModel": "GPT-4",
+    "remediationSteps": [
+      "Immediate: Disable unauthorized ChatGPT API access from corporate network",
+      "Conduct data exposure assessment for all queries sent since January 2025",
+      "Engage DPO for GDPR Article 33 notification assessment (72-hour window)",
+      "Onboard to approved AI catalogue via MRM team before re-enabling",
+      "Implement DLP controls to detect future PII exfiltration to external LLM endpoints"
+    ],
+    "status": "Under Investigation",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-002",
+    "name": "Copilot for Credit Decisions",
+    "severity": "Critical",
+    "detectedDate": "2025-01-28T09:15:00Z",
+    "department": "Corporate Credit",
+    "owner": "r.bergmann@bank.nl",
+    "touchesCustomerData": true,
+    "touchesCreditLending": true,
+    "dataClassificationsTouched": ["Customer Credit", "Restricted", "PII"],
+    "trafficVolume": "~580 queries/day",
+    "foundationModel": "GPT-4",
+    "remediationSteps": [
+      "Immediately suspend use pending MRM validation",
+      "Review all credit decisions influenced by tool output (Jan 2025 onwards)",
+      "Assess ECOA/Reg B adverse action notice obligations",
+      "Engage Legal & Compliance for SR 11-7 materiality classification",
+      "Submit formal change request to AI governance committee"
+    ],
+    "status": "Active",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-003",
+    "name": "Perplexity AI — Market Research",
+    "severity": "Medium",
+    "detectedDate": "2025-03-01T14:00:00Z",
+    "department": "Research & Strategy",
+    "owner": "a.lindqvist@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Internal", "Confidential"],
+    "trafficVolume": "~120 queries/day",
+    "foundationModel": "Unknown",
+    "remediationSteps": [
+      "Enforce acceptable use policy training for Research department",
+      "Assess whether confidential strategy documents were uploaded",
+      "Add Perplexity AI to network egress blocklist (pending review)"
+    ],
+    "status": "Under Investigation",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-004",
+    "name": "Gemini Advanced — Legal Drafting",
+    "severity": "High",
+    "detectedDate": "2025-02-05T16:45:00Z",
+    "department": "Legal",
+    "owner": "c.marchand@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Confidential", "Restricted"],
+    "trafficVolume": "~320 queries/day",
+    "foundationModel": "Gemini Ultra",
+    "remediationSteps": [
+      "Assess whether attorney-client privileged content was processed",
+      "Engage General Counsel for litigation risk assessment",
+      "Evaluate Google Workspace DLP configuration",
+      "Onboard to approved GenAI framework with data residency controls"
+    ],
+    "status": "Remediated",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-005",
+    "name": "Midjourney — Marketing Assets",
+    "severity": "Low",
+    "detectedDate": "2025-02-20T10:00:00Z",
+    "department": "Marketing",
+    "owner": "k.svensson@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Public", "Internal"],
+    "trafficVolume": "~45 images/week",
+    "foundationModel": "Other",
+    "remediationSteps": [
+      "Implement AI-generated content disclosure policy",
+      "Review brand and IP ownership of generated assets",
+      "Add to approved AI tools list with usage guidelines"
+    ],
+    "status": "Remediated",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-006",
+    "name": "Claude.ai — HR Policy Drafting",
+    "severity": "Medium",
+    "detectedDate": "2025-03-05T13:20:00Z",
+    "department": "Human Resources",
+    "owner": "d.kowalski@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Internal", "PII"],
+    "trafficVolume": "~90 queries/week",
+    "foundationModel": "Claude 3.7",
+    "remediationSteps": [
+      "Verify no employee PII was included in prompts",
+      "Issue AUP reminder to HR leadership",
+      "Evaluate approved enterprise Claude agreement for expansion"
+    ],
+    "status": "Under Investigation",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-007",
+    "name": "GitHub Copilot — Unapproved Repos",
+    "severity": "High",
+    "detectedDate": "2025-01-15T09:00:00Z",
+    "department": "Technology",
+    "owner": "m.oliveira@bank.nl",
+    "touchesCustomerData": false,
+    "touchesCreditLending": false,
+    "dataClassificationsTouched": ["Confidential", "Internal"],
+    "trafficVolume": "~1,800 completions/day",
+    "foundationModel": "GPT-4",
+    "remediationSteps": [
+      "Audit which proprietary repositories were used as context",
+      "Enable Copilot for Business with IP exclusion controls",
+      "Restrict individual GitHub Copilot subscriptions on corporate devices"
+    ],
+    "status": "Remediated",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  },
+  {
+    "id": "shd-008",
+    "name": "Undisclosed Lending Scorecard Tool",
+    "severity": "Critical",
+    "detectedDate": "2025-03-10T08:45:00Z",
+    "department": "SME Lending",
+    "owner": "t.fischer@bank.nl",
+    "touchesCustomerData": true,
+    "touchesCreditLending": true,
+    "dataClassificationsTouched": ["Customer Credit", "PII", "Restricted"],
+    "trafficVolume": "~200 assessments/day",
+    "foundationModel": "Unknown",
+    "remediationSteps": [
+      "Immediate suspension of tool pending regulatory disclosure assessment",
+      "Commission independent model audit",
+      "Notify MRM team and CRO within 24 hours",
+      "Assess ECOA/Reg B fair lending obligations",
+      "Prepare supervisory notification if material adverse impact confirmed"
+    ],
+    "status": "Active",
+    "dataFreshness": "2025-03-15T06:00:00Z"
+  }
+]
