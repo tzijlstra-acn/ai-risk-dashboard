@@ -5,6 +5,7 @@ import { CoverageGauges } from './CoverageGauges';
 import { Card } from '../../components/ui/Card';
 import { FreshnessStamp } from '../../components/ui/FreshnessStamp';
 import { Badge } from '../../components/ui/Badge';
+import { AnimatedBar } from '../../components/ui/AnimatedBar';
 import { formatDate, daysUntil } from '../../utils/date';
 
 function tierSeverity(tier) {
@@ -23,10 +24,12 @@ function OverdueTable({ rows }) {
               <Badge severity={tierSeverity(r.tier)} label={r.tier} size="sm" />
               <span className="text-white text-xs truncate">{r.name}</span>
             </div>
-            <div className="flex-1 bg-surface-700 rounded-full h-4 overflow-hidden relative">
-              <div
-                className={`h-full rounded-full ${r.days > 90 ? 'bg-severity-critical/60' : 'bg-severity-stale/60'}`}
-                style={{ width: `${(r.days / max) * 100}%` }}
+            <div className="flex-1">
+              <AnimatedBar
+                pct={(r.days / max) * 100}
+                height="h-4"
+                className="bg-surface-700"
+                color={r.days > 90 ? 'rgba(239,68,68,0.6)' : 'rgba(245,158,11,0.6)'}
               />
             </div>
             <span className={`w-14 text-right text-xs font-mono font-bold flex-shrink-0 ${r.days > 90 ? 'text-severity-critical' : 'text-severity-stale'}`}>

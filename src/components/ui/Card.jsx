@@ -7,12 +7,28 @@ import React from 'react';
  * @param {React.ReactNode} actions - slot for header-right actions
  * @param {React.ReactNode} children
  * @param {string} className
+ * @param {boolean} loading - show shimmer skeleton instead of children
  */
-export function Card({ title, subtitle, actions, children, className = '' }) {
+export function Card({ title, subtitle, actions, children, className = '', loading = false }) {
+  if (loading) {
+    return (
+      <div className="bg-surface-800 border border-surface-600 rounded-xl p-4 space-y-3 animate-fade-in">
+        {[1, 2, 3].map((i) => (
+          <div
+            key={i}
+            className="h-4 rounded-lg bg-gradient-to-r from-surface-700 via-surface-600 to-surface-700"
+            style={{ backgroundSize: '200% 100%', animation: 'shimmer 1.5s infinite', animationDelay: `${i * 0.15}s` }}
+          />
+        ))}
+      </div>
+    );
+  }
+
   return (
     <div
       className={[
         'bg-surface-800 border border-surface-600 rounded-xl p-5',
+        'animate-fade-slide-up transition-colors duration-300 hover:border-surface-500',
         className,
       ].join(' ')}
     >

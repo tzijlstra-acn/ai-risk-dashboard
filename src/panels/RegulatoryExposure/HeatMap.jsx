@@ -66,15 +66,17 @@ export function HeatMap({ data = [], modelFilter = '' }) {
             </tr>
           </thead>
           <tbody>
-            {REGULATIONS.map((reg) => (
+            {REGULATIONS.map((reg, rowIdx) => (
               <tr key={reg}>
                 <td className="px-3 py-2 text-white font-mono text-xs font-medium border-r border-surface-600">
                   {reg}
                 </td>
-                {ASSET_TYPES.map((type) => {
+                {ASSET_TYPES.map((type, colIdx) => {
                   const count = getCount(reg, type);
                   const key = `${reg}:${type}`;
                   const isSelected = selectedCell === key;
+                  const overdueInCell = getAssets(reg, type).filter((a) => a.validationStatus === 'Overdue').length;
+                  const status = count === 0 ? 'No exposure' : overdueInCell > 0 ? `${overdueInCell} overdue validation(s)` : 'Coverage on track';
                   return (
                     <td
                       key={type}
@@ -83,11 +85,13 @@ export function HeatMap({ data = [], modelFilter = '' }) {
                       <div
                         onClick={() => handleCellClick(reg, type)}
                         className={[
-                          'w-12 h-10 rounded-lg flex items-center justify-center mx-auto font-bold transition-all',
+                          'w-12 h-10 rounded-lg flex items-center justify-center mx-auto font-bold transition-all animate-fade-in hover:scale-110',
                           cellColor(count),
-                          isSelected ? 'ring-2 ring-white/30' : '',
+                          count >= 3 ? 'border border-severity-critical/60 animate-pulse-border' : '',
+                          isSelected ? 'ring-2 ring-white/30 scale-110' : '',
                         ].join(' ')}
-                        title={`${reg} × ${type}: ${count} asset(s)`}
+                        style={{ animationDelay: `${(rowIdx + colIdx) * 45}ms` }}
+                        title={`${reg} × ${type}: ${count} asset(s) — ${status}`}
                       >
                         {count || '—'}
                       </div>

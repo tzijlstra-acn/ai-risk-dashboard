@@ -4,6 +4,7 @@ import { X, AlertTriangle } from 'lucide-react';
 import { Badge } from '../../components/ui/Badge';
 import { FoundationModelBadge } from '../../components/ui/FoundationModelBadge';
 import { FreshnessStamp } from '../../components/ui/FreshnessStamp';
+import { AnimatedBar } from '../../components/ui/AnimatedBar';
 import { formatDate, isStale } from '../../utils/date';
 
 function doraSeverity(status) {
@@ -70,14 +71,14 @@ export function VendorDetailDrawer({ vendor, open, onClose }) {
                     <div>
                       <p className="text-xs font-mono text-white/40 uppercase tracking-wider mb-2">Risk Score</p>
                       <div className="flex items-center gap-3">
-                        <div className="flex-1 bg-surface-600 rounded-full h-2 overflow-hidden">
-                          <div
-                            className={`h-full rounded-full transition-all ${
-                              vendor.riskScore >= 70 ? 'bg-severity-critical' :
-                              vendor.riskScore >= 50 ? 'bg-severity-high' :
-                              vendor.riskScore >= 30 ? 'bg-severity-medium' : 'bg-severity-healthy'
-                            }`}
-                            style={{ width: `${vendor.riskScore}%` }}
+                        <div className="flex-1">
+                          <AnimatedBar
+                            pct={vendor.riskScore}
+                            color={
+                              vendor.riskScore >= 70 ? '#EF4444' :
+                              vendor.riskScore >= 50 ? '#F97316' :
+                              vendor.riskScore >= 30 ? '#EAB308' : '#22C55E'
+                            }
                           />
                         </div>
                         <span className={`text-sm font-bold font-mono ${

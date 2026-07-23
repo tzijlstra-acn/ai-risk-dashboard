@@ -1,33 +1,90 @@
 import React from 'react';
+import { LineChart, Line, ResponsiveContainer } from 'recharts';
 import { useInventory } from '../hooks/useInventory';
 import { useShadowAI } from '../hooks/useShadowAI';
 import { useValidation } from '../hooks/useValidation';
 import { useVendors } from '../hooks/useVendors';
 import { useAuditLog } from '../hooks/useAuditLog';
+import { useCountUp } from '../hooks/useCountUp';
+import { useLiveSimulation, useSecondsAgo } from '../hooks/useLiveSimulation';
 import { RegulatoryExposurePanel } from '../panels/RegulatoryExposure';
 import { ValidationCoveragePanel } from '../panels/ValidationCoverage';
 import { VendorRiskPanel } from '../panels/VendorRisk';
 import { RoleGuard } from '../auth/RoleGuard';
 import { Card } from '../components/ui/Card';
 import { Badge } from '../components/ui/Badge';
+import { AnimatedBar } from '../components/ui/AnimatedBar';
 import { formatDate, formatTimestamp, daysUntil } from '../utils/date';
 import {
   Database, AlertTriangle, Clock, Building2, ShieldCheck, ClipboardList,
-  TrendingUp, TrendingDown, ArrowUpRight, CheckCircle, Zap,
+  TrendingUp, TrendingDown, ArrowUpRight, CheckCircle, Zap, Radio,
 } from 'lucide-react';
 
 function tierSeverity(tier) {
   return tier === 'High' ? 'Critical' : tier === 'Medium' ? 'Medium' : 'Low';
 }
 
-function KPICard({ label, value, sub, icon: Icon, color = 'text-white', loading, trend, accent }) {
+const SPARKLINES = {
+  totalAssets: [20, 21, 22, 22, 23, 24, 25, 25],
+  coverage:    [48, 51, 53, 56, 56, 58, 60, 56],
+  shadow:      [2, 3, 3, 4, 5, 4, 5, 5],
+  dora:        [4, 4, 3, 3, 3, 3, 3, 3],
+  overdue:     [3, 4, 4, 5, 5, 5, 6, 5],
+  vendorAlerts:[3, 3, 4, 4, 5, 5, 6, 6],
+};
+
+function Sparkline({ data, color }) {
+  if (!data || data.length === 0) return null;
+  const chartData = data.map((v, i) => ({ i, v }));
   return (
-    <div className={`bg-surface-800 border rounded-xl p-4 ${accent || 'border-surface-600'}`}>
+    <div className="w-20 h-8 flex-shrink-0 opacity-80">
+      <ResponsiveContainer width="100%" height="100%">
+        <LineChart data={chartData} margin={{ top: 4, bottom: 4, left: 0, right: 0 }}>
+          <Line
+            type="monotone"
+            dataKey="v"
+            stroke={color}
+            strokeWidth={2}
+            dot={false}
+            isAnimationActive
+            animationDuration={900}
+          />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+
+function AnimatedValue({ value, color, loading }) {
+  const isPercent = typeof value === 'string' && value.trim().endsWith('%');
+  const numeric = isPercent ? parseFloat(value) : (typeof value === 'number' ? value : NaN);
+  const animated = useCountUp(Number.isNaN(numeric) ? 0 : numeric, 800);
+
+  if (loading) return <p className={`text-3xl font-display font-bold ${color}`}>—</p>;
+  if (Number.isNaN(numeric)) {
+    return <p className={`text-3xl font-display font-bold ${color}`}>{value}</p>;
+  }
+  const display = isPercent ? `${Math.round(animated)}%` : Math.round(animated).toLocaleString();
+  return <p className={`text-3xl font-display font-bold tabular-nums ${color}`}>{display}</p>;
+}
+
+function KPICard({
+  label, value, sub, icon: Icon, color = 'text-white', loading, trend, accent,
+  sparkData, sparkColor = '#A100FF', critical = false, stagger = '',
+}) {
+  return (
+    <div className={`relative bg-surface-800 border rounded-xl p-4 animate-fade-slide-up transition-colors duration-300 hover:border-surface-500 ${accent || 'border-surface-600'} ${stagger}`}>
+      {critical && !loading && (
+        <span className="absolute top-2.5 right-2.5 flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-severity-critical/50" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-severity-critical pulse-critical" />
+        </span>
+      )}
       <div className="flex items-start justify-between">
         <div className="min-w-0">
           <p className="text-white/40 text-[11px] font-mono uppercase tracking-wider truncate">{label}</p>
           <div className="flex items-baseline gap-2 mt-1">
-            <p className={`text-3xl font-display font-bold ${color}`}>{loading ? '—' : value}</p>
+            <AnimatedValue value={value} color={color} loading={loading} />
             {trend && !loading && (
               <span className={`flex items-center gap-0.5 text-xs font-mono ${trend.dir === 'up' ? 'text-severity-healthy' : trend.dir === 'down' ? 'text-severity-critical' : 'text-white/40'}`}>
                 {trend.dir === 'up' ? <TrendingUp className="w-3 h-3" /> : trend.dir === 'down' ? <TrendingDown className="w-3 h-3" /> : null}
@@ -37,10 +94,17 @@ function KPICard({ label, value, sub, icon: Icon, color = 'text-white', loading,
           </div>
           {sub && <div className="text-white/40 text-[11px] mt-1 leading-snug">{sub}</div>}
         </div>
-        <div className={`p-2 rounded-lg bg-white/5 flex-shrink-0`}>
-          <Icon className={`w-4 h-4 ${color}`} />
+        <div className="flex flex-col items-end gap-2 flex-shrink-0 pl-2">
+          <div className="p-2 rounded-lg bg-white/5">
+            <Icon className={`w-4 h-4 ${color}`} />
+          </div>
         </div>
       </div>
+      {sparkData && !loading && (
+        <div className="mt-2 flex justify-end">
+          <Sparkline data={sparkData} color={sparkColor} />
+        </div>
+      )}
     </div>
   );
 }
@@ -53,10 +117,33 @@ function SplitBar({ label, sublabel, pct, color }) {
         <span className="text-white font-medium">{label}</span>
         <span className={`font-mono font-bold ${color === '#A100FF' ? 'text-brand-pink-light' : pctColor}`}>{pct}%</span>
       </div>
-      <div className="w-full bg-surface-600 rounded-full h-2 overflow-hidden">
-        <div className="h-full rounded-full" style={{ width: `${pct}%`, backgroundColor: color }} />
-      </div>
+      <AnimatedBar pct={pct} color={color} />
       <p className="text-white/30 text-[11px] mt-1 font-mono">{sublabel}</p>
+    </div>
+  );
+}
+
+function LiveScanIndicator() {
+  const { lastScan, scanCount } = useLiveSimulation();
+  const secondsAgo = useSecondsAgo(lastScan);
+  return (
+    <div className="flex items-center gap-4 bg-surface-800 border border-surface-600 rounded-xl px-4 py-2 animate-fade-in">
+      <div className="flex items-center gap-2">
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-severity-healthy/50" />
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-severity-healthy" />
+        </span>
+        <span className="text-severity-healthy text-xs font-mono font-medium">LIVE</span>
+      </div>
+      <span className="text-white/15">·</span>
+      <div className="flex items-center gap-1.5 text-xs text-white/50 font-mono">
+        <Radio className="w-3.5 h-3.5 text-brand-pink-light" />
+        Last scan <span className="text-white tabular-nums">{secondsAgo}s</span> ago
+      </div>
+      <span className="text-white/15">·</span>
+      <span className="text-xs text-white/40 font-mono">
+        <span className="text-white tabular-nums">{scanCount}</span> refresh{scanCount === 1 ? '' : 'es'} this session
+      </span>
     </div>
   );
 }
@@ -106,12 +193,16 @@ export function Measure() {
 
   return (
     <div className="space-y-5">
+      {/* Live scan indicator */}
+      <LiveScanIndicator />
+
       {/* KPI Row — 6 cards */}
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3">
         <KPICard
           label="Total AI Assets" value={totalAssets}
           sub={<><span className="text-severity-critical font-medium">{highTier}</span> High-tier SR 11-7 · {genAICount} GenAI</>}
           icon={Database} loading={invLoading}
+          sparkData={SPARKLINES.totalAssets} sparkColor="#A100FF" stagger="stagger-1"
         />
         <KPICard
           label="Validation Coverage" value={`${coverage}%`}
@@ -119,6 +210,7 @@ export function Measure() {
           icon={ShieldCheck} loading={valLoading}
           color={coverage >= 80 ? 'text-severity-healthy' : coverage >= 60 ? 'text-severity-medium' : 'text-severity-critical'}
           trend={{ dir: 'up', label: '3% vs last month' }}
+          sparkData={SPARKLINES.coverage} sparkColor="#22C55E" stagger="stagger-2"
         />
         <KPICard
           label="Critical Shadow AI" value={criticalShadow}
@@ -126,12 +218,15 @@ export function Measure() {
           icon={AlertTriangle} loading={shadowLoading}
           color={criticalShadow > 0 ? 'text-severity-critical' : 'text-severity-healthy'}
           accent={criticalShadow > 0 ? 'border-severity-critical/30' : 'border-surface-600'}
+          critical={criticalShadow > 0}
+          sparkData={SPARKLINES.shadow} sparkColor="#EF4444" stagger="stagger-3"
         />
         <KPICard
           label="DORA Register Gaps" value={registerGaps.length}
           sub={registerGaps.length ? registerGaps.join(', ') : 'All vendors registered'}
           icon={ClipboardList} loading={venLoading || invLoading}
           color={registerGaps.length > 0 ? 'text-severity-high' : 'text-severity-healthy'}
+          sparkData={SPARKLINES.dora} sparkColor="#F97316" stagger="stagger-4"
         />
         <KPICard
           label="Overdue Validations" value={overdue}
@@ -139,12 +234,15 @@ export function Measure() {
           icon={Clock} loading={valLoading}
           color={overdue > 0 ? 'text-severity-critical' : 'text-severity-healthy'}
           accent={overdue > 0 ? 'border-severity-critical/30' : 'border-surface-600'}
+          critical={overdue > 0}
+          sparkData={SPARKLINES.overdue} sparkColor="#EF4444" stagger="stagger-5"
         />
         <KPICard
           label="Vendor Risk Alerts" value={vendorAlerts}
           sub={<>{doraNonCompliant} DORA · {aupIssues} AUP · {concentration} concentration</>}
           icon={Building2} loading={venLoading}
           color={vendorAlerts > 0 ? 'text-severity-high' : 'text-severity-healthy'}
+          sparkData={SPARKLINES.vendorAlerts} sparkColor="#F97316" stagger="stagger-6"
         />
       </div>
 
@@ -179,8 +277,8 @@ export function Measure() {
         {/* Top 5 overdue */}
         <Card title="Most Overdue Models" subtitle="Validation past due date">
           <div className="space-y-2">
-            {(validation?.overdueByDays ?? []).map((o) => (
-              <div key={o.name} className="flex items-center justify-between gap-2 bg-surface-700 rounded-lg px-3 py-2">
+            {(validation?.overdueByDays ?? []).map((o, i) => (
+              <div key={o.name} className={`flex items-center justify-between gap-2 bg-surface-700 rounded-lg px-3 py-2 animate-fade-slide-up stagger-${Math.min(i + 1, 6)} transition-colors hover:bg-surface-600/60`}>
                 <div className="min-w-0">
                   <p className="text-white text-xs font-medium truncate">{o.name}</p>
                   <Badge severity={tierSeverity(o.tier)} label={o.tier} size="sm" />
@@ -199,10 +297,10 @@ export function Measure() {
         {/* Upcoming due */}
         <Card title="Coming Due" subtitle="Next validations scheduled">
           <div className="space-y-2">
-            {(validation?.upcomingDue ?? []).map((u) => {
+            {(validation?.upcomingDue ?? []).map((u, i) => {
               const dleft = daysUntil(u.dueDate);
               return (
-                <div key={u.name} className="flex items-center justify-between gap-2 bg-surface-700 rounded-lg px-3 py-2">
+                <div key={u.name} className={`flex items-center justify-between gap-2 bg-surface-700 rounded-lg px-3 py-2 animate-fade-slide-up stagger-${Math.min(i + 1, 6)} transition-colors hover:bg-surface-600/60`}>
                   <div className="min-w-0">
                     <p className="text-white text-xs font-medium truncate">{u.name}</p>
                     <div className="flex items-center gap-2 mt-0.5">
@@ -229,15 +327,19 @@ export function Measure() {
         <RoleGuard permission="canViewVendors">
           <Card title="Vendor Risk Summary" subtitle="Top 5 vendors by risk score">
             <div className="space-y-2">
-              {topVendors.map((v) => (
-                <div key={v.id} className="flex items-center gap-3 bg-surface-700 rounded-lg px-3 py-2">
+              {topVendors.map((v, i) => (
+                <div key={v.id} className={`flex items-center gap-3 bg-surface-700 rounded-lg px-3 py-2 animate-fade-slide-up stagger-${Math.min(i + 1, 6)} transition-colors hover:bg-surface-600/60`}>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
                       <p className="text-white text-xs font-medium truncate">{v.name}</p>
                       <span className={`text-xs font-mono font-bold ${v.riskScore >= 70 ? 'text-severity-critical' : v.riskScore >= 50 ? 'text-severity-high' : 'text-severity-medium'}`}>{v.riskScore}</span>
                     </div>
-                    <div className="w-full bg-surface-600 rounded-full h-1 overflow-hidden mt-1">
-                      <div className={`h-full rounded-full ${v.riskScore >= 70 ? 'bg-severity-critical' : v.riskScore >= 50 ? 'bg-severity-high' : 'bg-severity-medium'}`} style={{ width: `${v.riskScore}%` }} />
+                    <div className="mt-1">
+                      <AnimatedBar
+                        pct={v.riskScore}
+                        height="h-1"
+                        color={v.riskScore >= 70 ? '#EF4444' : v.riskScore >= 50 ? '#F97316' : '#EAB308'}
+                      />
                     </div>
                     <div className="flex items-center gap-1.5 mt-1.5 flex-wrap">
                       <Badge severity={v.doraStatus === 'Registered' ? 'Healthy' : v.doraStatus === 'Pending' ? 'Medium' : 'Critical'} label={`DORA: ${v.doraStatus}`} size="sm" />
@@ -256,8 +358,8 @@ export function Measure() {
       <RoleGuard permission="canViewAudit">
         <Card title="Recent Audit Events" subtitle="Last 5 governance actions">
           <div className="divide-y divide-surface-600/50">
-            {recentAudit.map((e) => (
-              <div key={e.id} className="flex items-start gap-3 py-2.5">
+            {recentAudit.map((e, i) => (
+              <div key={e.id} className={`flex items-start gap-3 py-2.5 animate-fade-slide-up stagger-${Math.min(i + 1, 6)}`}>
                 <div className="mt-0.5 flex-shrink-0">
                   {e.type === 'incident' ? <Zap className="w-3.5 h-3.5 text-severity-critical" />
                     : e.type === 'approval' ? <CheckCircle className="w-3.5 h-3.5 text-severity-healthy" />

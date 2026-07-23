@@ -1,6 +1,7 @@
 import React from 'react';
 import { Gauge } from '../../components/ui/Gauge';
 import { AlertTriangle } from 'lucide-react';
+import { formatDate } from '../../utils/date';
 
 function gaugeColor(pct) {
   if (pct >= 80) return '#22C55E'; // healthy
@@ -8,10 +9,21 @@ function gaugeColor(pct) {
   return '#EF4444'; // critical/red
 }
 
+function tiersFromByTier(byTier) {
+  if (!byTier) return [];
+  return ['High', 'Medium', 'Low']
+    .filter((t) => byTier[t])
+    .map((t) => ({ tier: t, ...byTier[t] }));
+}
+
 export function CoverageGauges({ data, onGaugeClick }) {
   if (!data) return null;
 
   const { traditionalML, genAI_LLM, overall } = data;
+
+  const nextDue = data.upcomingDue?.length
+    ? formatDate([...data.upcomingDue].sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate))[0].dueDate)
+    : null;
 
   const gauges = [
     {
@@ -20,6 +32,11 @@ export function CoverageGauges({ data, onGaugeClick }) {
       sublabel: `${traditionalML.validated}/${traditionalML.total} models`,
       value: traditionalML.coveragePct,
       color: gaugeColor(traditionalML.coveragePct),
+      tooltip: {
+        models: traditionalML.total,
+        tiers: tiersFromByTier(traditionalML.byTier),
+        nextDue,
+      },
     },
     {
       key: 'genAI_LLM',
@@ -27,6 +44,11 @@ export function CoverageGauges({ data, onGaugeClick }) {
       sublabel: `${genAI_LLM.validated}/${genAI_LLM.total} models`,
       value: genAI_LLM.coveragePct,
       color: '#A100FF', // brand purple for GenAI
+      tooltip: {
+        models: genAI_LLM.total,
+        tiers: [{ tier: 'Validated', validated: genAI_LLM.validated, total: genAI_LLM.total, overdue: genAI_LLM.overdue }],
+        nextDue,
+      },
     },
     {
       key: 'overall',
@@ -34,6 +56,11 @@ export function CoverageGauges({ data, onGaugeClick }) {
       sublabel: `${overall.validated}/${overall.total} total`,
       value: overall.coveragePct,
       color: gaugeColor(overall.coveragePct),
+      tooltip: {
+        models: overall.total,
+        tiers: [{ tier: 'Validated', validated: overall.validated, total: overall.total, overdue: overall.overdue }],
+        nextDue,
+      },
     },
   ];
 
@@ -48,6 +75,7 @@ export function CoverageGauges({ data, onGaugeClick }) {
               label={g.label}
               sublabel={g.sublabel}
               color={g.color}
+              tooltip={g.tooltip}
               onClick={() => onGaugeClick(g.key)}
             />
           </div>

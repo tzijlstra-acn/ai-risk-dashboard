@@ -2,21 +2,13 @@ import React, { useState } from 'react';
 import { useInventory } from '../../hooks/useInventory';
 import { ReconciliationWidget } from './ReconciliationWidget';
 import { InventoryGrid } from './InventoryGrid';
-import { ModelDetailDrawer } from './ModelDetailDrawer';
 import { AdvancedFilters } from '../../components/ui/AdvancedFilters';
 import { FreshnessStamp } from '../../components/ui/FreshnessStamp';
 import { Card } from '../../components/ui/Card';
 
 export function ModelInventoryPanel({ searchTerm = '' }) {
   const { data, isLoading } = useInventory();
-  const [selectedModel, setSelectedModel] = useState(null);
-  const [showDrawer, setShowDrawer] = useState(false);
   const [filters, setFilters] = useState({});
-
-  const handleRowClick = (row) => {
-    setSelectedModel(row);
-    setShowDrawer(true);
-  };
 
   const dataFreshness = data?.[0]?.dataFreshness;
 
@@ -40,20 +32,11 @@ export function ModelInventoryPanel({ searchTerm = '' }) {
           <InventoryGrid
             data={data}
             loading={isLoading}
-            selectedId={selectedModel?.id}
-            onRowClick={handleRowClick}
             searchTerm={searchTerm}
             filters={filters}
           />
         </div>
       </Card>
-
-      {/* Detail drawer */}
-      <ModelDetailDrawer
-        model={selectedModel}
-        open={showDrawer}
-        onClose={() => setShowDrawer(false)}
-      />
     </div>
   );
 }

@@ -20,6 +20,39 @@ export function formatSpend(amount) {
   return `€${amount}`;
 }
 
+/**
+ * RiskRing — animated SVG donut showing a 0-100 risk score.
+ */
+export function RiskRing({ score = 0 }) {
+  const [animScore, setAnimScore] = React.useState(0);
+  React.useEffect(() => {
+    const t = setTimeout(() => setAnimScore(score), 200);
+    return () => clearTimeout(t);
+  }, [score]);
+
+  const r = 18;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (animScore / 100) * circ;
+  const color = score >= 70 ? '#EF4444' : score >= 40 ? '#F97316' : '#22C55E';
+
+  return (
+    <div className="relative w-14 h-14 flex-shrink-0">
+      <svg className="w-14 h-14 -rotate-90" viewBox="0 0 44 44">
+        <circle cx="22" cy="22" r={r} fill="none" stroke="#22223A" strokeWidth="4" />
+        <circle
+          cx="22" cy="22" r={r} fill="none" stroke={color} strokeWidth="4"
+          strokeDasharray={circ} strokeLinecap="round"
+          strokeDashoffset={offset}
+          style={{ transition: 'stroke-dashoffset 1.2s ease-out' }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="text-xs font-bold font-mono" style={{ color }}>{score}</span>
+      </div>
+    </div>
+  );
+}
+
 export function VendorCard({ vendor, onClick }) {
   const contractDays = daysUntil(vendor.contractEndDate);
   const contractSoon = !isNaN(contractDays) && contractDays >= 0 && contractDays < 90;
@@ -27,39 +60,20 @@ export function VendorCard({ vendor, onClick }) {
   return (
     <div
       onClick={() => onClick(vendor)}
-      className="bg-surface-800 border border-surface-600 rounded-xl p-4 cursor-pointer hover:border-brand-purple/50 hover:bg-surface-700/50 transition-all group"
+      className="bg-surface-800 border border-surface-600 rounded-xl p-4 cursor-pointer hover:border-brand-purple/50 hover:bg-surface-700/50 hover:-translate-y-0.5 transition-all duration-200 group animate-fade-slide-up"
     >
       {/* Header */}
-      <div className="flex items-start justify-between mb-3">
-        <div>
-          <h3 className="text-white font-display font-semibold text-sm group-hover:text-brand-pink-light transition-colors">
-            {vendor.name}
-          </h3>
-          <p className="text-white/40 text-xs mt-0.5">{vendor.category}</p>
+      <div className="flex items-start justify-between mb-3 gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <RiskRing score={vendor.riskScore} />
+          <div className="min-w-0">
+            <h3 className="text-white font-display font-semibold text-sm group-hover:text-brand-pink-light transition-colors truncate">
+              {vendor.name}
+            </h3>
+            <p className="text-white/40 text-xs mt-0.5">{vendor.category}</p>
+          </div>
         </div>
         <Badge severity={doraSeverity(vendor.doraStatus)} label={vendor.doraStatus} size="sm" />
-      </div>
-
-      {/* Risk score bar */}
-      <div className="mb-3">
-        <div className="flex items-center justify-between text-xs mb-1">
-          <span className="text-white/40 font-mono">Risk Score</span>
-          <span className={`font-bold font-mono ${
-            vendor.riskScore >= 70 ? 'text-severity-critical' :
-            vendor.riskScore >= 50 ? 'text-severity-high' :
-            vendor.riskScore >= 30 ? 'text-severity-medium' : 'text-severity-healthy'
-          }`}>{vendor.riskScore}/100</span>
-        </div>
-        <div className="w-full bg-surface-600 rounded-full h-1.5 overflow-hidden">
-          <div
-            className={`h-full rounded-full ${
-              vendor.riskScore >= 70 ? 'bg-severity-critical' :
-              vendor.riskScore >= 50 ? 'bg-severity-high' :
-              vendor.riskScore >= 30 ? 'bg-severity-medium' : 'bg-severity-healthy'
-            }`}
-            style={{ width: `${vendor.riskScore}%` }}
-          />
-        </div>
       </div>
 
       {/* Foundation models */}

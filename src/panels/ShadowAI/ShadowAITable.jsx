@@ -1,8 +1,7 @@
 import React from 'react';
 import { Badge } from '../../components/ui/Badge';
-import { FoundationModelBadge } from '../../components/ui/FoundationModelBadge';
+import { StatusDot } from '../../components/ui/StatusDot';
 import { formatDate } from '../../utils/date';
-import { AlertTriangle, Users } from 'lucide-react';
 
 export function ShadowAITable({ data = [], onCriticalClick }) {
   return (
@@ -27,7 +26,8 @@ export function ShadowAITable({ data = [], onCriticalClick }) {
                 key={item.id}
                 onClick={() => isCritical && onCriticalClick(item)}
                 className={[
-                  'border-b border-surface-600/50 transition-colors',
+                  'border-b border-surface-600/50 transition-colors animate-fade-slide-up',
+                  `stagger-${Math.min(i + 1, 8)}`,
                   isCritical
                     ? 'bg-severity-critical/5 hover:bg-severity-critical/10 cursor-pointer border-l-2 border-l-severity-critical'
                     : i % 2 === 0
@@ -37,13 +37,18 @@ export function ShadowAITable({ data = [], onCriticalClick }) {
               >
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2">
-                    {isCritical && <AlertTriangle className="w-3.5 h-3.5 text-severity-critical flex-shrink-0" />}
+                    {isCritical && <StatusDot severity="Critical" className="flex-shrink-0" />}
                     <span className="text-white font-medium">{item.name}</span>
                   </div>
                   <div className="text-white/30 text-xs mt-0.5">{item.owner}</div>
                 </td>
                 <td className="px-4 py-3">
-                  <Badge severity={effectiveSeverity} label={effectiveSeverity} size="sm" />
+                  <div className="flex items-center gap-2">
+                    {(effectiveSeverity === 'Critical' || effectiveSeverity === 'High') && (
+                      <StatusDot severity={effectiveSeverity} className="flex-shrink-0" />
+                    )}
+                    <Badge severity={effectiveSeverity} label={effectiveSeverity} size="sm" />
+                  </div>
                 </td>
                 <td className="px-4 py-3 text-white/70 text-xs">{item.department}</td>
                 <td className="px-4 py-3 text-white/60 text-xs font-mono">{formatDate(item.detectedDate)}</td>
