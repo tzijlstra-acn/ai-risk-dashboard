@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 // TODO: Replace fetch URL with live MRM API endpoint
-const INVENTORY_URL = '/mock-api/inventory.json';
+const INVENTORY_URL = `${import.meta.env.BASE_URL}mock-api/inventory.json`;
 
 const fetchWithDelay = (url, ms) =>
   new Promise((resolve) =>

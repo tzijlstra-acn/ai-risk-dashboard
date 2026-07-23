@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 // TODO: Replace with live MRM validation tracking API endpoint
-const VALIDATION_URL = '/mock-api/validation.json';
+const VALIDATION_URL = `${import.meta.env.BASE_URL}mock-api/validation.json`;
 
 const fetchWithDelay = (url, ms) =>
   new Promise((resolve) =>

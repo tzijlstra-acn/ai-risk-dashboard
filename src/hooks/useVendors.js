@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 // TODO: Replace with live vendor risk management API endpoint
-const VENDORS_URL = '/mock-api/vendors.json';
+const VENDORS_URL = `${import.meta.env.BASE_URL}mock-api/vendors.json`;
 
 const fetchWithDelay = (url, ms) =>
   new Promise((resolve) =>

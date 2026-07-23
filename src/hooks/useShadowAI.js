@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 
 // TODO: Replace with live CASB/SIEM API endpoint
-const SHADOW_AI_URL = '/mock-api/shadowAI.json';
+const SHADOW_AI_URL = `${import.meta.env.BASE_URL}mock-api/shadowAI.json`;
 
 const fetchWithDelay = (url, ms) =>
   new Promise((resolve) =>

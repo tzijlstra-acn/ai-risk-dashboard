@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 
 // TODO: Replace with live audit system API (Archer, ServiceNow, etc.)
-const AUDIT_LOG_URL = '/mock-api/auditLog.json';
+const AUDIT_LOG_URL = `${import.meta.env.BASE_URL}mock-api/auditLog.json`;
 
 const fetchWithDelay = (url, ms) =>
   new Promise((resolve) =>
