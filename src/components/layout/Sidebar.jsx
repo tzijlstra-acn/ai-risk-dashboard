@@ -27,8 +27,17 @@ export function Sidebar() {
         <BrandLogo />
       </div>
 
+      {/* Back to client story */}
+      <a
+        href="./client-story.html"
+        className="flex items-center gap-2 mx-3 mt-3 px-3 py-2 rounded-lg text-white/40 hover:text-white hover:bg-white/5 transition-colors text-xs group"
+      >
+        <ChevronRight className="w-3 h-3 rotate-180 text-brand-pink/60 group-hover:text-brand-pink transition-colors flex-shrink-0" />
+        <span>Client Overview</span>
+      </a>
+
       {/* NIST label */}
-      <div className="px-5 pt-4 pb-2">
+      <div className="px-5 pt-3 pb-2">
         <span className="text-xs font-mono text-white/30 uppercase tracking-widest">
           NIST AI RMF
         </span>
