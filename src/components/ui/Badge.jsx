@@ -21,7 +21,7 @@ export function Badge({ severity = 'Grey', label, size = 'md', className = '' })
         className,
       ].join(' ')}
     >
-      <span className={['w-1.5 h-1.5 rounded-full flex-shrink-0', classes.text.replace('text-', 'bg-')].join(' ')} />
+      <span className={['w-1.5 h-1.5 rounded-full flex-shrink-0', classes.dot].join(' ')} />
       {label ?? severity}
     </span>
   );
