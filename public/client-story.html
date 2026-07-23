@@ -52,6 +52,8 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em
 .nav-item:hover{background:#241239;color:#fff}
 .nav-item.active{background:linear-gradient(90deg,rgba(161,0,255,.22),rgba(161,0,255,.04));color:#fff;border-left-color:#A100FF;font-weight:600}
 .nav-item i{font-size:15px;flex-shrink:0}
+.nav-num{font-family:var(--mono);font-size:11px;font-weight:700;color:#6B5F80;width:16px;text-align:center;flex-shrink:0}
+.nav-item.active .nav-num{color:#C77BFF}
 .sidebar-cta{margin:20px 12px 0;background:linear-gradient(135deg,#3D0066,#A100FF);border-radius:var(--radiusL);padding:14px;text-align:center}
 .sidebar-cta p{font-size:11.5px;color:rgba(255,255,255,.75);margin-bottom:10px;line-height:1.5}
 .sidebar-cta a{display:block;background:#fff;color:#3D0066;font-weight:700;font-size:12px;padding:8px 12px;border-radius:6px;text-decoration:none;transition:opacity .15s}
@@ -66,49 +68,57 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em
 .section-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#A100FF;background:#EEE8F7;font-family:var(--mono);padding:2px 8px;border-radius:20px;margin-bottom:10px}
 .section-header{margin-bottom:28px;padding-bottom:14px;border-bottom:2px solid var(--border)}
 .section-header h2{font-size:24px;font-weight:700;color:var(--tp);margin-bottom:6px}
-.section-header p{color:var(--tm);font-size:14px;max-width:680px;line-height:1.7}
+.section-header p{color:var(--tm);font-size:14px;max-width:720px;line-height:1.7}
+.group-divider{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--brandMid);font-family:var(--mono);margin:0 0 20px;display:flex;align-items:center;gap:12px}
+.group-divider::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,rgba(161,0,255,.35),transparent)}
 
 /* HERO */
-.hero{background:linear-gradient(135deg,#3D0066 0%,#160029 100%);border-radius:16px;padding:40px 40px 36px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden}
+.hero{background:linear-gradient(135deg,#3D0066 0%,#160029 100%);border-radius:16px;padding:44px 40px 40px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden}
 #heroCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0;pointer-events:none;animation:netFadeHero 2s .3s ease forwards}
 @keyframes netFadeHero{to{opacity:.72}}
 .hero>*:not(#heroCanvas){position:relative;z-index:1}
 .hero-eyebrow{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--pink);margin-bottom:14px}
-.hero h1{font-size:32px;font-weight:800;line-height:1.15;margin-bottom:10px;max-width:680px}
-.hero-sub{color:rgba(255,255,255,.7);font-size:15px;line-height:1.7;max-width:620px;margin-bottom:24px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn-primary{background:linear-gradient(135deg,#A100FF,#FF50C8);color:#fff;font-weight:700;font-size:13.5px;padding:11px 22px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;transition:filter .15s,transform .1s}
-.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
-.btn-secondary{background:rgba(255,255,255,.1);color:#fff;font-weight:600;font-size:13.5px;padding:11px 22px;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,.25);transition:background .15s}
-.btn-secondary:hover{background:rgba(255,255,255,.18)}
+.hero h1{font-size:34px;font-weight:800;line-height:1.12;margin-bottom:12px;max-width:720px}
+.hero-sub{color:rgba(255,255,255,.72);font-size:16px;line-height:1.7;max-width:660px}
 
-/* STAT ROW */
-.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
-@media(max-width:1100px){.stat-row{grid-template-columns:repeat(3,1fr)}}
-.stat-tile{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);padding:18px 20px;transition:box-shadow .2s,border-color .2s}
-.stat-tile:hover{box-shadow:0 4px 16px rgba(161,0,255,.1);border-color:rgba(161,0,255,.25)}
-.stat-val{font-size:26px;font-weight:800;color:var(--brand);line-height:1.1;font-family:'Space Grotesk',sans-serif}
-.stat-val.red{color:var(--r)}
-.stat-val.amber{color:var(--a)}
-.stat-val.green{color:var(--g)}
-.stat-label{font-size:12px;color:var(--tm);margin-top:5px;font-weight:500;line-height:1.4}
-.stat-sub{font-size:11px;color:var(--tm);margin-top:2px}
+/* BUTTONS */
+.btn-primary{background:linear-gradient(135deg,#A100FF,#FF50C8);color:#fff;font-weight:700;font-size:13.5px;padding:11px 22px;border-radius:8px;text-decoration:none;border:none;cursor:pointer;transition:filter .15s,transform .1s;display:inline-block}
+.btn-primary:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.btn-secondary{background:rgba(255,255,255,.1);color:#fff;font-weight:600;font-size:13.5px;padding:11px 22px;border-radius:8px;text-decoration:none;border:1px solid rgba(255,255,255,.25);transition:background .15s;display:inline-block}
+.btn-secondary:hover{background:rgba(255,255,255,.18)}
 
 /* TWO-COL STORY LAYOUT */
 .story-cols{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:28px}
 @media(max-width:800px){.story-cols{grid-template-columns:1fr}}
-.story-col h3{font-size:16px;font-weight:700;color:var(--tp);margin-bottom:12px}
+.story-col h3{font-size:16px;font-weight:700;color:var(--tp);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.story-col h3 i{color:var(--brandMid)}
 
 /* CARDS */
 .card{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);padding:20px;margin-bottom:16px}
 .card h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:8px}
 .card p,.card li{font-size:13.5px;color:var(--ts);line-height:1.65}
 .card ul{padding-left:18px}
-.card ul li{margin-bottom:4px}
+.card ul li{margin-bottom:5px}
+.qa-list{list-style:none;padding:0}
+.qa-list li{margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.qa-list li:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.qa-q{font-size:13px;font-weight:600;color:var(--tp);display:block;margin-bottom:3px}
+.qa-a{font-size:12.5px;color:var(--r);font-weight:600}
+.qa-a.amber{color:var(--a)}
+
+/* CHALLENGE TILES */
+.challenge-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:8px}
+@media(max-width:900px){.challenge-grid{grid-template-columns:1fr}}
+.challenge-tile{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);padding:22px;transition:box-shadow .2s,border-color .2s}
+.challenge-tile:hover{box-shadow:0 4px 16px rgba(161,0,255,.1);border-color:rgba(161,0,255,.25)}
+.challenge-icon{width:42px;height:42px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px}
+.challenge-tile h4{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:7px}
+.challenge-tile p{font-size:13px;color:var(--ts);line-height:1.6}
 
 /* REGULATION GRID */
 .reg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
 @media(max-width:900px){.reg-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.reg-grid{grid-template-columns:1fr}}
 .reg-card{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);padding:20px;transition:box-shadow .2s,border-color .2s}
 .reg-card:hover{box-shadow:0 4px 16px rgba(161,0,255,.08);border-color:rgba(161,0,255,.2)}
 .reg-flag{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:20px;color:#fff;margin-bottom:10px;font-family:var(--mono)}
@@ -118,16 +128,15 @@ h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-.02em
 .reg-flag.gdpr{background:#1A7A52}
 .reg-flag.ecoa{background:#9A6500}
 .reg-flag.pci{background:#B4322A}
-.reg-card h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:6px}
-.reg-card .reg-scope{font-size:12px;color:var(--tm);font-style:italic;margin-bottom:10px}
+.reg-card h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:10px}
 .reg-card ul{padding-left:16px;margin:0}
-.reg-card ul li{font-size:12.5px;color:var(--ts);margin-bottom:4px}
+.reg-card ul li{font-size:12.5px;color:var(--ts);margin-bottom:4px;line-height:1.5}
 .reg-card .reg-deadline{display:flex;align-items:center;gap:6px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:12px;font-weight:600}
 .reg-deadline.past{color:var(--r)}
 .reg-deadline.soon{color:var(--a)}
 .reg-deadline.active{color:var(--g)}
 
-/* FAILURE MODE TABLE */
+/* TABLES */
 .table-wrap{overflow-x:auto;border-radius:var(--radius);border:1px solid var(--border);margin-bottom:28px}
 table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--surface)}
 thead th{background:var(--s1);color:var(--ts);font-weight:600;padding:11px 14px;text-align:left;border-bottom:1px solid var(--borderS);white-space:nowrap;font-size:12.5px}
@@ -141,54 +150,160 @@ tbody tr:nth-child(even) td{background:var(--s1)}
 .chip-purple{background:#EEE8F7;color:#3D0066}
 .chip-blue{background:#DBEAFE;color:#1D4ED8}
 
+/* HEAT-MAP TABLE */
+.heatmap-table td{text-align:center;font-weight:700;font-family:var(--mono);letter-spacing:1px}
+.heatmap-table td:first-child{text-align:left;font-family:var(--font);color:var(--tp)}
+.heatmap-table tbody tr:nth-child(even) td{background:var(--surface)}
+.hm-h{background:rgba(180,50,42,.16)!important;color:var(--r)}
+.hm-m{background:rgba(154,101,0,.16)!important;color:var(--a)}
+.hm-l{background:rgba(26,122,82,.14)!important;color:var(--g)}
+
+/* HORIZONTAL BAR CHART */
+.hbar-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusL);padding:24px 26px;margin-bottom:28px;box-shadow:0 2px 12px rgba(0,0,0,.05)}
+.hbar-row{display:grid;grid-template-columns:230px 1fr 54px;align-items:center;gap:14px;margin-bottom:14px}
+.hbar-row:last-child{margin-bottom:0}
+.hbar-label{font-size:12.5px;font-weight:600;color:var(--ts)}
+.hbar-track{background:var(--s2);border-radius:20px;height:16px;overflow:hidden}
+.hbar-fill{height:100%;border-radius:20px}
+.hbar-fill.red{background:linear-gradient(90deg,#B4322A,#e07878)}
+.hbar-fill.amber{background:linear-gradient(90deg,#9A6500,#EAB308)}
+.hbar-val{font-size:14px;font-weight:800;font-family:'Space Grotesk',sans-serif;text-align:right}
+.hbar-val.red{color:var(--r)}
+.hbar-val.amber{color:var(--a)}
+@media(max-width:640px){.hbar-row{grid-template-columns:1fr;gap:4px}}
+
+/* DEFINITION BLOCK */
+.def-block{background:linear-gradient(135deg,#241239,#160029);border-left:5px solid #A100FF;border-radius:var(--radiusL);padding:26px 30px;color:#fff;margin-bottom:28px}
+.def-block .def-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--pink);margin-bottom:10px}
+.def-block p{font-size:16px;line-height:1.75;color:rgba(255,255,255,.9)}
+
 /* NIST CARDS */
 .nist-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px}
 @media(max-width:900px){.nist-grid{grid-template-columns:repeat(2,1fr)}}
-.nist-card{border-radius:var(--radiusL);padding:22px;border:1px solid}
-.nist-govern{background:rgba(109,40,217,.06);border-color:rgba(109,40,217,.25)}
-.nist-map{background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.25)}
-.nist-measure{background:rgba(16,185,129,.06);border-color:rgba(16,185,129,.25)}
-.nist-manage{background:rgba(161,0,255,.06);border-color:rgba(161,0,255,.25)}
-.nist-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px}
+@media(max-width:560px){.nist-grid{grid-template-columns:1fr}}
+.nist-card{border-radius:var(--radiusL);padding:22px;border:1px solid;border-left-width:4px}
+.nist-govern{background:rgba(109,40,217,.06);border-color:rgba(109,40,217,.25);border-left-color:#6D28D9}
+.nist-map{background:rgba(6,182,212,.06);border-color:rgba(6,182,212,.25);border-left-color:#0891B2}
+.nist-measure{background:rgba(16,185,129,.06);border-color:rgba(16,185,129,.25);border-left-color:#059669}
+.nist-manage{background:rgba(161,0,255,.06);border-color:rgba(161,0,255,.25);border-left-color:#A100FF}
+.nist-label{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;font-family:var(--mono);margin-bottom:10px}
 .nist-govern .nist-label{color:#6D28D9}
 .nist-map .nist-label{color:#0891B2}
 .nist-measure .nist-label{color:#059669}
 .nist-manage .nist-label{color:#A100FF}
-.nist-card h4{font-size:15px;font-weight:700;color:var(--tp);margin-bottom:8px}
+.nist-card h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:8px}
 .nist-card ul{padding-left:16px}
-.nist-card ul li{font-size:12.5px;color:var(--ts);margin-bottom:4px}
-.nist-eu-map{font-size:11px;margin-top:12px;padding-top:10px;border-top:1px solid var(--border);color:var(--tm)}
-.nist-eu-map strong{color:var(--ts)}
+.nist-card ul li{font-size:12.5px;color:var(--ts);margin-bottom:4px;line-height:1.5}
 
 /* MATURITY MODEL */
 .maturity-table-wrap{border-radius:var(--radiusL);border:1px solid var(--border);overflow:hidden;margin-bottom:28px;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.maturity-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--surface)}
+.maturity-table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface)}
 .maturity-table thead th{background:var(--s1);color:var(--ts);font-weight:600;padding:12px 16px;text-align:left;border-bottom:1px solid var(--borderS);font-size:12px}
 .maturity-table tbody td{padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.55}
 .maturity-table tbody tr:last-child td{border-bottom:none}
-.maturity-table tbody tr.level-target{background:linear-gradient(90deg,rgba(161,0,255,.06) 0%,rgba(161,0,255,.02) 100%);border-left:4px solid #A100FF}
+.maturity-table tbody tr.level-target{background:linear-gradient(90deg,rgba(161,0,255,.08) 0%,rgba(161,0,255,.02) 100%);border-left:4px solid #A100FF}
 .maturity-table tbody tr.level-target td{color:var(--tp);font-weight:500}
 .level-badge{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;font-size:12px;font-weight:800;color:#fff}
 .l1{background:#9CA3AF}.l2{background:#6B7280}.l3{background:#A100FF}.l4{background:#6D28D9}.l5{background:#3D0066}
 .target-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#A100FF;background:#EEE8F7;padding:2px 7px;border-radius:10px;margin-left:6px;font-family:var(--mono)}
-.delivered-tag{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--g);background:var(--gb);padding:2px 7px;border-radius:10px;margin-left:6px;font-family:var(--mono)}
 
-/* SOLUTION PANELS */
-.panel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
-@media(max-width:900px){.panel-grid{grid-template-columns:repeat(2,1fr)}}
-.panel-card{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);padding:20px;transition:box-shadow .2s,border-color .2s;position:relative;overflow:hidden}
-.panel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:var(--radiusL) var(--radiusL) 0 0}
-.panel-card.p1::before{background:linear-gradient(90deg,#6D28D9,#A100FF)}
-.panel-card.p2::before{background:linear-gradient(90deg,#EF4444,#F97316)}
-.panel-card.p3::before{background:linear-gradient(90deg,#0891B2,#06B6D4)}
-.panel-card.p4::before{background:linear-gradient(90deg,#9A6500,#EAB308)}
-.panel-card.p5::before{background:linear-gradient(90deg,#059669,#22C55E)}
-.panel-card.p6::before{background:linear-gradient(90deg,#4B5563,#9CA3AF)}
-.panel-card:hover{box-shadow:0 4px 16px rgba(161,0,255,.1);border-color:rgba(161,0,255,.2)}
-.panel-icon{width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:18px}
-.panel-card h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:6px}
-.panel-card p{font-size:12.5px;color:var(--ts);line-height:1.6}
-.panel-tag{display:inline-block;font-size:10.5px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:10px;font-family:var(--mono)}
+/* MATURITY STEP FLOW */
+.mstep-flow{display:flex;align-items:stretch;gap:0;margin-bottom:28px;overflow-x:auto;padding:4px}
+.mstep{flex:1;min-width:130px;text-align:center;position:relative;padding:0 6px}
+.mstep-circle{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;font-family:'Space Grotesk',sans-serif;color:#fff;margin:0 auto 10px;position:relative;z-index:2}
+.mstep-circle.past{background:#9CA3AF}
+.mstep-circle.now{background:linear-gradient(135deg,#A100FF,#FF50C8);box-shadow:0 0 0 6px rgba(161,0,255,.16)}
+.mstep-circle.future{background:#C9A6E8}
+.mstep-name{font-size:13px;font-weight:700;color:var(--tp)}
+.mstep-sub{font-size:11px;color:var(--tm);margin-top:3px}
+.mstep-here{font-size:10px;font-weight:700;color:#A100FF;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;margin-top:5px;display:block}
+.mstep::before{content:'';position:absolute;top:26px;left:-50%;width:100%;height:3px;background:var(--borderS);z-index:1}
+.mstep:first-child::before{display:none}
+.mstep.done::before{background:#A100FF}
+
+/* DASHBOARD CTA BLOCK */
+.dash-cta{background:linear-gradient(135deg,#3D0066 0%,#8A15E0 60%,#A100FF 100%);border-radius:16px;padding:32px 36px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;box-shadow:0 8px 28px rgba(161,0,255,.28);margin-bottom:8px}
+.dash-cta .dash-label{font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:8px}
+.dash-cta h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.dash-cta p{font-size:14px;color:rgba(255,255,255,.82);line-height:1.65;max-width:620px}
+.dash-cta .btn-dash{background:#fff;color:#3D0066;font-weight:800;font-size:15px;padding:15px 28px;border-radius:10px;text-decoration:none;white-space:nowrap;transition:transform .12s,box-shadow .15s;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.dash-cta .btn-dash:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,0,0,.3)}
+
+/* PREREQ GRID */
+.prereq-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+@media(max-width:900px){.prereq-grid{grid-template-columns:1fr}}
+.prereq-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusL);padding:22px;border-top:3px solid #A100FF}
+.prereq-col.c2{border-top-color:#0891B2}
+.prereq-col.c3{border-top-color:#1A7A52}
+.prereq-col h4{font-size:14px;font-weight:700;color:var(--tp);margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.prereq-col ul{list-style:none;padding:0}
+.prereq-col li{font-size:12.5px;color:var(--ts);line-height:1.5;padding-left:22px;position:relative;margin-bottom:9px}
+.prereq-col li::before{content:'\ea5e';font-family:'tabler-icons';position:absolute;left:0;top:1px;color:var(--brandMid);font-size:14px}
+
+/* ACCENTURE STRIP */
+.accn-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:8px}
+@media(max-width:900px){.accn-strip{grid-template-columns:repeat(2,1fr)}}
+.accn-tile{background:linear-gradient(135deg,#241239,#160029);border-radius:var(--radiusL);padding:18px 16px;color:#fff;text-align:center}
+.accn-tile .accn-num{font-size:22px;font-weight:800;font-family:'Space Grotesk',sans-serif;background:linear-gradient(90deg,#C77BFF,#FF50C8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;margin-bottom:6px}
+.accn-tile p{font-size:11.5px;color:rgba(255,255,255,.78);line-height:1.45}
+
+/* ROLE CARDS */
+.role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px}
+.role-card{background:var(--surface);border-radius:var(--radiusL);border:1px solid var(--border);border-top:2px solid #A100FF;padding:20px;display:flex;flex-direction:column;gap:10px;transition:box-shadow .2s ease,border-color .2s ease,transform .1s ease}
+.role-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(161,0,255,.1);border-color:rgba(161,0,255,.25)}
+.role-card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.role-name{font-size:14px;font-weight:700;color:var(--tp)}
+.role-seniority{font-size:12px;color:var(--tm);margin-top:2px}
+.role-practice{font-size:11.5px;color:var(--brandMid);font-weight:500;margin-top:2px}
+.fte-badge{font-size:11px;font-weight:700;background:var(--brandLight);color:var(--brandMid);padding:3px 8px;border-radius:20px;white-space:nowrap;flex-shrink:0}
+.role-resp{font-size:12.5px;color:var(--ts)}
+.role-resp ul{padding-left:16px}
+.role-resp li{margin-bottom:3px;line-height:1.5}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
+.skill-tag{font-size:11px;background:var(--s2);color:var(--ts);padding:2px 8px;border-radius:20px;font-weight:500}
+
+/* STAFFING TABLE */
+.staffing-table td:not(:first-child){text-align:center}
+.fte-H{background:#E4F2EB;color:#1A7A52;font-weight:700;text-align:center}
+.fte-M{background:#FEF3DC;color:#9A6500;font-weight:700;text-align:center}
+.fte-L{background:#EEE8F7;color:#8A15E0;font-weight:700;text-align:center}
+.fte-none{background:#fff;color:var(--tm);text-align:center}
+.fte-total{background:var(--s2);font-weight:700;text-align:center;color:var(--tp)}
+
+/* CSS GRID GANTT */
+.gantt-outer{overflow-x:auto;padding-bottom:8px;margin-bottom:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radiusL);box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.gantt-grid{display:grid;grid-template-columns:190px repeat(14,minmax(40px,1fr));min-width:820px}
+.gh{background:var(--s1);font-size:9.5px;font-weight:700;text-align:center;padding:8px 0 6px;color:var(--tm);border-bottom:2px solid var(--borderS);letter-spacing:.02em;position:sticky;top:0;z-index:10}
+.gh:first-child{text-align:left;padding-left:14px;font-size:11px;color:var(--ts);font-weight:600;letter-spacing:0;background:var(--surface);border-bottom:2px solid var(--borderS)}
+.gh[data-w="1"],.gh[data-w="2"],.gh[data-w="3"],.gh[data-w="4"],
+.gh[data-w="9"],.gh[data-w="10"],.gh[data-w="11"],.gh[data-w="12"]{background:var(--s2)}
+.gl{padding:7px 12px 7px 14px;font-size:12px;font-weight:500;color:var(--ts);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:flex;align-items:center;border-right:1px solid var(--border);border-bottom:1px solid rgba(0,0,0,.04)}
+.gl.ph{font-size:12px;font-weight:700;color:var(--tp);background:var(--s1);border-left:3px solid transparent;border-bottom:1px solid var(--borderS);padding-top:9px;padding-bottom:9px;margin-top:2px}
+.gl.ph.ph0{border-left-color:#8A15E0;color:#8A15E0}
+.gl.ph.ph1{border-left-color:#1A7A52;color:#1A7A52}
+.gl.ph.ph2{border-left-color:#6D28D9;color:#6D28D9}
+.gl.ph.ph3{border-left-color:#0891B2;color:#0891B2}
+.gl.ph.ph4{border-left-color:#9A6500;color:#9A6500}
+.gl.sub{font-size:11px;color:var(--tm);padding-left:20px;border-bottom:1px solid rgba(0,0,0,.03)}
+.gl.ms-lbl{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--tm);background:linear-gradient(90deg,var(--canvas) 0%,var(--s1) 100%);border-bottom:1px solid var(--borderS)}
+.gc{display:flex;align-items:center;padding:4px 2px;border-bottom:1px solid rgba(0,0,0,.03)}
+.gbar{border-radius:4px;width:100%}
+.gbar.ph{height:20px;border-radius:5px;width:100%;background:var(--barColor,#8A15E0);position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.15);display:flex;align-items:center}
+.gbar.ph::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18) 0%,transparent 60%);border-radius:inherit}
+.gbar.ph::after{content:attr(data-label);position:relative;z-index:2;font-size:9px;font-weight:700;color:rgba(255,255,255,.9);padding-left:8px;letter-spacing:.03em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gbar.sub{height:12px;border-radius:3px;width:100%;box-shadow:none;opacity:.85}
+.gms{display:flex;align-items:center;justify-content:center;cursor:help;padding:2px}
+.gms-d{width:12px;height:12px;border-radius:2px;transform:rotate(45deg);display:inline-block;box-shadow:0 1px 4px rgba(0,0,0,.2);transition:transform .15s,box-shadow .15s}
+.gms:hover .gms-d{transform:rotate(45deg) scale(1.4);box-shadow:0 2px 8px rgba(0,0,0,.3)}
+.gantt-legend{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--border);background:var(--s1);border-bottom-left-radius:var(--radiusL);border-bottom-right-radius:var(--radiusL)}
+@media(max-width:640px){.gantt-legend{grid-template-columns:1fr}}
+.gantt-legend-group{padding:12px 20px}
+.gantt-legend-group:first-child{border-right:1px solid var(--border)}
+.gantt-legend-group-title{font-size:9px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--tm);margin-bottom:8px}
+.gantt-legend-items{display:flex;flex-wrap:wrap;gap:8px 18px}
+.gantt-legend-item{display:flex;align-items:center;gap:7px;font-size:11.5px;color:var(--ts);font-weight:500}
+.gantt-legend-swatch{width:20px;height:12px;border-radius:3px;display:inline-block;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.gantt-legend-diamond{width:11px;height:11px;border-radius:2px;transform:rotate(45deg);display:inline-block}
 
 /* BUSINESS CASE */
 .biz-cols{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:28px}
@@ -196,7 +311,7 @@ tbody tr:nth-child(even) td{background:var(--s1)}
 .cost-block{background:var(--surface);border-radius:var(--radiusL);border:2px solid var(--border);padding:24px}
 .cost-block.risk{border-color:rgba(180,50,42,.3);background:rgba(180,50,42,.03)}
 .cost-block.solution{border-color:rgba(161,0,255,.3);background:rgba(161,0,255,.03)}
-.cost-block h3{font-size:16px;font-weight:700;margin-bottom:4px}
+.cost-block h3{font-size:16px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:8px}
 .cost-block.risk h3{color:var(--r)}
 .cost-block.solution h3{color:var(--brandMid)}
 .cost-block .cost-sub{font-size:12.5px;color:var(--tm);margin-bottom:18px}
@@ -211,39 +326,22 @@ tbody tr:nth-child(even) td{background:var(--s1)}
 .cost-total-label{font-size:13px;font-weight:700;color:var(--tp)}
 .cost-total-val{font-size:22px;font-weight:800}
 
-/* DELIVERY PHASES */
-.phase-card{border-radius:var(--radiusL);border:1px solid var(--border);overflow:hidden;margin-bottom:16px;background:var(--surface);transition:box-shadow .2s,border-color .2s}
-.phase-card:hover{box-shadow:0 4px 16px rgba(161,0,255,.08);border-color:rgba(161,0,255,.2)}
-.phase-card-header{padding:16px 20px;display:flex;align-items:center;gap:12px}
-.phase-badge{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;color:#fff;white-space:nowrap}
-.phase-title{font-size:15px;font-weight:700;color:var(--tp);flex:1}
-.phase-weeks{font-size:12px;color:var(--tm);white-space:nowrap;font-family:var(--mono)}
-.phase-body{padding:16px 20px;border-top:1px solid var(--border)}
-.phase-cols{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.phase-col-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--tm);margin-bottom:8px;padding-bottom:4px;border-bottom:1px solid var(--border)}
-.phase-body ul{padding-left:16px}
-.phase-body ul li{font-size:12.5px;color:var(--ts);margin-bottom:4px}
-.phase-deliverables{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.phase-del-item{font-size:11.5px;background:var(--s1);border:1px solid var(--border);padding:3px 10px;border-radius:20px;color:var(--ts)}
-
-/* ROLE STRIP */
-.role-strip{display:flex;gap:16px;margin-bottom:28px;overflow-x:auto;padding-bottom:4px}
-.role-chip{flex-shrink:0;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;align-items:center;gap:10px}
-.role-chip-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.role-chip-name{font-size:12.5px;font-weight:700;color:var(--tp)}
-.role-chip-sub{font-size:11px;color:var(--tm)}
-.role-chip-fte{font-size:10.5px;font-weight:700;color:#A100FF;background:#EEE8F7;padding:2px 7px;border-radius:20px;margin-left:4px}
+/* ROI CALLOUT */
+.roi-callout{background:linear-gradient(135deg,#3D0066,#160029);border-radius:16px;padding:30px 34px;color:#fff;margin-bottom:28px;position:relative;overflow:hidden}
+.roi-callout .roi-big{font-size:44px;font-weight:800;font-family:'Space Grotesk',sans-serif;background:linear-gradient(90deg,#C77BFF,#FF50C8);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1;float:right;margin-left:24px}
+.roi-callout p{font-size:15px;line-height:1.7;color:rgba(255,255,255,.85)}
+.roi-callout p strong{color:#fff}
 
 /* CTA SECTION */
-.cta-section{background:linear-gradient(135deg,#3D0066 0%,#160029 100%);border-radius:16px;padding:40px;text-align:center;color:#fff;position:relative;overflow:hidden}
+.cta-section{background:linear-gradient(135deg,#3D0066 0%,#160029 100%);border-radius:16px;padding:44px 40px;text-align:center;color:#fff;position:relative;overflow:hidden}
 #ctaCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;opacity:0;pointer-events:none;animation:netFadeHero 2s .3s ease forwards}
 .cta-section>*:not(#ctaCanvas){position:relative;z-index:1}
 .cta-section h2{font-size:28px;font-weight:800;margin-bottom:10px}
-.cta-section p{color:rgba(255,255,255,.7);font-size:15px;margin-bottom:28px;max-width:520px;margin-left:auto;margin-right:auto;line-height:1.7}
+.cta-section p{color:rgba(255,255,255,.72);font-size:15px;margin-bottom:28px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7}
 .cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 
-/* QUOTE */
-.blockquote{border-left:4px solid #A100FF;padding:14px 20px;background:var(--s2);border-radius:0 var(--radius) var(--radius) 0;margin-bottom:20px}
+/* BLOCKQUOTE */
+.blockquote{border-left:4px solid #A100FF;padding:14px 20px;background:var(--s2);border-radius:0 var(--radius) var(--radius) 0;margin-bottom:24px}
 .blockquote p{font-size:14px;font-style:italic;color:var(--ts);line-height:1.7;margin-bottom:6px}
 .blockquote cite{font-size:12px;color:var(--tm);font-style:normal;font-weight:600}
 
@@ -265,7 +363,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
   <div class="topbar-sep"></div>
   <span class="topbar-sub">AI Risk Management — Client Story</span>
   <div class="topbar-spacer"></div>
-  <a href="/ai-risk-dashboard/" class="topbar-link"><i class="ti ti-layout-dashboard" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>Open Dashboard</a>
+  <a href="https://tzijlstra-acn.github.io/NFRAIAssets/" class="topbar-link"><i class="ti ti-apps" style="font-size:13px;vertical-align:-1px;margin-right:4px"></i>AI Assets Hub →</a>
 </div>
 
 <!-- LAYOUT -->
@@ -273,21 +371,21 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 
   <!-- SIDEBAR -->
   <nav class="sidebar" aria-label="Page sections">
-    <div class="sidebar-label">The Story</div>
-    <a class="nav-item active" href="#executive-summary"><i class="ti ti-chart-bar"></i>Executive Summary</a>
-    <a class="nav-item" href="#why-now"><i class="ti ti-alert-triangle"></i>Why Act Now</a>
-    <a class="nav-item" href="#regulatory"><i class="ti ti-scale"></i>Regulatory Landscape</a>
-    <a class="nav-item" href="#failure-modes"><i class="ti ti-bug"></i>Common Failure Modes</a>
+    <div class="sidebar-label">The Challenge</div>
+    <a class="nav-item active" href="#moment"><span class="nav-num">1</span>The AI Governance Moment</a>
+    <a class="nav-item" href="#regulators"><span class="nav-num">2</span>What Regulators Expect</a>
+    <a class="nav-item" href="#today"><span class="nav-num">3</span>Where Banks Are Today</a>
 
-    <div class="sidebar-label">Accenture Approach</div>
-    <a class="nav-item" href="#framework"><i class="ti ti-building-arch"></i>NIST AI RMF</a>
-    <a class="nav-item" href="#maturity"><i class="ti ti-stairs"></i>Maturity Model</a>
-    <a class="nav-item" href="#solution"><i class="ti ti-shield-check"></i>The Solution</a>
+    <div class="sidebar-label">The Framework</div>
+    <a class="nav-item" href="#what-is"><span class="nav-num">4</span>What AI Risk Mgmt Is</a>
+    <a class="nav-item" href="#maturity"><span class="nav-num">5</span>The Maturity Path</a>
+    <a class="nav-item" href="#requires"><span class="nav-num">6</span>What It Requires</a>
 
-    <div class="sidebar-label">Business Case</div>
-    <a class="nav-item" href="#biz-case"><i class="ti ti-calculator"></i>Cost of Inaction</a>
-    <a class="nav-item" href="#delivery"><i class="ti ti-rocket"></i>Delivery Approach</a>
-    <a class="nav-item" href="#next-steps"><i class="ti ti-arrow-right"></i>Next Steps</a>
+    <div class="sidebar-label">The Engagement</div>
+    <a class="nav-item" href="#team"><span class="nav-num">7</span>Team &amp; Skills</a>
+    <a class="nav-item" href="#timeline"><span class="nav-num">8</span>Project Timeline</a>
+    <a class="nav-item" href="#investment"><span class="nav-num">9</span>Investment &amp; Value</a>
+    <a class="nav-item" href="#next-steps"><span class="nav-num">10</span>Next Steps</a>
 
     <div class="sidebar-cta">
       <p>Ready to start? Schedule a discovery workshop with the NFR AI team.</p>
@@ -298,358 +396,369 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
   <!-- MAIN -->
   <main class="main">
 
-    <!-- ═══════════════════════════════════ 1. EXECUTIVE SUMMARY -->
-    <section class="section" id="executive-summary">
+    <div class="group-divider">The Challenge</div>
+
+    <!-- ═══════════════ 1. THE AI GOVERNANCE MOMENT -->
+    <section class="section" id="moment">
       <div class="hero">
         <canvas id="heroCanvas" aria-hidden="true"></canvas>
-        <div class="hero-eyebrow">Accenture NFR Practice · Financial Services AI Governance</div>
-        <h1>AI Risk Management for European Banking</h1>
-        <p class="hero-sub">Generative AI is reshaping financial services faster than governance can follow. Regulatory deadlines have passed, shadow AI is proliferating, and model risk is accumulating silently. This document sets out why your bank needs a structured AI Risk Management programme — and how Accenture delivers it in 14 weeks.</p>
-        <div class="hero-actions">
-          <a href="#next-steps" class="btn-primary">Book Discovery Workshop</a>
-          <a href="/ai-risk-dashboard/" class="btn-secondary">View Live Dashboard →</a>
-        </div>
-      </div>
-
-      <div class="stat-row">
-        <div class="stat-tile">
-          <div class="stat-val red">€35M</div>
-          <div class="stat-label">Average DORA non-compliance fine exposure per ICT incident (est. 2025)</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-val red">73%</div>
-          <div class="stat-label">of European banks have unregistered AI assets in production <span class="stat-sub">(Accenture FSI Survey 2024)</span></div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-val amber">Jan 2025</div>
-          <div class="stat-label">DORA Art. 28 ICT third-party AI register deadline — <strong>already passed</strong></div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-val red">€12M</div>
-          <div class="stat-label">Average cost of a material model failure in FSI (OpEx + fine + remediation)</div>
-        </div>
-        <div class="stat-tile">
-          <div class="stat-val green">14 wks</div>
-          <div class="stat-label">Accenture Level 3 AI Risk baseline delivery — integrated, automated, audit-ready</div>
-        </div>
-      </div>
-
-      <div class="blockquote">
-        <p>"The velocity of AI adoption in financial services has fundamentally outpaced the governance frameworks that regulators now require. Banks that cannot demonstrate model provenance, validation evidence, and third-party AI oversight are accumulating regulatory debt at pace."</p>
-        <cite>— Accenture NFR Practice, AI Governance Benchmark Report 2024</cite>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ 2. WHY ACT NOW -->
-    <section class="section" id="why-now">
-      <div class="section-tag">The Burning Platform</div>
-      <div class="section-header">
-        <h2>Why Act Now</h2>
-        <p>Three converging forces have created a governance emergency for European banks: an AI adoption wave, a hardened regulatory environment, and a widening gap between what models do and what boards know.</p>
+        <div class="hero-eyebrow">Accenture NFR Practice · Financial Services</div>
+        <h1>The AI Governance Imperative</h1>
+        <p class="hero-sub">Generative AI is entering every corner of your bank faster than your governance can follow. Regulators have noticed. This is the moment to act.</p>
       </div>
 
       <div class="story-cols">
         <div class="story-col">
-          <h3>The AI Proliferation Problem</h3>
+          <h3><i class="ti ti-trending-up"></i>The new reality</h3>
           <div class="card">
-            <h4><i class="ti ti-alert-triangle" style="color:#B4322A;margin-right:6px"></i>Shadow AI is endemic</h4>
-            <p>Business units deploy AI tools — ChatGPT plugins, Copilot integrations, specialist SaaS — without MRM review. These assets touch customer data, credit decisions, and regulated outputs. Most banks cannot enumerate them.</p>
-            <ul style="margin-top:10px">
-              <li>Average European bank: 80–120 AI assets. Inventoried: 30–45.</li>
-              <li>GenAI tools added per quarter (unregistered): 8–14</li>
-              <li>Shadow AI touching customer PII: estimated 40% of unregistered tools</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4><i class="ti ti-brain" style="color:#6D28D9;margin-right:6px"></i>GenAI governance gap</h4>
-            <p>Traditional SR 11-7 model validation was designed for statistical models. Large language models introduce hallucination risk, prompt injection, non-determinism, and opaque data lineage — none of which existing MRM frameworks cover adequately.</p>
-            <ul style="margin-top:10px">
-              <li>Only 18% of banks have extended SR 11-7 to cover GenAI (EBA 2024)</li>
-              <li>DORA explicitly includes AI-based ICT services in scope</li>
-              <li>EU AI Act mandates conformity assessment for high-risk AI by Aug 2026</li>
+            <ul>
+              <li>Banks are deploying AI at <strong>3× the rate of governance framework updates</strong> (Accenture 2024).</li>
+              <li>A typical Tier 2 European bank runs <strong>80–120 AI assets</strong>. Fewer than half are formally inventoried.</li>
+              <li>GenAI tools — ChatGPT plugins, Copilot integrations, specialist SaaS — enter via procurement, IT shadow spend, and individual employee subscriptions, <strong>bypassing MRM entirely</strong>.</li>
+              <li>The first <strong>DORA enforcement actions in Q1 2025</strong> targeted ICT third-party register gaps — AI vendors were the most common finding.</li>
             </ul>
           </div>
         </div>
-
         <div class="story-col">
-          <h3>What's At Stake</h3>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr><th>Risk Vector</th><th>Likelihood</th><th>Impact</th><th>Trigger</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><strong>DORA ICT register gap</strong></td><td><span class="chip chip-red">High</span></td><td><span class="chip chip-red">€20–35M</span></td><td>Supervisory audit</td></tr>
-                <tr><td><strong>Unvalidated credit model</strong></td><td><span class="chip chip-red">High</span></td><td><span class="chip chip-amber">€5–15M</span></td><td>SR 11-7 / EBA ML review</td></tr>
-                <tr><td><strong>Shadow AI + PII exposure</strong></td><td><span class="chip chip-amber">Medium</span></td><td><span class="chip chip-red">€20–50M</span></td><td>GDPR enforcement action</td></tr>
-                <tr><td><strong>Fair lending model bias</strong></td><td><span class="chip chip-amber">Medium</span></td><td><span class="chip chip-red">Enforcement + reputational</span></td><td>ECOA / Reg B audit</td></tr>
-                <tr><td><strong>Vendor AI concentration</strong></td><td><span class="chip chip-red">High</span></td><td><span class="chip chip-amber">Operational resilience</span></td><td>DORA concentration risk</td></tr>
-                <tr><td><strong>GenAI hallucination in customer-facing output</strong></td><td><span class="chip chip-amber">Medium</span></td><td><span class="chip chip-red">Regulatory + reputational</span></td><td>Consumer protection</td></tr>
-              </tbody>
-            </table>
-          </div>
-
+          <h3><i class="ti ti-help-hexagon"></i>What boards are asking</h3>
           <div class="card">
-            <h4><i class="ti ti-clock" style="color:#9A6500;margin-right:6px"></i>The regulatory timeline is not waiting</h4>
-            <ul>
-              <li><strong>Jan 2025</strong> — DORA fully applicable. ICT third-party AI register mandatory.</li>
-              <li><strong>Aug 2026</strong> — EU AI Act high-risk requirements (credit scoring, AML, fraud) fully enforced.</li>
-              <li><strong>Ongoing</strong> — ECB supervisory expectations on MRM hardening for GenAI.</li>
-              <li><strong>2025–2026</strong> — EBA consultation on AI model risk guidelines concluding.</li>
+            <ul class="qa-list">
+              <li><span class="qa-q">"Do we know every AI model in production?"</span><span class="qa-a">Usually: no.</span></li>
+              <li><span class="qa-q">"Are our credit scoring and fraud models independently validated?"</span><span class="qa-a">Often: a backlog of 18+ months.</span></li>
+              <li><span class="qa-q">"Which GenAI tools have access to customer data?"</span><span class="qa-a">Typically: unknown.</span></li>
+              <li><span class="qa-q">"Can we demonstrate DORA compliance on our AI ICT register to the ECB?"</span><span class="qa-a amber">Rarely: yes.</span></li>
             </ul>
           </div>
         </div>
       </div>
+
+      <div class="challenge-grid">
+        <div class="challenge-tile">
+          <div class="challenge-icon" style="background:#EEE8F7"><i class="ti ti-list-search" style="color:#6D28D9"></i></div>
+          <h4>The Inventory Gap</h4>
+          <p>Most banks cannot enumerate their AI assets, let alone the foundation models beneath them. You cannot govern what you cannot see.</p>
+        </div>
+        <div class="challenge-tile">
+          <div class="challenge-icon" style="background:#FEF3DC"><i class="ti ti-clock-exclamation" style="color:#9A6500"></i></div>
+          <h4>The Validation Backlog</h4>
+          <p>GenAI has overwhelmed traditional MRM frameworks. SR 11-7 was written for statistical models — not large language models that hallucinate.</p>
+        </div>
+        <div class="challenge-tile">
+          <div class="challenge-icon" style="background:#FCEAE9"><i class="ti ti-gavel" style="color:#B4322A"></i></div>
+          <h4>The Regulatory Deadline</h4>
+          <p>DORA is already in force. EU AI Act high-risk enforcement begins August 2026. The clock is not a future problem — it is running now.</p>
+        </div>
+      </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 3. REGULATORY LANDSCAPE -->
-    <section class="section" id="regulatory">
-      <div class="section-tag">Compliance Perimeter</div>
+    <!-- ═══════════════ 2. WHAT REGULATORS EXPECT -->
+    <section class="section" id="regulators">
+      <div class="section-tag">Regulatory Landscape</div>
       <div class="section-header">
-        <h2>Regulatory Landscape</h2>
-        <p>Six regulatory regimes apply directly to AI assets in European banking. Non-compliance is not theoretical — supervisory focus on AI is accelerating across all of them.</p>
+        <h2>What Regulators Expect</h2>
+        <p>Six regulatory regimes govern AI in European banking. Each has specific AI provisions that most banks have not yet operationalised.</p>
       </div>
 
       <div class="reg-grid">
         <div class="reg-card">
           <div class="reg-flag dora">DORA</div>
           <h4>Digital Operational Resilience Act</h4>
-          <div class="reg-scope">EU 2022/2554 — Applies to all EU-regulated financial entities</div>
           <ul>
-            <li>Art. 28: ICT third-party register — all AI vendors must be registered</li>
-            <li>Concentration risk assessment for single AI model providers</li>
-            <li>Contractual obligations for AI subcontractors (e.g. model API providers)</li>
-            <li>ICT incident reporting for AI-related operational failures</li>
-            <li>TLPT (threat-led penetration testing) includes AI attack surfaces</li>
+            <li>Art. 28 ICT third-party register mandatory for all AI vendors</li>
+            <li>Concentration risk for single-model providers (OpenAI, Anthropic)</li>
+            <li>Contractual obligations cascade to subcontractors</li>
+            <li>ICT incident reporting includes AI-related operational failures</li>
           </ul>
-          <div class="reg-deadline past"><i class="ti ti-alert-circle"></i>Applicable since 17 Jan 2025 — enforcement active</div>
+          <div class="reg-deadline past"><i class="ti ti-alert-circle"></i>Status: In force Jan 2025</div>
         </div>
-
         <div class="reg-card">
           <div class="reg-flag euai">EU AI Act</div>
           <h4>EU Artificial Intelligence Act</h4>
-          <div class="reg-scope">EU 2024/1689 — Risk-based classification framework</div>
           <ul>
-            <li>Annex III high-risk: credit scoring, fraud detection, AML screening, insurance risk</li>
-            <li>Conformity assessment required before deployment of high-risk AI</li>
-            <li>Transparency obligations for AI-generated customer-facing content</li>
-            <li>Prohibited practices: real-time biometric ID, social scoring (some exemptions)</li>
-            <li>GPAI (General Purpose AI) transparency: GPT-4, Claude, Gemini in scope</li>
+            <li>Annex III high-risk: credit scoring, fraud detection, AML, insurance</li>
+            <li>Conformity assessment required before deployment</li>
+            <li>GPAI (GPT-4, Claude, Gemini) transparency obligations</li>
+            <li>Prohibited: social scoring, biometric mass surveillance</li>
           </ul>
-          <div class="reg-deadline soon"><i class="ti ti-clock"></i>High-risk provisions: Aug 2026 deadline</div>
+          <div class="reg-deadline soon"><i class="ti ti-clock"></i>Status: High-risk enforcement Aug 2026</div>
         </div>
-
         <div class="reg-card">
           <div class="reg-flag sr117">SR 11-7 / EBA ML</div>
           <h4>Model Risk Management</h4>
-          <div class="reg-scope">Fed SR 11-7 + EBA Machine Learning Guidelines</div>
           <ul>
-            <li>Formal model validation for all material models (High / Medium tiers)</li>
-            <li>Materiality tiering: quantitative + qualitative criteria</li>
+            <li>Formal validation for all material models</li>
+            <li>Materiality tiering (High / Medium / Low)</li>
+            <li>GenAI additional requirements: robustness, hallucination, adversarial testing</li>
             <li>Independent validation — no self-validation of production models</li>
-            <li>GenAI/LLM: additional robustness, hallucination, and adversarial testing</li>
-            <li>Model inventory: mandatory system of record with change log</li>
           </ul>
-          <div class="reg-deadline active"><i class="ti ti-check"></i>Ongoing supervisory expectation — ECB TRIM active</div>
+          <div class="reg-deadline active"><i class="ti ti-check"></i>Status: Ongoing ECB TRIM</div>
         </div>
-
         <div class="reg-card">
           <div class="reg-flag gdpr">GDPR</div>
           <h4>General Data Protection Regulation</h4>
-          <div class="reg-scope">EU 2016/679 — Data subjects' rights in automated decisions</div>
           <ul>
-            <li>Art. 22: Right not to be subject to solely automated decisions (incl. AI)</li>
-            <li>Explainability requirement for AI decisions affecting individuals</li>
-            <li>Data lineage: know where training data comes from, for how long</li>
-            <li>DPIA required for high-risk AI processing of personal data</li>
-            <li>Max fine: €20M or 4% of global annual turnover</li>
+            <li>Art. 22 right not to be subject to solely automated decisions</li>
+            <li>Explainability for AI credit and insurance decisions</li>
+            <li>DPIA required for high-risk AI processing personal data</li>
+            <li>Max fine: €20M or 4% of global turnover</li>
           </ul>
-          <div class="reg-deadline active"><i class="ti ti-check"></i>Active — fines accelerating in 2024–25</div>
+          <div class="reg-deadline active"><i class="ti ti-check"></i>Status: Enforcement accelerating</div>
         </div>
-
         <div class="reg-card">
           <div class="reg-flag ecoa">ECOA / Reg B</div>
           <h4>Equal Credit Opportunity Act</h4>
-          <div class="reg-scope">US Regulation B — Fair lending obligations (where applicable)</div>
           <ul>
-            <li>Adverse action notice: AI credit decisions must be explainable to applicants</li>
-            <li>Disparate impact testing: credit models must not proxy-discriminate by race, sex, age</li>
-            <li>Model fairness: bias detection and monitoring required for credit AI</li>
-            <li>CFPB AI guidance: "complex models" require additional scrutiny</li>
+            <li>Disparate impact testing — credit models must not proxy-discriminate</li>
+            <li>Adverse action notice: AI decisions must be explainable to applicants</li>
+            <li>Continuous bias monitoring required</li>
           </ul>
-          <div class="reg-deadline soon"><i class="ti ti-clock"></i>CFPB enforcement increasing — 2025 priority area</div>
+          <div class="reg-deadline soon"><i class="ti ti-clock"></i>Status: CFPB 2025 priority</div>
         </div>
-
         <div class="reg-card">
           <div class="reg-flag pci">PCI-DSS v4</div>
           <h4>Payment Card Industry DSS</h4>
-          <div class="reg-scope">Version 4.0 — AI systems in payment processing scope</div>
           <ul>
-            <li>AI fraud detection systems in cardholder data environment: full PCI scope</li>
-            <li>ML models trained on CHD must comply with data retention + access controls</li>
-            <li>Requirement 6: AI-assisted code review tools in scope for software supply chain</li>
-            <li>Requirement 12: AI governance documentation part of compliance evidence</li>
+            <li>AI fraud detection in cardholder data environment: full PCI scope</li>
+            <li>ML models trained on CHD: data retention + access control obligations</li>
+            <li>Req. 6: AI-assisted development tools in scope</li>
           </ul>
-          <div class="reg-deadline active"><i class="ti ti-check"></i>PCI-DSS v4 mandatory from March 2025</div>
+          <div class="reg-deadline active"><i class="ti ti-check"></i>Status: Mandatory March 2025</div>
         </div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px">Compliance exposure by asset type</h3>
+      <div class="table-wrap">
+        <table class="heatmap-table">
+          <thead>
+            <tr><th>Regulation</th><th>In-house Model</th><th>SaaS</th><th>Cloud AI Service</th><th>Embedded SDK</th><th>GPU Instance</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>DORA</td><td class="hm-m">●●</td><td class="hm-h">●●●</td><td class="hm-h">●●●</td><td class="hm-m">●●</td><td class="hm-m">●●</td></tr>
+            <tr><td>EU AI Act</td><td class="hm-h">●●●</td><td class="hm-m">●●</td><td class="hm-m">●●</td><td class="hm-m">●●</td><td class="hm-l">●</td></tr>
+            <tr><td>SR 11-7 / EBA ML</td><td class="hm-h">●●●</td><td class="hm-m">●●</td><td class="hm-l">●</td><td class="hm-m">●●</td><td class="hm-l">●</td></tr>
+            <tr><td>GDPR</td><td class="hm-h">●●●</td><td class="hm-h">●●●</td><td class="hm-m">●●</td><td class="hm-m">●●</td><td class="hm-l">●</td></tr>
+            <tr><td>ECOA / Reg B</td><td class="hm-h">●●●</td><td class="hm-l">●</td><td class="hm-l">●</td><td class="hm-l">●</td><td class="hm-l">●</td></tr>
+            <tr><td>PCI-DSS v4</td><td class="hm-m">●●</td><td class="hm-m">●●</td><td class="hm-m">●●</td><td class="hm-l">●</td><td class="hm-h">●●●</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div style="font-size:11.5px;color:var(--tm);margin-top:-16px">
+        <span class="chip chip-red">●●● High</span>&nbsp;
+        <span class="chip chip-amber">●● Medium</span>&nbsp;
+        <span class="chip chip-green">● Low</span>&nbsp; intersection severity between each regime and asset type.
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 4. FAILURE MODES -->
-    <section class="section" id="failure-modes">
-      <div class="section-tag">Risk Diagnosis</div>
+    <!-- ═══════════════ 3. WHERE MOST BANKS ARE TODAY -->
+    <section class="section" id="today">
+      <div class="section-tag">Current State Diagnosis</div>
       <div class="section-header">
-        <h2>Common Failure Modes</h2>
-        <p>Most AI governance failures in banking trace to four root-cause patterns. Each is preventable with the right framework in place.</p>
+        <h2>Where Most Banks Are Today</h2>
+        <p>Benchmark data from Accenture engagements across EMEA financial services reveals a consistent, structural governance gap. These are not edge cases — they are the norm.</p>
       </div>
 
+      <div class="hbar-block">
+        <div class="hbar-row">
+          <div class="hbar-label">Inventory completeness</div>
+          <div class="hbar-track"><div class="hbar-fill red" style="width:38%"></div></div>
+          <div class="hbar-val red">38%</div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-label">Validation coverage</div>
+          <div class="hbar-track"><div class="hbar-fill amber" style="width:51%"></div></div>
+          <div class="hbar-val amber">51%</div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-label">DORA ICT register completeness</div>
+          <div class="hbar-track"><div class="hbar-fill red" style="width:29%"></div></div>
+          <div class="hbar-val red">29%</div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-label">GenAI governance coverage</div>
+          <div class="hbar-track"><div class="hbar-fill red" style="width:12%"></div></div>
+          <div class="hbar-val red">12%</div>
+        </div>
+        <div class="hbar-row">
+          <div class="hbar-label">Vendor AI oversight</div>
+          <div class="hbar-track"><div class="hbar-fill amber" style="width:41%"></div></div>
+          <div class="hbar-val amber">41%</div>
+        </div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px">Six failure modes — and how we fix them</h3>
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>#</th><th>Failure Mode</th><th>Root Cause</th><th>Typical Consequence</th><th>Regulatory Trigger</th><th>Accenture Control</th></tr>
+            <tr><th>#</th><th>Failure Mode</th><th>Root Cause</th><th>Regulatory Trigger</th><th>Consequence</th><th>Accenture Fix</th></tr>
           </thead>
           <tbody>
             <tr>
               <td><span class="chip chip-red">01</span></td>
               <td><strong>No model inventory</strong></td>
-              <td>Decentralised AI deployment; no central registry; shadow AI unchecked</td>
-              <td>Unknown risk exposure; regulatory gap; inability to respond to supervisory requests</td>
-              <td>DORA Art. 28, SR 11-7, EU AI Act Art. 61</td>
-              <td>AI/Model Inventory panel with reconciliation vs MRM SoR</td>
+              <td>Decentralised AI deployment, no registry</td>
+              <td>DORA Art. 28, EU AI Act Art. 61</td>
+              <td>Cannot respond to supervisory requests</td>
+              <td>AI/Model Inventory with MRM reconciliation</td>
             </tr>
             <tr>
               <td><span class="chip chip-red">02</span></td>
-              <td><strong>Validation backlog / never validated</strong></td>
-              <td>MRM team under-resourced; GenAI models not covered by traditional process; no automated tracking</td>
-              <td>Material models in production without validation evidence; regulatory finding on first review</td>
-              <td>SR 11-7, EBA ML Guidelines, ECB TRIM</td>
-              <td>Validation Coverage gauges with overdue alerting + GenAI split</td>
+              <td><strong>Validation backlog</strong></td>
+              <td>MRM under-resourced; GenAI not covered by SR 11-7</td>
+              <td>SR 11-7, EBA ML Guidelines</td>
+              <td>Material models without validation evidence</td>
+              <td>Automated validation tracking, GenAI split gauge</td>
             </tr>
             <tr>
               <td><span class="chip chip-amber">03</span></td>
-              <td><strong>Vendor AI not mapped to DORA</strong></td>
-              <td>Procurement of AI SaaS/APIs without ICT risk register entry; no subcontractor mapping</td>
-              <td>DORA non-compliance; concentration risk blind spot; contract gaps with AI providers</td>
-              <td>DORA Art. 28–30, ICT concentration risk guidelines</td>
-              <td>Third-Party Vendor Risk panel with DORA register status + AUP flags</td>
+              <td><strong>Vendor AI not in DORA register</strong></td>
+              <td>Procurement of AI APIs without ICT risk review</td>
+              <td>DORA Art. 28–30</td>
+              <td>Enforcement action on first supervisory audit</td>
+              <td>Vendor Risk panel with DORA register status</td>
             </tr>
             <tr>
               <td><span class="chip chip-amber">04</span></td>
-              <td><strong>No audit trail for model changes</strong></td>
-              <td>Model updates deployed without approval workflow; change log in spreadsheets or absent</td>
-              <td>Inability to demonstrate governance to regulators; model drift undetected; accountability gap</td>
-              <td>SR 11-7, GDPR Art. 22, EU AI Act Art. 9</td>
-              <td>Audit &amp; Change-Management Trail with 48-hour approval rule</td>
+              <td><strong>No GenAI guardrails</strong></td>
+              <td>LLMs deployed without output validation</td>
+              <td>GDPR Art. 22, EU AI Act</td>
+              <td>Hallucination in regulated output; customer harm</td>
+              <td>Foundation model registry + AUP compliance</td>
             </tr>
             <tr>
               <td><span class="chip chip-amber">05</span></td>
-              <td><strong>GenAI hallucination in regulated output</strong></td>
-              <td>LLMs deployed in customer-facing or credit-adjacent workflows without output validation or guardrails</td>
-              <td>Misinformation to customers; adverse credit action on faulty reasoning; regulatory sanction</td>
-              <td>GDPR Art. 22, EU AI Act, Consumer protection law</td>
-              <td>Foundation Model Registry + GenAI validation gauge (DORA/SR 11-7 note)</td>
+              <td><strong>No change audit trail</strong></td>
+              <td>Model updates without approval workflow</td>
+              <td>SR 11-7, GDPR, EU AI Act Art. 9</td>
+              <td>Cannot demonstrate governance; model drift</td>
+              <td>48-hour approval rule + immutable audit trail</td>
             </tr>
             <tr>
               <td><span class="chip chip-purple">06</span></td>
-              <td><strong>Fair lending bias undetected</strong></td>
-              <td>Credit models not tested for disparate impact; no continuous monitoring; proxy variables unchecked</td>
-              <td>Discriminatory credit decisions; CFPB / FCA enforcement; class action exposure</td>
-              <td>ECOA/Reg B, FCA Consumer Duty, EU AI Act Annex III</td>
-              <td>Regulatory Exposure heat-map + data classification flagging</td>
+              <td><strong>Bias undetected</strong></td>
+              <td>Credit models not tested for disparate impact</td>
+              <td>ECOA/Reg B, FCA Consumer Duty</td>
+              <td>Discriminatory outcomes; enforcement + litigation</td>
+              <td>Regulatory exposure heat-map + data classification</td>
             </tr>
           </tbody>
         </table>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 5. NIST FRAMEWORK -->
-    <section class="section" id="framework">
-      <div class="section-tag">Accenture Approach</div>
+    <div class="group-divider">The Framework</div>
+
+    <!-- ═══════════════ 4. WHAT AI RISK MANAGEMENT IS -->
+    <section class="section" id="what-is">
+      <div class="section-tag">The Framework</div>
       <div class="section-header">
-        <h2>NIST AI Risk Management Framework</h2>
-        <p>Accenture's AI Risk Management programme is built on the NIST AI RMF — the globally recognised standard for AI governance. We map each NIST function directly to EU banking regulatory requirements, giving your organisation a single, coherent governance structure.</p>
+        <h2>What AI Risk Management Is</h2>
+        <p>Before the maturity path, a shared definition. Accenture builds every AI Risk Management programme on the NIST AI RMF — the only framework major regulators (ECB, FCA, MAS, APRA) reference as an architecture.</p>
+      </div>
+
+      <div class="def-block">
+        <div class="def-label">Definition</div>
+        <p>AI Risk Management is the systematic process of identifying, assessing, and governing the risks introduced by artificial intelligence systems across their full lifecycle — from design through deployment, monitoring, and retirement. It encompasses model risk, data risk, vendor risk, operational risk, and regulatory compliance.</p>
       </div>
 
       <div class="nist-grid">
         <div class="nist-card nist-govern">
           <div class="nist-label">Govern</div>
-          <h4>Policies, Roles &amp; Culture</h4>
+          <h4>Policies, Roles &amp; Accountability</h4>
           <ul>
             <li>AI Acceptable Use Policy</li>
             <li>Foundation Model Registry</li>
-            <li>Role-based access &amp; accountability</li>
-            <li>Board-level AI risk appetite</li>
-            <li>3LoD governance model</li>
+            <li>Board-level risk appetite</li>
+            <li>3LoD model for AI</li>
+            <li>Role-based access (CRO / MRM / SOC)</li>
           </ul>
-          <div class="nist-eu-map"><strong>EU Mapping:</strong> EU AI Act Art. 9 (risk management system), SR 11-7 governance framework, DORA ICT risk framework</div>
         </div>
-
         <div class="nist-card nist-map">
           <div class="nist-label">Map</div>
-          <h4>Inventory &amp; Context</h4>
+          <h4>Enumerate &amp; Classify</h4>
           <ul>
-            <li>Complete AI/Model Inventory</li>
-            <li>Shadow AI discovery</li>
-            <li>Data lineage mapping</li>
-            <li>Vendor AI enumeration</li>
-            <li>SR 11-7 materiality tiering</li>
+            <li>Enumerate every AI asset</li>
+            <li>Discover shadow AI</li>
+            <li>Map data lineage</li>
+            <li>SR 11-7 materiality tiering (H / M / L)</li>
+            <li>Vendor AI + foundation models; DORA ICT register</li>
           </ul>
-          <div class="nist-eu-map"><strong>EU Mapping:</strong> DORA Art. 28 ICT register, GDPR data flow mapping, EU AI Act high-risk classification</div>
         </div>
-
         <div class="nist-card nist-measure">
           <div class="nist-label">Measure</div>
           <h4>Validate &amp; Monitor</h4>
           <ul>
-            <li>Traditional ML validation coverage</li>
-            <li>GenAI / LLM validation coverage</li>
+            <li>Validate; track coverage (ML &amp; GenAI separately)</li>
             <li>Regulatory exposure heat-map</li>
             <li>Vendor risk scoring</li>
-            <li>Bias / fair lending monitoring</li>
+            <li>Bias testing</li>
+            <li>Data freshness monitoring</li>
           </ul>
-          <div class="nist-eu-map"><strong>EU Mapping:</strong> SR 11-7 validation requirements, EBA ML guidelines, ECOA/Reg B bias testing</div>
         </div>
-
         <div class="nist-card nist-manage">
           <div class="nist-label">Manage</div>
           <h4>Control &amp; Remediate</h4>
           <ul>
-            <li>Audit &amp; change-management trail</li>
-            <li>Approval workflows (48h rule)</li>
-            <li>Shadow AI remediation</li>
-            <li>Incident response playbooks</li>
-            <li>Continuous control monitoring</li>
+            <li>48-hour change approval workflow</li>
+            <li>Immutable audit trail</li>
+            <li>Shadow AI remediation playbooks</li>
+            <li>Incident response</li>
+            <li>Continuous monitoring</li>
           </ul>
-          <div class="nist-eu-map"><strong>EU Mapping:</strong> DORA incident reporting, SR 11-7 ongoing monitoring, GDPR breach notification</div>
         </div>
       </div>
 
-      <div class="card">
-        <h4><i class="ti ti-info-circle" style="color:#A100FF;margin-right:6px"></i>Why NIST AI RMF for European Banking?</h4>
-        <p style="margin-bottom:10px">While NIST is a US standard, it is the only AI risk framework adopted by major international regulators (ECB, FCA, MAS, APRA) as a reference architecture. It provides a vendor-neutral, technology-agnostic structure that maps cleanly to DORA, EU AI Act, and EBA guidelines — giving the bank a single governance spine rather than fragmented compliance silos.</p>
-        <p>Accenture has implemented NIST AI RMF across 40+ Tier 1 financial institutions in EMEA. Our accelerators compress the typical 18-month implementation to <strong>14 weeks for the Level 3 baseline</strong>.</p>
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px">How NIST maps to EU banking regulation</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>NIST Function</th><th>DORA</th><th>EU AI Act</th><th>SR 11-7</th><th>GDPR</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:#6D28D9">Govern</strong></td>
+              <td>ICT risk mgmt framework (Art. 5–6)</td>
+              <td>Risk management system (Art. 9)</td>
+              <td>Governance &amp; board oversight</td>
+              <td>Accountability principle (Art. 5.2)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#0891B2">Map</strong></td>
+              <td>ICT third-party register (Art. 28)</td>
+              <td>High-risk classification (Annex III)</td>
+              <td>Model inventory &amp; tiering</td>
+              <td>Records of processing (Art. 30)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#059669">Measure</strong></td>
+              <td>Resilience testing / TLPT (Art. 24–27)</td>
+              <td>Conformity assessment (Art. 43)</td>
+              <td>Independent validation</td>
+              <td>DPIA (Art. 35)</td>
+            </tr>
+            <tr>
+              <td><strong style="color:#A100FF">Manage</strong></td>
+              <td>ICT incident reporting (Art. 17–23)</td>
+              <td>Post-market monitoring (Art. 72)</td>
+              <td>Ongoing monitoring &amp; change control</td>
+              <td>Breach notification (Art. 33–34)</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 6. MATURITY MODEL -->
+    <!-- ═══════════════ 5. THE MATURITY PATH -->
     <section class="section" id="maturity">
-      <div class="section-tag">Maturity Journey</div>
+      <div class="section-tag">Maturity Model</div>
       <div class="section-header">
-        <h2>AI Risk Management Maturity Model</h2>
-        <p>Accenture's 5-level maturity model provides a structured path from ad-hoc AI governance to fully automated, board-ready risk management. <strong>Level 3 (Defined) is our baseline delivery — shipped as the AI Risk Dashboard.</strong></p>
+        <h2>The Maturity Path</h2>
+        <p>Accenture's 5-level maturity model provides a structured path from ad-hoc AI governance to fully automated, board-ready risk management. <strong>Level 3 (Defined) is our baseline delivery — a defensible, audit-ready posture in 14 weeks.</strong></p>
       </div>
 
       <div class="maturity-table-wrap">
         <table class="maturity-table">
           <thead>
-            <tr>
-              <th>Level</th>
-              <th>Name</th>
-              <th>Key Capabilities</th>
-              <th>Duration</th>
-              <th>Investment</th>
-              <th>Regulatory Posture</th>
-            </tr>
+            <tr><th>Level</th><th>Name</th><th>Key Capabilities</th><th>Duration</th><th>Investment</th><th>Regulatory Posture</th></tr>
           </thead>
           <tbody>
             <tr>
@@ -663,15 +772,15 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <tr>
               <td><span class="level-badge l2">2</span></td>
               <td><strong>Repeatable</strong></td>
-              <td>Centralised inventory repository. Basic validation status tracking. Initial vendor questionnaires. Manual audit log.</td>
+              <td>Centralised inventory repository. Basic validation status. Initial vendor questionnaires.</td>
               <td>10 weeks</td>
               <td>€300K</td>
               <td><span class="chip chip-amber">Partial</span></td>
             </tr>
             <tr class="level-target">
               <td><span class="level-badge l3">3</span></td>
-              <td><strong>Defined</strong><span class="target-tag">Baseline</span><span class="delivered-tag">Delivered</span></td>
-              <td>Integrated MRM system of record. Automated validation gauges. DORA ICT register mapping. Active audit trail with 48h approval workflow. Role-based views (CRO / MRM / SOC). Foundation model registry. GenAI/LLM split validation. Shadow AI detection and remediation workflow. Vendor risk scoring with DORA + AUP flags.</td>
+              <td><strong>Defined</strong><span class="target-tag">← Target</span></td>
+              <td>Integrated MRM system of record. Automated validation gauges. DORA ICT register mapping. Active audit trail with 48h approval workflow. RBAC. Foundation model registry. GenAI split.</td>
               <td><strong>14 weeks</strong></td>
               <td><strong>€550K</strong></td>
               <td><span class="chip chip-green">Defensible</span></td>
@@ -679,7 +788,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <tr>
               <td><span class="level-badge l4">4</span></td>
               <td><strong>Managed</strong></td>
-              <td>Predictive risk scoring on model portfolio. Live SIEM/CSPM feed ingestion. Continuous bias and fair-lending monitoring. Automated DORA incident correlation. Quantitative risk aggregation at portfolio level.</td>
+              <td>Predictive risk scoring. Live SIEM/CSPM feed ingestion. Continuous bias/fair-lending monitoring.</td>
               <td>18 weeks</td>
               <td>€850K</td>
               <td><span class="chip chip-green">Proactive</span></td>
@@ -687,7 +796,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <tr>
               <td><span class="level-badge l5">5</span></td>
               <td><strong>Optimised</strong></td>
-              <td>Full AI governance automation. Hallucination and robustness testing pipelines for all LLMs. Board-level "what-if" scenario simulators. Autonomous remediation triggers. Real-time regulatory change ingestion and impact mapping.</td>
+              <td>Full AI governance automation. Hallucination/robustness testing pipelines. Board "what-if" simulators.</td>
               <td>24 weeks</td>
               <td>€1,200K</td>
               <td><span class="chip chip-purple">Leading practice</span></td>
@@ -696,364 +805,411 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
         </table>
       </div>
 
-      <div class="story-cols">
-        <div class="story-col">
-          <div class="card">
-            <h4><i class="ti ti-check" style="color:var(--g);margin-right:6px"></i>What Level 3 delivers to your bank</h4>
-            <ul>
-              <li>Complete, queryable AI asset inventory — every model, every vendor</li>
-              <li>DORA ICT third-party register — audit-ready on day one</li>
-              <li>SR 11-7 materiality tiering on all assets</li>
-              <li>Validation gap visibility — Traditional ML and GenAI split</li>
-              <li>48-hour change approval workflow with immutable audit trail</li>
-              <li>Foundation model registry with AUP compliance flags</li>
-              <li>Shadow AI detection with data-classification severity</li>
-              <li>CRO / MRM Validator / SOC Analyst role-based access</li>
-            </ul>
-          </div>
+      <div class="mstep-flow">
+        <div class="mstep">
+          <div class="mstep-circle past">1</div>
+          <div class="mstep-name">Initial</div>
+          <div class="mstep-sub">Manual, ad-hoc</div>
         </div>
-        <div class="story-col">
-          <div class="card">
-            <h4><i class="ti ti-arrow-up-right" style="color:#A100FF;margin-right:6px"></i>Roadmap to Level 4 / 5</h4>
-            <ul>
-              <li><strong>Level 4:</strong> Wire live SIEM feed (Splunk / Sentinel) into Shadow AI panel</li>
-              <li><strong>Level 4:</strong> Enable predictive risk scoring (FEATURE_FLAGS.predictiveRiskScoring)</li>
-              <li><strong>Level 4:</strong> Continuous bias monitoring — integrate Fairlearn / Aequitas pipeline</li>
-              <li><strong>Level 4:</strong> Auto-ingest DORA incident feed from operational risk system</li>
-              <li><strong>Level 5:</strong> LLM hallucination test pipeline (DeepEval / RAGAS)</li>
-              <li><strong>Level 5:</strong> Board scenario simulator — toggle portfolio assumptions</li>
-              <li><strong>Level 5:</strong> Regulatory change feed — auto-flag impacted assets</li>
-            </ul>
-          </div>
+        <div class="mstep done">
+          <div class="mstep-circle past">2</div>
+          <div class="mstep-name">Repeatable</div>
+          <div class="mstep-sub">Centralised inventory</div>
         </div>
+        <div class="mstep done">
+          <div class="mstep-circle now">3</div>
+          <div class="mstep-name">Defined</div>
+          <div class="mstep-sub">Integrated &amp; automated</div>
+          <span class="mstep-here">You are here (target)</span>
+        </div>
+        <div class="mstep">
+          <div class="mstep-circle future">4</div>
+          <div class="mstep-name">Managed</div>
+          <div class="mstep-sub">Predictive, live feeds</div>
+        </div>
+        <div class="mstep">
+          <div class="mstep-circle future">5</div>
+          <div class="mstep-name">Optimised</div>
+          <div class="mstep-sub">Autonomous governance</div>
+        </div>
+      </div>
+
+      <div class="dash-cta">
+        <div>
+          <div class="dash-label">See Level 3 in Action</div>
+          <h3>The Accenture AI Risk Dashboard</h3>
+          <p>A working prototype of the Level 3 capability — fully functional, with mock banking data, all six panels, role-based access, and a live regulatory exposure heat-map.</p>
+        </div>
+        <a href="/ai-risk-dashboard/" class="btn-dash">Explore the Level 3 Dashboard →</a>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 7. THE SOLUTION -->
-    <section class="section" id="solution">
-      <div class="section-tag">What We Deliver</div>
+    <!-- ═══════════════ 6. WHAT IT REQUIRES FROM YOU -->
+    <section class="section" id="requires">
+      <div class="section-tag">Client Prerequisites</div>
       <div class="section-header">
-        <h2>The AI Risk Dashboard — Level 3 Baseline</h2>
-        <p>A purpose-built AI Risk Management system for European banking. Six integrated panels, role-based access, real-time data freshness, and a foundation model registry — all aligned to NIST AI RMF and EU regulatory requirements.</p>
+        <h2>What It Requires From You</h2>
+        <p>A Level 3 delivery is a partnership. To reach a defensible posture in 14 weeks, we need defined access, sponsorship, and a willingness to formalise AI ownership. Here is exactly what that means.</p>
       </div>
 
-      <div class="panel-grid">
-        <div class="panel-card p1">
-          <div class="panel-icon" style="background:#EEE8F7"><i class="ti ti-database" style="color:#6D28D9;font-size:18px"></i></div>
-          <h4>AI / Model Inventory</h4>
-          <p>Complete asset registry with SR 11-7 materiality tiers, foundation model tracking, validation status, and data classification. Reconciles against your MRM system of record and flags discrepancies.</p>
-          <div><span class="chip chip-purple panel-tag">DORA · SR 11-7 · EU AI Act</span></div>
+      <div class="prereq-grid">
+        <div class="prereq-col">
+          <h4><i class="ti ti-database-cog" style="color:#A100FF"></i>Data &amp; Systems</h4>
+          <ul>
+            <li>Access to existing MRM system of record (Archer, MetricStream, ServiceNow GRC)</li>
+            <li>Network access logs or cloud access broker (CASB) data for shadow AI detection</li>
+            <li>Vendor contracts and ICT service agreements for DORA mapping</li>
+            <li>Model documentation library (or acknowledgment that one doesn't exist)</li>
+            <li>List of business owners per AI asset (or a process to identify them)</li>
+          </ul>
         </div>
-        <div class="panel-card p2">
-          <div class="panel-icon" style="background:#FCEAE9"><i class="ti ti-ghost" style="color:#B4322A;font-size:18px"></i></div>
-          <h4>Shadow AI Risk</h4>
-          <p>Detects unsanctioned AI usage across the organisation. Critical-flags any shadow AI touching customer data or credit decisions. Provides traffic logs, data classification impact, and remediation steps.</p>
-          <div><span class="chip chip-red panel-tag">GDPR · DORA · Consumer protection</span></div>
+        <div class="prereq-col c2">
+          <h4><i class="ti ti-users-group" style="color:#0891B2"></i>Organisational</h4>
+          <ul>
+            <li>Executive sponsor: CRO or equivalent (minimum Senior Director level)</li>
+            <li>MRM team access for validation status and history</li>
+            <li>Procurement team for vendor AI spend analysis</li>
+            <li>Compliance team for regulatory mapping review</li>
+            <li>IT/Security team for SIEM/CASB data access</li>
+          </ul>
         </div>
-        <div class="panel-card p3">
-          <div class="panel-icon" style="background:#DBEAFE"><i class="ti ti-map" style="color:#1D4ED8;font-size:18px"></i></div>
-          <h4>Regulatory Exposure</h4>
-          <p>Heat-map of AI assets across six regulatory regimes. Filterable by foundation model type — e.g. "show only GenAI assets under DORA." Click any cell to see the full compliance gap breakdown.</p>
-          <div><span class="chip chip-blue panel-tag">All regimes mapped</span></div>
+        <div class="prereq-col c3">
+          <h4><i class="ti ti-refresh" style="color:#1A7A52"></i>Change Management</h4>
+          <ul>
+            <li>Willingness to formalise AI asset ownership (business owners named per model)</li>
+            <li>Approval of AI Acceptable Use Policy (or update to existing)</li>
+            <li>3LoD governance buy-in (1LoD: business owners; 2LoD: MRM/Compliance; 3LoD: Internal Audit)</li>
+            <li>Board / ExCo awareness session (Accenture-led, included in scope)</li>
+          </ul>
         </div>
-        <div class="panel-card p4">
-          <div class="panel-icon" style="background:var(--ab)"><i class="ti ti-building-bank" style="color:var(--a);font-size:18px"></i></div>
-          <h4>Third-Party Vendor Risk</h4>
-          <p>DORA ICT register status for every AI vendor. Foundation models supplied per vendor, AUP compliance flags, single-provider concentration warnings, and subcontractor mapping.</p>
-          <div><span class="chip chip-amber panel-tag">DORA Art. 28–30</span></div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:14px">What Accenture brings to the table</h3>
+      <div class="accn-strip">
+        <div class="accn-tile"><div class="accn-num">40+</div><p>NIST AI RMF implementations in EMEA FSI</p></div>
+        <div class="accn-tile"><div class="accn-num">DORA</div><p>Art. 28 register templates (pre-built)</p></div>
+        <div class="accn-tile"><div class="accn-num">SR 11-7</div><p>+ GenAI validation methodology</p></div>
+        <div class="accn-tile"><div class="accn-num">6</div><p>Regulatory mapping accelerators (all regimes)</p></div>
+        <div class="accn-tile"><div class="accn-num">L3</div><p>Dashboard, pre-built &amp; configurable in 2 days</p></div>
+      </div>
+    </section>
+
+    <div class="group-divider">The Engagement</div>
+
+    <!-- ═══════════════ 7. TEAM & SKILLS -->
+    <section class="section" id="team">
+      <div class="section-tag">The Accenture Team</div>
+      <div class="section-header">
+        <h2>Team &amp; Skills</h2>
+        <p>A focused, senior team of 5.5 FTE across 14 weeks — blending NFR regulatory depth, MRM engineering, and dashboard delivery. Each role is scoped to the Level 3 baseline.</p>
+      </div>
+
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">AI Governance Lead</div>
+              <div class="role-seniority">Senior Manager</div>
+              <div class="role-practice">NFR Practice</div>
+            </div>
+            <span class="fte-badge">1.0 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>Overall programme delivery</li>
+            <li>CRO / board liaison</li>
+            <li>Regulatory sign-off</li>
+            <li>Governance framework design</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">NIST AI RMF</span><span class="skill-tag">DORA</span><span class="skill-tag">EU AI Act</span><span class="skill-tag">MRM frameworks</span><span class="skill-tag">FSI regulatory</span>
+          </div>
         </div>
-        <div class="panel-card p5">
-          <div class="panel-icon" style="background:var(--gb)"><i class="ti ti-chart-donut" style="color:var(--g);font-size:18px"></i></div>
-          <h4>Validation Coverage</h4>
-          <p>Separate gauges for Traditional ML and GenAI/LLM models. Overdue validation alerting. GenAI gauge includes DORA + SR 11-7 robustness and hallucination testing requirement notice.</p>
-          <div><span class="chip chip-green panel-tag">SR 11-7 · EBA ML</span></div>
+
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">Regulatory SME</div>
+              <div class="role-seniority">Manager</div>
+              <div class="role-practice">Risk &amp; Compliance</div>
+            </div>
+            <span class="fte-badge">0.5 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>DORA ICT register mapping</li>
+            <li>EU AI Act high-risk classification</li>
+            <li>GDPR Art. 22 analysis</li>
+            <li>Regulatory evidence pack</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">DORA</span><span class="skill-tag">EU AI Act</span><span class="skill-tag">SR 11-7</span><span class="skill-tag">EBA Guidelines</span><span class="skill-tag">ECB TRIM</span>
+          </div>
         </div>
-        <div class="panel-card p6">
-          <div class="panel-icon" style="background:#F1F5F9"><i class="ti ti-clipboard-list" style="color:#475569;font-size:18px"></i></div>
-          <h4>Audit &amp; Change Trail</h4>
-          <p>Immutable log of every model change, validation event, and governance action. 48-hour approval rule: any unsigned change raises an amber audit finding. CRO-only approve / reject controls.</p>
-          <div><span class="chip chip-purple panel-tag">SR 11-7 · GDPR Art. 22</span></div>
+
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">Senior AI Risk Engineer</div>
+              <div class="role-seniority">Senior Analyst</div>
+              <div class="role-practice">Technology</div>
+            </div>
+            <span class="fte-badge">1.5 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>Dashboard configuration</li>
+            <li>Mock API → live MRM integration</li>
+            <li>Validation tracking automation</li>
+            <li>RBAC setup</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span><span class="skill-tag">Python</span><span class="skill-tag">MRM APIs</span><span class="skill-tag">SIEM integration</span><span class="skill-tag">SR 11-7</span>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">Data &amp; Integration Lead</div>
+              <div class="role-seniority">Manager</div>
+              <div class="role-practice">Data &amp; AI</div>
+            </div>
+            <span class="fte-badge">1.0 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>MRM SoR API linkage</li>
+            <li>Vendor AI enumeration</li>
+            <li>Shadow AI detection pipeline</li>
+            <li>Data lineage mapping</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">Data engineering</span><span class="skill-tag">CASB/SIEM</span><span class="skill-tag">API integration</span><span class="skill-tag">Cloud AI services</span>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">Model Risk Analyst</div>
+              <div class="role-seniority">Analyst</div>
+              <div class="role-practice">Model Risk</div>
+            </div>
+            <span class="fte-badge">1.0 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>SR 11-7 materiality tiering</li>
+            <li>Validation history documentation</li>
+            <li>GenAI robustness assessment</li>
+            <li>Overdue backlog triage</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">Model validation</span><span class="skill-tag">Python/R</span><span class="skill-tag">GenAI evaluation</span><span class="skill-tag">SR 11-7</span>
+          </div>
+        </div>
+
+        <div class="role-card">
+          <div class="role-card-header">
+            <div>
+              <div class="role-name">Security &amp; RBAC Architect</div>
+              <div class="role-seniority">Senior Analyst</div>
+              <div class="role-practice">Cyber</div>
+            </div>
+            <span class="fte-badge">0.5 FTE</span>
+          </div>
+          <div class="role-resp"><ul>
+            <li>RBAC configuration (CRO/MRM/SOC)</li>
+            <li>CSP implementation</li>
+            <li>DORA ICT resilience testing</li>
+            <li>Access control documentation</li>
+          </ul></div>
+          <div class="skill-tags">
+            <span class="skill-tag">IAM</span><span class="skill-tag">CSP</span><span class="skill-tag">DORA TLPT</span><span class="skill-tag">Zero-trust</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px">Staffing intensity by phase <span style="font-weight:500;font-size:12px;color:var(--tm)">— 5.5 FTE total across 14 weeks</span></h3>
+      <div class="table-wrap">
+        <table class="staffing-table">
+          <thead>
+            <tr><th>Role</th><th>P1 · Discovery (W1–2)</th><th>P2 · Build (W3–10)</th><th>P3 · Governance (W11–13)</th><th>P4 · Rollout (W14)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>AI Governance Lead</td><td class="fte-H">H</td><td class="fte-M">M</td><td class="fte-H">H</td><td class="fte-H">H</td></tr>
+            <tr><td>Regulatory SME</td><td class="fte-H">H</td><td class="fte-L">L</td><td class="fte-H">H</td><td class="fte-M">M</td></tr>
+            <tr><td>Senior AI Risk Engineer</td><td class="fte-M">M</td><td class="fte-H">H</td><td class="fte-M">M</td><td class="fte-L">L</td></tr>
+            <tr><td>Data &amp; Integration Lead</td><td class="fte-M">M</td><td class="fte-H">H</td><td class="fte-L">L</td><td class="fte-none">—</td></tr>
+            <tr><td>Model Risk Analyst</td><td class="fte-H">H</td><td class="fte-M">M</td><td class="fte-H">H</td><td class="fte-L">L</td></tr>
+            <tr><td>Security &amp; RBAC Architect</td><td class="fte-L">L</td><td class="fte-H">H</td><td class="fte-M">M</td><td class="fte-L">L</td></tr>
+            <tr><td><strong>Total FTE</strong></td><td class="fte-total">~3.5</td><td class="fte-total">~5.5</td><td class="fte-total">~4.0</td><td class="fte-total">~2.5</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ═══════════════ 8. PROJECT TIMELINE -->
+    <section class="section" id="timeline">
+      <div class="section-tag">14-Week Delivery Plan</div>
+      <div class="section-header">
+        <h2>Project Timeline</h2>
+        <p>Five workstreams delivered across four phases in 14 weeks. Each milestone is a client sign-off gate — no scope creep, no surprises.</p>
+      </div>
+
+      <div class="gantt-outer">
+        <div class="gantt-grid">
+          <!-- HEADER ROW (row 1) -->
+          <div class="gh" style="grid-column:1;grid-row:1;">Activity</div>
+          <div class="gh" data-w="1" style="grid-column:2;grid-row:1;">W1</div><div class="gh" data-w="2" style="grid-column:3;grid-row:1;">W2</div><div class="gh" data-w="3" style="grid-column:4;grid-row:1;">W3</div><div class="gh" data-w="4" style="grid-column:5;grid-row:1;">W4</div><div class="gh" data-w="5" style="grid-column:6;grid-row:1;">W5</div><div class="gh" data-w="6" style="grid-column:7;grid-row:1;">W6</div><div class="gh" data-w="7" style="grid-column:8;grid-row:1;">W7</div><div class="gh" data-w="8" style="grid-column:9;grid-row:1;">W8</div><div class="gh" data-w="9" style="grid-column:10;grid-row:1;">W9</div><div class="gh" data-w="10" style="grid-column:11;grid-row:1;">W10</div><div class="gh" data-w="11" style="grid-column:12;grid-row:1;">W11</div><div class="gh" data-w="12" style="grid-column:13;grid-row:1;">W12</div><div class="gh" data-w="13" style="grid-column:14;grid-row:1;">W13</div><div class="gh" data-w="14" style="grid-column:15;grid-row:1;">W14</div>
+
+          <!-- MILESTONES ROW (row 2) -->
+          <div class="gl ms-lbl" style="grid-column:1;grid-row:2;">◆ Milestones</div>
+          <div class="gms" style="grid-column:3;grid-row:2;" title="W2: Current state assessment complete"><div class="gms-d" style="background:#1A7A52;"></div></div>
+          <div class="gms" style="grid-column:7;grid-row:2;" title="W6: Inventory v1 signed off"><div class="gms-d" style="background:#6D28D9;"></div></div>
+          <div class="gms" style="grid-column:11;grid-row:2;" title="W10: Dashboard go-live"><span style="font-size:20px;color:#B8860B;font-weight:800;line-height:1;">★</span></div>
+          <div class="gms" style="grid-column:14;grid-row:2;" title="W13: Regulatory evidence pack delivered"><div class="gms-d" style="background:#0891B2;"></div></div>
+          <div class="gms" style="grid-column:15;grid-row:2;" title="W14: Handover complete"><div class="gms-d" style="background:#9A6500;"></div></div>
+
+          <!-- PHASE 0 — Mobilisation (W1) row 3 -->
+          <div class="gl ph ph0" style="grid-column:1;grid-row:3;">Ph0 — Mobilisation</div>
+          <div class="gc" style="grid-column:2/3;grid-row:3;"><div class="gbar ph" style="background:#8A15E0;" data-label="Mobilise"></div></div>
+
+          <!-- PHASE 1 — Discovery & Assessment (W1-2) row 4 -->
+          <div class="gl ph ph1" style="grid-column:1;grid-row:4;">Ph1 — Discovery &amp; Assessment</div>
+          <div class="gc" style="grid-column:2/4;grid-row:4;"><div class="gbar ph" style="background:#1A7A52;" data-label="Discovery &amp; Assessment"></div></div>
+
+          <!-- PHASE 2 — Build & Integrate (W3-10) row 5 -->
+          <div class="gl ph ph2" style="grid-column:1;grid-row:5;">Ph2 — Build &amp; Integrate</div>
+          <div class="gc" style="grid-column:4/12;grid-row:5;"><div class="gbar ph" style="background:#6D28D9;" data-label="Build &amp; Integrate"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:6;">→ Dashboard configuration</div>
+          <div class="gc" style="grid-column:4/9;grid-row:6;"><div class="gbar sub" style="background:#a97ee8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:7;">→ MRM integration</div>
+          <div class="gc" style="grid-column:5/11;grid-row:7;"><div class="gbar sub" style="background:#a97ee8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:8;">→ DORA vendor register</div>
+          <div class="gc" style="grid-column:4/8;grid-row:8;"><div class="gbar sub" style="background:#a97ee8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:9;">→ Foundation model registry</div>
+          <div class="gc" style="grid-column:6/10;grid-row:9;"><div class="gbar sub" style="background:#a97ee8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:10;">→ RBAC &amp; security</div>
+          <div class="gc" style="grid-column:8/12;grid-row:10;"><div class="gbar sub" style="background:#a97ee8;"></div></div>
+
+          <!-- PHASE 3 — Governance & Controls (W11-13) row 11 -->
+          <div class="gl ph ph3" style="grid-column:1;grid-row:11;">Ph3 — Governance &amp; Controls</div>
+          <div class="gc" style="grid-column:12/15;grid-row:11;"><div class="gbar ph" style="background:#0891B2;" data-label="Governance &amp; Controls"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:12;">→ AUP drafting</div>
+          <div class="gc" style="grid-column:12/14;grid-row:12;"><div class="gbar sub" style="background:#5ec4d8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:13;">→ Validation backlog triage</div>
+          <div class="gc" style="grid-column:12/15;grid-row:13;"><div class="gbar sub" style="background:#5ec4d8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:14;">→ 48h workflow testing</div>
+          <div class="gc" style="grid-column:13/15;grid-row:14;"><div class="gbar sub" style="background:#5ec4d8;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:15;">→ Regulatory evidence pack</div>
+          <div class="gc" style="grid-column:13/15;grid-row:15;"><div class="gbar sub" style="background:#5ec4d8;"></div></div>
+
+          <!-- PHASE 4 — Rollout & Handover (W14) row 16 -->
+          <div class="gl ph ph4" style="grid-column:1;grid-row:16;">Ph4 — Rollout &amp; Handover</div>
+          <div class="gc" style="grid-column:15/16;grid-row:16;"><div class="gbar ph" style="background:#9A6500;" data-label="Rollout"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:17;">→ Training sessions</div>
+          <div class="gc" style="grid-column:15/16;grid-row:17;"><div class="gbar sub" style="background:#d4a340;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:18;">→ Hypercare setup</div>
+          <div class="gc" style="grid-column:15/16;grid-row:18;"><div class="gbar sub" style="background:#d4a340;"></div></div>
+          <div class="gl sub" style="grid-column:1;grid-row:19;">→ Level 4 roadmap handover</div>
+          <div class="gc" style="grid-column:15/16;grid-row:19;"><div class="gbar sub" style="background:#d4a340;"></div></div>
+        </div>
+
+        <div class="gantt-legend">
+          <div class="gantt-legend-group">
+            <div class="gantt-legend-group-title">Workstreams</div>
+            <div class="gantt-legend-items">
+              <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#8A15E0"></span>Ph0 Mobilisation</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#1A7A52"></span>Ph1 Discovery</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#6D28D9"></span>Ph2 Build &amp; Integrate</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#0891B2"></span>Ph3 Governance</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-swatch" style="background:#9A6500"></span>Ph4 Rollout</div>
+            </div>
+          </div>
+          <div class="gantt-legend-group">
+            <div class="gantt-legend-group-title">Milestones</div>
+            <div class="gantt-legend-items">
+              <div class="gantt-legend-item"><span class="gantt-legend-diamond" style="background:#1A7A52"></span>Assessment / delivery gate</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-diamond" style="background:#6D28D9"></span>Inventory sign-off</div>
+              <div class="gantt-legend-item"><span style="color:#B8860B;font-size:15px;font-weight:800">★</span>Dashboard go-live</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-diamond" style="background:#0891B2"></span>Evidence pack</div>
+              <div class="gantt-legend-item"><span class="gantt-legend-diamond" style="background:#9A6500"></span>Handover complete</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="card" style="border-color:rgba(161,0,255,.25);background:rgba(161,0,255,.03)">
-        <h4><i class="ti ti-cpu" style="color:#A100FF;margin-right:6px"></i>Foundation Model Registry — built in at Level 3</h4>
-        <p style="margin-bottom:12px">Unlike legacy MRM systems, the Accenture AI Risk Dashboard tracks the <strong>underlying foundation model</strong> for every AI asset — not just the application. This is critical for DORA concentration risk (three banks using GPT-4 creates systemic dependency on a single provider) and EU AI Act transparency obligations for GPAI models.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="chip chip-purple">GPT-4</span>
-          <span class="chip chip-purple">Claude 3.7</span>
-          <span class="chip chip-purple">Gemini Ultra</span>
-          <span class="chip chip-purple">Llama 3</span>
-          <span class="chip chip-purple">Mistral Large</span>
-          <span class="chip chip-purple">Proprietary in-house</span>
-          <span class="chip chip-purple">Fine-tuned BERT</span>
-          <span class="chip chip-purple">Other</span>
-        </div>
+        <h4><i class="ti ti-checklist" style="color:#A100FF;margin-right:6px"></i>Key assumptions</h4>
+        <ul>
+          <li>Client provides MRM SoR API access by end of week 2</li>
+          <li>Business owners confirmed for all High SR 11-7 tier assets by week 4</li>
+          <li>Board/ExCo awareness session scheduled for week 3</li>
+          <li>AI Acceptable Use Policy approval by week 12</li>
+        </ul>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 8. BUSINESS CASE -->
-    <section class="section" id="biz-case">
-      <div class="section-tag">Financial Rationale</div>
+    <!-- ═══════════════ 9. INVESTMENT & VALUE -->
+    <section class="section" id="investment">
+      <div class="section-tag">Business Case</div>
       <div class="section-header">
-        <h2>The Business Case for Acting Now</h2>
-        <p>The cost of building a Level 3 AI Risk Management capability is dwarfed by the financial exposure of a single regulatory enforcement action. The question is not whether to invest — it is how quickly.</p>
+        <h2>Investment &amp; Value</h2>
+        <p>The cost of building a Level 3 capability is dwarfed by the exposure of a single enforcement action. The question is not whether to invest — it is how quickly.</p>
       </div>
 
       <div class="biz-cols">
-        <div class="cost-block risk">
-          <h3><i class="ti ti-alert-triangle" style="margin-right:8px"></i>Cost of Inaction</h3>
-          <p class="cost-sub">Estimated financial exposure per incident type (European Tier 2 bank, FY2025)</p>
-          <div class="cost-item">
-            <span class="cost-item-label">DORA Art. 28 non-compliance (missing ICT register)</span>
-            <span class="cost-item-val red">€20–35M</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">SR 11-7 unvalidated material model finding</span>
-            <span class="cost-item-val red">€5–15M</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">GDPR enforcement — AI processing PII without DPIA</span>
-            <span class="cost-item-val red">€10–50M</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">ECOA fair lending enforcement + class action</span>
-            <span class="cost-item-val red">€30M+</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">GenAI hallucination — customer harm + remediation</span>
-            <span class="cost-item-val red">€2–8M</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">Supervisory-mandated remediation programme</span>
-            <span class="cost-item-val red">€15–40M</span>
-          </div>
-          <div class="cost-total">
-            <span class="cost-total-label">Aggregate worst-case exposure</span>
-            <span class="cost-total-val" style="color:var(--r)">€80–180M</span>
-          </div>
-        </div>
-
         <div class="cost-block solution">
-          <h3><i class="ti ti-shield-check" style="margin-right:8px"></i>Cost of the Solution</h3>
-          <p class="cost-sub">Accenture AI Risk Management — Level 3 baseline delivery (14 weeks)</p>
-          <div class="cost-item">
-            <span class="cost-item-label">Discovery &amp; current-state assessment (2 weeks)</span>
-            <span class="cost-item-val purple">€60K</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">AI Risk Dashboard build &amp; configuration (8 weeks)</span>
-            <span class="cost-item-val purple">€280K</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">Data integration &amp; MRM SoR linkage (3 weeks)</span>
-            <span class="cost-item-val purple">€120K</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">Governance &amp; training rollout (1 week)</span>
-            <span class="cost-item-val purple">€50K</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label">Annual SLA support &amp; Level 4 roadmap</span>
-            <span class="cost-item-val purple">€40K/yr</span>
-          </div>
-          <div class="cost-item">
-            <span class="cost-item-label"><strong>Regulatory fine exposure eliminated (estimated)</strong></span>
-            <span class="cost-item-val green">€80M+</span>
-          </div>
-          <div class="cost-total">
-            <span class="cost-total-label">Total Level 3 investment</span>
-            <span class="cost-total-val" style="color:var(--brandMid)">€550K</span>
-          </div>
+          <h3><i class="ti ti-shield-check"></i>Investment — Level 3</h3>
+          <p class="cost-sub">14-week baseline delivery</p>
+          <div class="cost-item"><span class="cost-item-label">Discovery &amp; Assessment (W1–2)</span><span class="cost-item-val purple">€60K</span></div>
+          <div class="cost-item"><span class="cost-item-label">Dashboard Build &amp; Config (W3–10)</span><span class="cost-item-val purple">€280K</span></div>
+          <div class="cost-item"><span class="cost-item-label">Data Integration &amp; MRM (W4–9)</span><span class="cost-item-val purple">€120K</span></div>
+          <div class="cost-item"><span class="cost-item-label">Governance Framework (W11–13)</span><span class="cost-item-val purple">€50K</span></div>
+          <div class="cost-item"><span class="cost-item-label">Rollout &amp; Training (W14)</span><span class="cost-item-val purple">€40K</span></div>
+          <div class="cost-item"><span class="cost-item-label">Annual support &amp; Level 4 roadmap</span><span class="cost-item-val purple">€40K/yr</span></div>
+          <div class="cost-total"><span class="cost-total-label">Total Level 3</span><span class="cost-total-val" style="color:var(--brandMid)">€550K</span></div>
+        </div>
+
+        <div class="cost-block risk">
+          <h3><i class="ti ti-alert-triangle"></i>Value — Risk Eliminated</h3>
+          <p class="cost-sub">Estimated regulatory exposure mitigated</p>
+          <div class="cost-item"><span class="cost-item-label">DORA Art. 28 non-compliance</span><span class="cost-item-val red">€20–35M</span></div>
+          <div class="cost-item"><span class="cost-item-label">SR 11-7 unvalidated material model</span><span class="cost-item-val red">€5–15M</span></div>
+          <div class="cost-item"><span class="cost-item-label">GDPR — AI processing PII without DPIA</span><span class="cost-item-val red">€10–50M</span></div>
+          <div class="cost-item"><span class="cost-item-label">ECOA fair lending enforcement</span><span class="cost-item-val red">€30M+</span></div>
+          <div class="cost-item"><span class="cost-item-label">Supervisory remediation mandate</span><span class="cost-item-val red">€15–40M</span></div>
+          <div class="cost-total"><span class="cost-total-label">Total risk exposure mitigated</span><span class="cost-total-val" style="color:var(--r)">€80–170M</span></div>
         </div>
       </div>
 
-      <div class="blockquote">
-        <p>"A Level 3 AI Risk Management programme that costs €550K and prevents a single €20M DORA enforcement action delivers a 36:1 return on investment in year one alone — before accounting for operational efficiency gains from automated validation tracking and vendor oversight."</p>
-        <cite>— Accenture NFR Practice Financial Analysis, 2025</cite>
-      </div>
-    </section>
-
-    <!-- ═══════════════════════════════════ 9. DELIVERY -->
-    <section class="section" id="delivery">
-      <div class="section-tag">How We Work</div>
-      <div class="section-header">
-        <h2>14-Week Delivery Approach</h2>
-        <p>Accenture delivers the Level 3 AI Risk baseline in four structured phases. Each phase has defined deliverables, checkpoints, and client sign-off gates — no scope creep, no surprises.</p>
+      <div class="roi-callout">
+        <div class="roi-big">36:1</div>
+        <p>A Level 3 AI Risk Management programme at <strong>€550K</strong> that prevents a single <strong>€20M DORA enforcement action</strong> delivers a <strong>36:1 return on investment in year one</strong>. The average bank with an unresolved AI governance gap faces <strong>2–3 enforcement touchpoints per regulatory cycle</strong>.</p>
       </div>
 
-      <div class="phase-card">
-        <div class="phase-card-header">
-          <span class="phase-badge" style="background:#6D28D9">Phase 1</span>
-          <span class="phase-title">Discovery &amp; Current-State Assessment</span>
-          <span class="phase-weeks">Weeks 1–2</span>
-        </div>
-        <div class="phase-body">
-          <div class="phase-cols">
-            <div>
-              <div class="phase-col-label">Activities</div>
-              <ul>
-                <li>Stakeholder interviews: CRO, CTO, Compliance, MRM, Procurement</li>
-                <li>AI asset discovery — network log analysis, procurement spend review, vendor contracts</li>
-                <li>Current MRM framework gap assessment vs SR 11-7 / DORA / EU AI Act</li>
-                <li>Shadow AI risk profiling — classify by severity and regulatory exposure</li>
-                <li>Foundation model inventory: identify all LLM/GenAI touchpoints</li>
-              </ul>
-            </div>
-            <div>
-              <div class="phase-col-label">Deliverables</div>
-              <div class="phase-deliverables">
-                <span class="phase-del-item">Current-state assessment report</span>
-                <span class="phase-del-item">Preliminary AI asset list</span>
-                <span class="phase-del-item">Regulatory gap matrix</span>
-                <span class="phase-del-item">Shadow AI risk register (initial)</span>
-                <span class="phase-del-item">Priority remediation backlog</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-card-header">
-          <span class="phase-badge" style="background:#0891B2">Phase 2</span>
-          <span class="phase-title">Dashboard Build &amp; Data Integration</span>
-          <span class="phase-weeks">Weeks 3–10</span>
-        </div>
-        <div class="phase-body">
-          <div class="phase-cols">
-            <div>
-              <div class="phase-col-label">Activities</div>
-              <ul>
-                <li>Configure AI Risk Dashboard with bank-specific asset data</li>
-                <li>Integrate MRM system of record (Archer / ServiceNow / MetricStream)</li>
-                <li>DORA ICT vendor register population and validation</li>
-                <li>Foundation model registry setup — AUP alignment check</li>
-                <li>Role-based access configuration: CRO, MRM Validator, SOC Analyst</li>
-                <li>Audit trail and approval workflow activation</li>
-                <li>SR 11-7 materiality tiering applied to full inventory</li>
-              </ul>
-            </div>
-            <div>
-              <div class="phase-col-label">Deliverables</div>
-              <div class="phase-deliverables">
-                <span class="phase-del-item">Configured AI Risk Dashboard</span>
-                <span class="phase-del-item">Complete AI asset inventory (Level 3)</span>
-                <span class="phase-del-item">DORA ICT register (populated)</span>
-                <span class="phase-del-item">Foundation model registry</span>
-                <span class="phase-del-item">RBAC configuration document</span>
-                <span class="phase-del-item">MRM integration spec</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-card-header">
-          <span class="phase-badge" style="background:#1A7A52">Phase 3</span>
-          <span class="phase-title">Governance Framework &amp; Control Activation</span>
-          <span class="phase-weeks">Weeks 11–13</span>
-        </div>
-        <div class="phase-body">
-          <div class="phase-cols">
-            <div>
-              <div class="phase-col-label">Activities</div>
-              <ul>
-                <li>AI Acceptable Use Policy drafting / update</li>
-                <li>Validation backlog triage — prioritise High SR 11-7 tier overdue models</li>
-                <li>Shadow AI remediation playbooks: escalation, retire, or register</li>
-                <li>Regulatory exposure mapping — full heat-map review with Compliance</li>
-                <li>48-hour change approval workflow testing and sign-off</li>
-                <li>Board reporting template configuration (CRO view)</li>
-              </ul>
-            </div>
-            <div>
-              <div class="phase-col-label">Deliverables</div>
-              <div class="phase-deliverables">
-                <span class="phase-del-item">AI Acceptable Use Policy</span>
-                <span class="phase-del-item">Validation remediation plan</span>
-                <span class="phase-del-item">Shadow AI remediation playbook</span>
-                <span class="phase-del-item">Regulatory exposure report</span>
-                <span class="phase-del-item">Board AI risk dashboard pack</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="phase-card">
-        <div class="phase-card-header">
-          <span class="phase-badge" style="background:#A100FF">Phase 4</span>
-          <span class="phase-title">Rollout, Training &amp; Handover</span>
-          <span class="phase-weeks">Week 14</span>
-        </div>
-        <div class="phase-body">
-          <div class="phase-cols">
-            <div>
-              <div class="phase-col-label">Activities</div>
-              <ul>
-                <li>Role-specific training: CRO cockpit, MRM validator workflow, SOC analyst view</li>
-                <li>Hypercare period — Accenture on-call for first month of live operation</li>
-                <li>Level 4 roadmap handover and feature flag documentation</li>
-                <li>Regulatory evidence pack preparation (DORA, SR 11-7 audit ready)</li>
-              </ul>
-            </div>
-            <div>
-              <div class="phase-col-label">Deliverables</div>
-              <div class="phase-deliverables">
-                <span class="phase-del-item">Training completion records</span>
-                <span class="phase-del-item">Regulatory evidence pack</span>
-                <span class="phase-del-item">Level 4 roadmap</span>
-                <span class="phase-del-item">SLA &amp; support agreement</span>
-                <span class="phase-del-item">Knowledge transfer documentation</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <h3 style="font-size:16px;font-weight:700;color:var(--tp);margin:28px 0 16px">Accenture Delivery Team</h3>
-      <div class="role-strip">
-        <div class="role-chip">
-          <div class="role-chip-icon" style="background:#EEE8F7"><i class="ti ti-user-shield" style="color:#6D28D9;font-size:16px"></i></div>
-          <div>
-            <div class="role-chip-name">AI Governance Lead <span class="role-chip-fte">1.0 FTE</span></div>
-            <div class="role-chip-sub">Senior Manager · NFR Practice</div>
-          </div>
-        </div>
-        <div class="role-chip">
-          <div class="role-chip-icon" style="background:#E4F2EB"><i class="ti ti-scale" style="color:#1A7A52;font-size:16px"></i></div>
-          <div>
-            <div class="role-chip-name">Regulatory SME <span class="role-chip-fte">0.5 FTE</span></div>
-            <div class="role-chip-sub">Manager · DORA / EU AI Act</div>
-          </div>
-        </div>
-        <div class="role-chip">
-          <div class="role-chip-icon" style="background:#DBEAFE"><i class="ti ti-cpu" style="color:#1D4ED8;font-size:16px"></i></div>
-          <div>
-            <div class="role-chip-name">AI Risk Engineer <span class="role-chip-fte">1.5 FTE</span></div>
-            <div class="role-chip-sub">Senior Analyst · MRM / Dashboard</div>
-          </div>
-        </div>
-        <div class="role-chip">
-          <div class="role-chip-icon" style="background:#FEF3DC"><i class="ti ti-database" style="color:#9A6500;font-size:16px"></i></div>
-          <div>
-            <div class="role-chip-name">Data Integration Lead <span class="role-chip-fte">1.0 FTE</span></div>
-            <div class="role-chip-sub">Manager · MRM API / SIEM</div>
-          </div>
-        </div>
-        <div class="role-chip">
-          <div class="role-chip-icon" style="background:#FCE7F3"><i class="ti ti-shield" style="color:#9D174D;font-size:16px"></i></div>
-          <div>
-            <div class="role-chip-name">Security Architect <span class="role-chip-fte">0.5 FTE</span></div>
-            <div class="role-chip-sub">Senior Analyst · RBAC / CSP</div>
-          </div>
-        </div>
+      <h3 style="font-size:15px;font-weight:700;color:var(--tp);margin-bottom:12px">Roadmap beyond Level 3</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>From Level 3 to…</th><th>Additional Capability</th><th>Additional Investment</th><th>Timeline</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="level-badge l4" style="width:24px;height:24px;font-size:11px">4</span> <strong>Managed</strong></td>
+              <td>Predictive risk scoring, live SIEM feed, continuous bias monitoring</td>
+              <td><span class="chip chip-purple">+€300K</span></td>
+              <td>+4 weeks</td>
+            </tr>
+            <tr>
+              <td><span class="level-badge l5" style="width:24px;height:24px;font-size:11px">5</span> <strong>Optimised</strong></td>
+              <td>Hallucination test pipelines, board scenario simulator, autonomous remediation</td>
+              <td><span class="chip chip-purple">+€650K</span></td>
+              <td>+10 weeks</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
 
-    <!-- ═══════════════════════════════════ 10. NEXT STEPS -->
+    <!-- ═══════════════ 10. NEXT STEPS -->
     <section class="section" id="next-steps">
       <div class="cta-section">
         <canvas id="ctaCanvas" aria-hidden="true"></canvas>
@@ -1062,7 +1218,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
         <p>A two-hour discovery workshop with the Accenture NFR AI team will map your current AI risk posture, identify your top three regulatory exposures, and scope a tailored Level 3 delivery plan — at no cost.</p>
         <div class="cta-actions">
           <a href="mailto:thomas.zijlstra@accenture.com?subject=AI Risk Management Discovery Workshop Request&body=Hi Thomas,%0A%0AI'd like to schedule a discovery workshop to discuss AI Risk Management for our organisation.%0A%0AOrganisation:%0APreferred date:%0AKey contacts:" class="btn-primary">Book Discovery Workshop</a>
-          <a href="/ai-risk-dashboard/" class="btn-secondary">Explore the Live Dashboard</a>
+          <a href="mailto:thomas.zijlstra@accenture.com?subject=AI Risk Management — SoW Template Request&body=Hi Thomas,%0A%0APlease send the Level 3 AI Risk Management Statement of Work template.%0A%0AOrganisation:" class="btn-secondary">Download SoW Template</a>
         </div>
       </div>
     </section>
@@ -1073,7 +1229,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 <footer>
   Accenture · NFR AI Assets · AI Risk Management Client Story &nbsp;|&nbsp;
   <a href="mailto:thomas.zijlstra@accenture.com">thomas.zijlstra@accenture.com</a> &nbsp;|&nbsp;
-  <a href="/ai-risk-dashboard/">Return to Dashboard</a>
+  <a href="https://tzijlstra-acn.github.io/NFRAIAssets/">AI Assets Hub</a>
 </footer>
 
 <script>
@@ -1118,7 +1274,7 @@ netBg('ctaCanvas',{n:35,link:120,sparkMs:380,ringMs:3000,scanV:.15});
   var items=document.querySelectorAll('.nav-item[href^="#"]');
   var sections=Array.from(items).map(function(a){return document.querySelector(a.getAttribute('href'));}).filter(Boolean);
   function update(){
-    var scrollY=window.scrollY+80;
+    var scrollY=window.scrollY+90;
     var current=sections[0];
     sections.forEach(function(s){if(s.offsetTop<=scrollY)current=s;});
     items.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+current.id);});
