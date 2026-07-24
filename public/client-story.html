@@ -279,6 +279,21 @@ tbody tr:nth-child(even) td{background:var(--s1)}
 .role-resp li{margin-bottom:3px;line-height:1.5}
 .skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:4px}
 .skill-tag{font-size:11px;background:var(--s2);color:var(--ts);padding:2px 8px;border-radius:20px;font-weight:500}
+.role-expand-btn{width:100%;display:flex;align-items:center;justify-content:space-between;background:rgba(161,0,255,.07);border:1px solid rgba(161,0,255,.18);color:#C77BFF;font-size:12px;font-weight:600;padding:8px 14px;border-radius:6px;cursor:pointer;transition:background .15s,border-color .15s;font-family:var(--font);text-align:left}
+.role-expand-btn:hover{background:rgba(161,0,255,.14);border-color:rgba(161,0,255,.3)}
+.role-expand-btn .reb-icon{transition:transform .3s ease;font-size:14px;flex-shrink:0}
+.role-card.rc-open .role-expand-btn .reb-icon{transform:rotate(180deg)}
+.role-card.rc-open .role-expand-btn{background:rgba(161,0,255,.12);border-color:rgba(161,0,255,.28)}
+.role-drawer{max-height:0;overflow:hidden;opacity:0;transition:max-height .42s cubic-bezier(.22,.68,0,1.12),opacity .25s ease}
+.role-card.rc-open .role-drawer{max-height:900px;opacity:1}
+.rd-inner{padding-top:14px;border-top:1px solid rgba(161,0,255,.14);margin-top:2px}
+.rd-label{font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#CC88FF;font-family:var(--mono);margin-bottom:7px}
+.rd-section{margin-bottom:14px}
+.rd-section p{font-size:12.5px;color:var(--ts);line-height:1.6;margin:0}
+.rd-section ul{padding-left:16px;margin:0}
+.rd-section li{font-size:12px;color:var(--ts);line-height:1.5;margin-bottom:4px}
+.rd-cols{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.rd-samples li{font-family:var(--mono);font-size:11px;color:rgba(199,123,255,.75)}
 
 /* STAFFING TABLE */
 .staffing-table td:not(:first-child){text-align:center}
@@ -1247,10 +1262,6 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <rect x="8" y="20" width="784" height="340" rx="10" fill="rgba(0,100,212,.025)" stroke="rgba(0,130,220,.3)" stroke-width="1.5" stroke-dasharray="6 3"/>
           <text x="18" y="34" fill="rgba(0,150,255,.5)" font-family="JetBrains Mono,monospace" font-size="8" font-weight="700" letter-spacing=".1em">CLIENT AZURE TENANT — all components run within this boundary · no data leaves</text>
 
-          <!-- Column headers -->
-          <text x="10" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">SOURCE SYSTEMS</text>
-          <text x="268" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">INTEGRATION LAYER</text>
-          <text x="510" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">AI RISK COCKPIT L3</text>
 
           <!-- ═══ SOURCE SYSTEMS ═══ -->
           <!-- MRM SoR -->
@@ -1465,7 +1476,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
       </div>
 
       <div class="role-grid">
-        <div class="role-card rt-consulting">
+        <div class="role-card rt-consulting" id="rc-smr">
           <div class="role-card-header">
             <div>
               <div class="role-name">Senior Manager — AI Model Risk Governance</div>
@@ -1483,9 +1494,49 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <div class="skill-tags">
             <span class="skill-tag">NIST AI RMF</span><span class="skill-tag">DORA</span><span class="skill-tag">EU AI Act</span><span class="skill-tag">MRM frameworks</span><span class="skill-tag">FSI regulatory</span>
           </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-smr')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>Leads the full engagement from Accenture's side. Senior interface between the client's CRO office, internal Risk and Compliance function, and the Accenture delivery team — accountable for steering committee governance, all regulatory sign-off gates, and ensuring the six regulatory regimes are addressed within a single coherent governance framework.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>Programme charter &amp; sign-off gate criteria</li>
+                    <li>3-Lines-of-Defence RACI matrix</li>
+                    <li>AI risk governance framework design</li>
+                    <li>Steering committee packs (bi-weekly)</li>
+                    <li>Regulatory mapping overview (6 regimes)</li>
+                    <li>AI risk taxonomy for the institution</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"AI Governance Programme Charter v1.0"</li>
+                    <li>"3LoD RACI for AI Model Risk"</li>
+                    <li>"Regulatory Sign-off Pack — DORA + EU AI Act + SR 11-7"</li>
+                    <li>"Steering Committee Deck — Week 2 Discovery Gate"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">NIST AI RMF</span><span class="skill-tag">EU AI Act Annex III</span><span class="skill-tag">DORA</span><span class="skill-tag">SR 11-7</span><span class="skill-tag">Basel III/IV</span><span class="skill-tag">EBA ML Guidelines</span><span class="skill-tag">3LoD governance design</span><span class="skill-tag">Senior FSI client leadership</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="role-card rt-consulting">
+        <div class="role-card rt-consulting" id="rc-mgr">
           <div class="role-card-header">
             <div>
               <div class="role-name">Manager — Regulatory Risk &amp; Compliance</div>
@@ -1503,9 +1554,48 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <div class="skill-tags">
             <span class="skill-tag">DORA</span><span class="skill-tag">EU AI Act</span><span class="skill-tag">SR 11-7</span><span class="skill-tag">EBA Guidelines</span><span class="skill-tag">ECB TRIM</span>
           </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-mgr')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>Deep specialist on the regulatory mapping layer. Translates the evolving regulatory landscape (DORA, EU AI Act, GDPR, SR 11-7, ECB TRIM) into concrete platform requirements. Produces the DORA ICT register, EU AI Act high-risk classification log, and DPIA. Prepares the evidence pack for internal audit and external regulatory examination.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>DORA Art. 28 ICT third-party register</li>
+                    <li>EU AI Act Annex III classification log</li>
+                    <li>GDPR Art. 22 &amp; DPIA report</li>
+                    <li>Concentration risk assessment (vendors)</li>
+                    <li>Regulatory evidence pack (audit-ready)</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"DORA Art. 28 ICT Register — AI Models"</li>
+                    <li>"EU AI Act Annex III Classification Matrix"</li>
+                    <li>"DPIA — Shadow AI Detection Module"</li>
+                    <li>"Regulatory Evidence Pack v1.0"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">DORA Art. 28</span><span class="skill-tag">EU AI Act Annex III</span><span class="skill-tag">GDPR Art. 22</span><span class="skill-tag">SR 11-7</span><span class="skill-tag">EBA ML Guidelines</span><span class="skill-tag">ECB TRIM</span><span class="skill-tag">Regulatory evidence writing</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="role-card rt-tech">
+        <div class="role-card rt-tech" id="rc-eng">
           <div class="role-card-header">
             <div>
               <div class="role-name">Senior AI Risk Engineer</div>
@@ -1523,9 +1613,49 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <div class="skill-tags">
             <span class="skill-tag">React</span><span class="skill-tag">Python</span><span class="skill-tag">MRM APIs</span><span class="skill-tag">SIEM integration</span><span class="skill-tag">SR 11-7</span>
           </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-eng')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>Core technical builder of the AI Risk Cockpit. Migrates from the mock API baseline to live MRM integration, implements validation tracking automation, and wires the RBAC and immutable audit-trail systems. Works across the React SPA frontend and FastAPI backend deployed on Azure Container Apps.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>Deployed AI Risk Cockpit L3</li>
+                    <li>Live MRM SoR API integration</li>
+                    <li>Validation status automation (Python)</li>
+                    <li>RBAC configuration per user role</li>
+                    <li>Immutable audit-trail implementation</li>
+                    <li>Release notes &amp; deployment guide</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"MRM SoR REST API Connector Spec v2"</li>
+                    <li>"Validation Status Automation — Python pipeline"</li>
+                    <li>"AI Risk Cockpit L3 Release Notes"</li>
+                    <li>"RBAC Configuration Runbook"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">React / TypeScript</span><span class="skill-tag">Python</span><span class="skill-tag">FastAPI</span><span class="skill-tag">PostgreSQL</span><span class="skill-tag">Azure Container Apps</span><span class="skill-tag">SIEM API integration</span><span class="skill-tag">SR 11-7 platform requirements</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="role-card rt-tech">
+        <div class="role-card rt-tech" id="rc-dat">
           <div class="role-card-header">
             <div>
               <div class="role-name">Data &amp; Integration Lead</div>
@@ -1543,9 +1673,49 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <div class="skill-tags">
             <span class="skill-tag">Data engineering</span><span class="skill-tag">CASB/SIEM</span><span class="skill-tag">API integration</span><span class="skill-tag">Cloud AI services</span>
           </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-dat')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>Architects and implements all five data pipelines from source systems into the platform. Designs the Azure Data Factory connectors, Service Bus event schema for real-time shadow AI detection, and data contracts per source system. Owns GDPR pseudonymisation at ingestion time and the end-to-end data lineage map.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>ADF pipeline configuration (5 sources)</li>
+                    <li>Service Bus event schema</li>
+                    <li>Data contracts per source system</li>
+                    <li>Shadow AI detection pipeline</li>
+                    <li>GDPR pseudonymisation module</li>
+                    <li>Data lineage &amp; PII exposure map</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"ADF Pipeline Spec — MRM SoR + CASB"</li>
+                    <li>"Shadow AI Detection Pipeline Design"</li>
+                    <li>"Data Contract v1.0 — Archer to Platform"</li>
+                    <li>"PII Pseudonymisation Runbook"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">Azure Data Factory</span><span class="skill-tag">Azure Service Bus</span><span class="skill-tag">Azure Functions</span><span class="skill-tag">Python</span><span class="skill-tag">REST API design</span><span class="skill-tag">CASB/SIEM integration</span><span class="skill-tag">GDPR Art. 25</span><span class="skill-tag">Data engineering</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="role-card rt-consulting">
+        <div class="role-card rt-consulting" id="rc-mrm">
           <div class="role-card-header">
             <div>
               <div class="role-name">Analyst — Model Risk Management</div>
@@ -1563,9 +1733,48 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           <div class="skill-tags">
             <span class="skill-tag">Model validation</span><span class="skill-tag">Python/R</span><span class="skill-tag">GenAI evaluation</span><span class="skill-tag">SR 11-7</span>
           </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-mrm')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>MRM domain specialist who applies SR 11-7 materiality tiering across all models in scope, documents validation history, and assesses GenAI-specific risks including hallucination rates, data drift, and robustness. Directly triages the overdue validation backlog alongside the client's Model Validation Unit.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>Model inventory — SR 11-7 materiality tiers</li>
+                    <li>Validation history documentation</li>
+                    <li>GenAI robustness &amp; hallucination assessment</li>
+                    <li>Overdue validation triage report</li>
+                    <li>Model risk findings register</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"AI Model Inventory — SR 11-7 Tiers v1.2"</li>
+                    <li>"GenAI Robustness Assessment — Credit Scoring"</li>
+                    <li>"Overdue Validation Triage — 7 Models"</li>
+                    <li>"Model Risk Findings Register"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">SR 11-7</span><span class="skill-tag">Model validation methodology</span><span class="skill-tag">Python / R</span><span class="skill-tag">GenAI evaluation</span><span class="skill-tag">Statistical testing</span><span class="skill-tag">Backtesting</span><span class="skill-tag">MRM frameworks</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="role-card rt-tech">
+        <div class="role-card rt-tech" id="rc-sec">
           <div class="role-card-header">
             <div>
               <div class="role-name">Senior Analyst — Cybersecurity &amp; Access Control</div>
@@ -1582,6 +1791,45 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           </ul></div>
           <div class="skill-tags">
             <span class="skill-tag">IAM</span><span class="skill-tag">CSPM</span><span class="skill-tag">DORA TLPT</span><span class="skill-tag">Zero-trust</span>
+          </div>
+          <button class="role-expand-btn" onclick="toggleRole('rc-sec')" aria-expanded="false">
+            <span>Details &amp; deliverables</span>
+            <i class="ti ti-chevron-down reb-icon"></i>
+          </button>
+          <div class="role-drawer">
+            <div class="rd-inner">
+              <div class="rd-section">
+                <div class="rd-label">About this role</div>
+                <p>Implements the full security layer: RBAC configuration per user role, cloud security posture for the Azure deployment, and DORA ICT resilience testing preparation. Ensures the platform meets the client's information security standards and external audit requirements, including Key Vault secrets management and Private Endpoint configuration.</p>
+              </div>
+              <div class="rd-cols">
+                <div class="rd-section">
+                  <div class="rd-label">Key deliverables</div>
+                  <ul>
+                    <li>RBAC role matrix (CRO / MRM / SOC / Audit)</li>
+                    <li>Cloud security posture baseline</li>
+                    <li>DORA TLPT evidence pack</li>
+                    <li>Access control policy documentation</li>
+                    <li>Key Vault secrets management runbook</li>
+                  </ul>
+                </div>
+                <div class="rd-section">
+                  <div class="rd-label">Sample artefacts</div>
+                  <ul class="rd-samples">
+                    <li>"RBAC Role Matrix — AI Risk Cockpit L3"</li>
+                    <li>"Azure Security Posture Baseline Report"</li>
+                    <li>"DORA TLPT Evidence Pack"</li>
+                    <li>"Key Vault &amp; Private Endpoint Runbook"</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="rd-section">
+                <div class="rd-label">Skills required</div>
+                <div class="skill-tags">
+                  <span class="skill-tag">IAM (Azure AD / Entra ID)</span><span class="skill-tag">CSPM (Defender for Cloud)</span><span class="skill-tag">DORA TLPT</span><span class="skill-tag">Zero-trust design</span><span class="skill-tag">Azure Key Vault</span><span class="skill-tag">Private Endpoint</span><span class="skill-tag">RBAC design</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1798,6 +2046,15 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 </footer>
 
 <script>
+// ── Role card expand/collapse ──
+function toggleRole(id){
+  var card=document.getElementById(id);
+  if(!card)return;
+  var open=card.classList.toggle('rc-open');
+  var btn=card.querySelector('.role-expand-btn');
+  if(btn)btn.setAttribute('aria-expanded',open?'true':'false');
+}
+
 // ── Neural network canvas animation (shared netBg function) ──
 function netBg(id,cfg){
   var C=Object.assign({n:40,link:130,hubPct:.09,repel:80,sparkMs:340,sparkV:.007,ringMs:2700,scanV:.22,fixed:false},cfg||{});
