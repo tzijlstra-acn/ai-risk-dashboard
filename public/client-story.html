@@ -616,6 +616,9 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
 
 /* ── Main content subtle bg texture ── */
 .main{background:linear-gradient(180deg,rgba(161,0,255,.03) 0%,transparent 400px)}
+
+/* ── Gantt bar wipe-in ── */
+.gbar{transform-origin:left center}
 </style>
 </head>
 <body>
@@ -747,7 +750,8 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
               <circle cx="175" cy="130" r="65" fill="rgba(239,68,68,.15)" stroke="rgba(239,68,68,.3)" stroke-width="1.5"/>
               <text x="175" y="125" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Space Grotesk,sans-serif" font-size="16" font-weight="700">41%</text>
               <text x="175" y="145" text-anchor="middle" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-size="10">L2 Structured</text>
-              <circle cx="275" cy="108" r="44" fill="rgba(161,0,255,.35)" stroke="#A100FF" stroke-width="2"/>
+              <circle cx="275" cy="108" r="54" fill="none" stroke="rgba(161,0,255,.28)" stroke-width="1"><animate attributeName="r" values="54;66;54" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="3s" repeatCount="indefinite"/></circle>
+              <circle cx="275" cy="108" r="44" fill="rgba(161,0,255,.35)" stroke="#A100FF" stroke-width="2"><animate attributeName="r" values="44;47;44" dur="3s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="2;3;2" dur="3s" repeatCount="indefinite"/></circle>
               <text x="275" y="103" text-anchor="middle" fill="#fff" font-family="Space Grotesk,sans-serif" font-size="14" font-weight="700">19%</text>
               <text x="275" y="119" text-anchor="middle" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-size="10">L3 Integrated</text>
               <text x="275" y="66" text-anchor="middle" fill="#FF50C8" font-family="JetBrains Mono,monospace" font-size="9">◆ TARGET</text>
@@ -882,7 +886,8 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <rect x="118" y="0" width="642" height="36" fill="#12121F"/>
             <line x1="118" y1="36" x2="760" y2="36" stroke="#241239" stroke-width="1"/>
             <text x="134" y="22" fill="#8A7CA8" font-family="sans-serif" font-size="10">Measure  ›  Validation Coverage</text>
-            <circle cx="672" cy="18" r="4" fill="#22C55E"/>
+            <circle cx="672" cy="18" r="9" fill="none" stroke="#22C55E" stroke-width="1"><animate attributeName="r" values="6;16;6" dur="1.8s" repeatCount="indefinite"/><animate attributeName="opacity" values=".6;0;.6" dur="1.8s" repeatCount="indefinite"/></circle>
+            <circle cx="672" cy="18" r="4" fill="#22C55E"><animate attributeName="opacity" values="1;.4;1" dur=".9s" repeatCount="indefinite"/></circle>
             <text x="682" y="22" fill="#22C55E" font-family="monospace" font-size="9" font-weight="700">LIVE</text>
             <circle cx="732" cy="18" r="10" fill="#1A1A2E" stroke="#3A2B52" stroke-width="1"/>
             <text x="732" y="22" fill="#C77BFF" font-family="sans-serif" font-size="9" font-weight="700" text-anchor="middle">CRO</text>
@@ -906,7 +911,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
               <rect x="338" y="48" width="96" height="66" rx="6" fill="#1A1A2E" stroke="#262642"/>
               <rect x="338" y="48" width="96" height="3" rx="1.5" fill="#EF4444"/>
               <text x="348" y="66" fill="#7E7396" font-size="7.5" font-weight="600">SHADOW AI</text>
-              <text x="348" y="90" fill="#FF6B6B" font-size="20" font-weight="800" font-family="'Space Grotesk',sans-serif">3</text>
+              <text x="348" y="90" fill="#FF6B6B" font-size="20" font-weight="800" font-family="'Space Grotesk',sans-serif">3<animate attributeName="opacity" values="1;.35;1;.35;1" dur="4.5s" repeatCount="indefinite"/></text>
               <text x="348" y="106" fill="#5A5273" font-size="7">critical · unregistered</text>
               <!-- 4 DORA Gaps -->
               <rect x="442" y="48" width="96" height="66" rx="6" fill="#1A1A2E" stroke="#262642"/>
@@ -918,7 +923,7 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
               <rect x="546" y="48" width="96" height="66" rx="6" fill="#1A1A2E" stroke="#262642"/>
               <rect x="546" y="48" width="96" height="3" rx="1.5" fill="#EF4444"/>
               <text x="556" y="66" fill="#7E7396" font-size="7.5" font-weight="600">OVERDUE</text>
-              <text x="556" y="90" fill="#FF6B6B" font-size="20" font-weight="800" font-family="'Space Grotesk',sans-serif">7</text>
+              <text x="556" y="90" fill="#FF6B6B" font-size="20" font-weight="800" font-family="'Space Grotesk',sans-serif">7<animate attributeName="opacity" values="1;.4;1" dur="3s" repeatCount="indefinite"/></text>
               <text x="556" y="106" fill="#5A5273" font-size="7">validations past due</text>
               <!-- 6 Vendor Risk Alerts -->
               <rect x="650" y="48" width="96" height="66" rx="6" fill="#1A1A2E" stroke="#262642"/>
@@ -935,13 +940,13 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <g font-family="sans-serif" font-size="8.5">
               <text x="144" y="182" fill="#9C90B5">ML Models</text>
               <rect x="230" y="174" width="180" height="10" rx="5" fill="#22242E"/>
-              <rect x="230" y="174" width="148" height="10" rx="5" fill="#22C55E"/>
+              <rect x="230" y="174" width="148" height="10" rx="5" fill="#22C55E"><animate attributeName="width" from="0" to="148" dur="1.2s" begin="0.3s" calcMode="spline" keyTimes="0;1" keySplines=".22,.68,0,1.12" fill="freeze"/></rect>
               <text x="144" y="206" fill="#9C90B5">GenAI</text>
               <rect x="230" y="198" width="180" height="10" rx="5" fill="#22242E"/>
-              <rect x="230" y="198" width="74" height="10" rx="5" fill="#F59E0B"/>
+              <rect x="230" y="198" width="74" height="10" rx="5" fill="#F59E0B"><animate attributeName="width" from="0" to="74" dur="1.2s" begin="0.55s" calcMode="spline" keyTimes="0;1" keySplines=".22,.68,0,1.12" fill="freeze"/></rect>
               <text x="144" y="230" fill="#9C90B5">Overdue</text>
               <rect x="230" y="222" width="180" height="10" rx="5" fill="#22242E"/>
-              <rect x="230" y="222" width="50" height="10" rx="5" fill="#EF4444"/>
+              <rect x="230" y="222" width="50" height="10" rx="5" fill="#EF4444"><animate attributeName="width" from="0" to="50" dur="1.2s" begin="0.8s" calcMode="spline" keyTimes="0;1" keySplines=".22,.68,0,1.12" fill="freeze"/></rect>
             </g>
 
             <!-- PANEL: OVERDUE MODELS LIST -->
@@ -973,11 +978,11 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             </g>
             <g>
               <!-- row 1 -->
-              <rect x="200" y="294" width="82" height="14" rx="3" fill="#EF4444" opacity="0.85"/><rect x="288" y="294" width="82" height="14" rx="3" fill="#EF4444" opacity="0.85"/><rect x="376" y="294" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="464" y="294" width="82" height="14" rx="3" fill="#22C55E" opacity="0.8"/><rect x="552" y="294" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="640" y="294" width="94" height="14" rx="3" fill="#22C55E" opacity="0.8"/>
+              <rect x="200" y="294" width="82" height="14" rx="3" fill="#EF4444" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".1s" fill="freeze"/></rect><rect x="288" y="294" width="82" height="14" rx="3" fill="#EF4444" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".2s" fill="freeze"/></rect><rect x="376" y="294" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".3s" fill="freeze"/></rect><rect x="464" y="294" width="82" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin=".4s" fill="freeze"/></rect><rect x="552" y="294" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".5s" fill="freeze"/></rect><rect x="640" y="294" width="94" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin=".6s" fill="freeze"/></rect>
               <!-- row 2 -->
-              <rect x="200" y="314" width="82" height="14" rx="3" fill="#EF4444" opacity="0.85"/><rect x="288" y="314" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="376" y="314" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="464" y="314" width="82" height="14" rx="3" fill="#22C55E" opacity="0.8"/><rect x="552" y="314" width="82" height="14" rx="3" fill="#22C55E" opacity="0.8"/><rect x="640" y="314" width="94" height="14" rx="3" fill="#F59E0B" opacity="0.85"/>
+              <rect x="200" y="314" width="82" height="14" rx="3" fill="#EF4444" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".4s" fill="freeze"/></rect><rect x="288" y="314" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".5s" fill="freeze"/></rect><rect x="376" y="314" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".6s" fill="freeze"/></rect><rect x="464" y="314" width="82" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin=".7s" fill="freeze"/></rect><rect x="552" y="314" width="82" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin=".8s" fill="freeze"/></rect><rect x="640" y="314" width="94" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".9s" fill="freeze"/></rect>
               <!-- row 3 -->
-              <rect x="200" y="334" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="288" y="334" width="82" height="14" rx="3" fill="#EF4444" opacity="0.85"/><rect x="376" y="334" width="82" height="14" rx="3" fill="#22C55E" opacity="0.8"/><rect x="464" y="334" width="82" height="14" rx="3" fill="#F59E0B" opacity="0.85"/><rect x="552" y="334" width="82" height="14" rx="3" fill="#22C55E" opacity="0.8"/><rect x="640" y="334" width="94" height="14" rx="3" fill="#22C55E" opacity="0.8"/>
+              <rect x="200" y="334" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".7s" fill="freeze"/></rect><rect x="288" y="334" width="82" height="14" rx="3" fill="#EF4444" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin=".8s" fill="freeze"/></rect><rect x="376" y="334" width="82" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin=".9s" fill="freeze"/></rect><rect x="464" y="334" width="82" height="14" rx="3" fill="#F59E0B" opacity="0"><animate attributeName="opacity" from="0" to=".85" dur=".3s" begin="1s" fill="freeze"/></rect><rect x="552" y="334" width="82" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin="1.1s" fill="freeze"/></rect><rect x="640" y="334" width="94" height="14" rx="3" fill="#22C55E" opacity="0"><animate attributeName="opacity" from="0" to=".8" dur=".3s" begin="1.2s" fill="freeze"/></rect>
             </g>
 
             <!-- AUDIT TRAIL -->
@@ -985,17 +990,20 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
             <text x="144" y="388" fill="#EDE4FA" font-family="sans-serif" font-size="11" font-weight="700">MRM Audit Trail</text>
             <text x="732" y="388" fill="#6B5F80" font-family="monospace" font-size="8" text-anchor="end">25 events</text>
             <g font-family="sans-serif" font-size="8.5">
+              <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".3s" fill="freeze"/>
               <rect x="144" y="398" width="52" height="13" rx="3" fill="rgba(34,197,94,0.18)"/><text x="170" y="408" fill="#4ADE80" font-size="7" font-weight="700" text-anchor="middle">APPROVED</text>
               <text x="206" y="408" fill="#C9BEDF">Credit Scoring v4 validation signed off</text>
-              <text x="732" y="408" fill="#5A5273" text-anchor="end">2h ago</text>
+              <text x="732" y="408" fill="#5A5273" text-anchor="end">2h ago</text></g>
 
+              <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".6s" fill="freeze"/>
               <rect x="144" y="416" width="52" height="13" rx="3" fill="rgba(245,158,11,0.18)"/><text x="170" y="426" fill="#FBBF24" font-size="7" font-weight="700" text-anchor="middle">PENDING</text>
               <text x="206" y="426" fill="#C9BEDF">GenAI assistant awaiting AUP review</text>
-              <text x="732" y="426" fill="#5A5273" text-anchor="end">5h ago</text>
+              <text x="732" y="426" fill="#5A5273" text-anchor="end">5h ago</text></g>
 
+              <g opacity="0"><animate attributeName="opacity" from="0" to="1" dur=".4s" begin=".9s" fill="freeze"/>
               <rect x="144" y="434" width="52" height="13" rx="3" fill="rgba(239,68,68,0.18)"/><text x="170" y="444" fill="#FF6B6B" font-size="7" font-weight="700" text-anchor="middle">CRITICAL</text>
               <text x="206" y="444" fill="#C9BEDF">Shadow AI detected — Copilot in Treasury</text>
-              <text x="732" y="444" fill="#5A5273" text-anchor="end">1d ago</text>
+              <text x="732" y="444" fill="#5A5273" text-anchor="end">1d ago</text></g>
             </g>
           </svg>
         </div>
@@ -1501,6 +1509,63 @@ netBg('ctaCanvas',{n:35,link:120,sparkMs:380,ringMs:3000,scanV:.15});
   }
   window.addEventListener('scroll',update,{passive:true});
   update();
+}());
+
+// ── Industry bar fill on scroll ──
+(function(){
+  var bars=document.querySelectorAll('.ind-bar-fill');
+  bars.forEach(function(b){b.setAttribute('data-w',b.style.width);b.style.width='0';});
+  if(!window.IntersectionObserver){bars.forEach(function(b){b.style.width=b.dataset.w;});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      e.target.querySelectorAll('.ind-bar-fill').forEach(function(b,i){
+        setTimeout(function(){b.style.transition='width 1.3s cubic-bezier(.22,.68,0,1.12)';b.style.width=b.dataset.w;},i*130);
+      });
+      io.unobserve(e.target);
+    });
+  },{threshold:0.25});
+  var c=document.querySelector('.industry-bars');
+  if(c)io.observe(c);
+}());
+
+// ── Count-up animation for numeric labels ──
+(function(){
+  function countUp(el){
+    var txt=el.textContent.trim(),m=txt.match(/^(\d+)(.*)$/);
+    if(!m)return;
+    var end=parseInt(m[1]),suf=m[2];
+    if(end<2)return;
+    var dur=Math.min(1400,end*55),t0=Date.now();
+    (function tick(){
+      var p=Math.min(1,(Date.now()-t0)/dur),e=1-Math.pow(1-p,3);
+      el.textContent=Math.round(e*end)+suf;
+      if(p<1)requestAnimationFrame(tick);
+    })();
+  }
+  if(!window.IntersectionObserver)return;
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting){countUp(e.target);io.unobserve(e.target);}});
+  },{threshold:0.6});
+  document.querySelectorAll('.cpf-num,.accn-num').forEach(function(el){io.observe(el);});
+}());
+
+// ── Gantt bar wipe-in from left ──
+(function(){
+  var g=document.querySelector('.gantt-outer');
+  if(!g||!window.IntersectionObserver)return;
+  var ph=g.querySelectorAll('.gbar.ph'),sub=g.querySelectorAll('.gbar.sub');
+  ph.forEach(function(b){b.style.clipPath='inset(0 100% 0 0)';});
+  sub.forEach(function(b){b.style.clipPath='inset(0 100% 0 0)';});
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting)return;
+      ph.forEach(function(b){b.style.transition='clip-path 1s cubic-bezier(.22,.68,0,1.12)';b.style.clipPath='inset(0 0% 0 0)';});
+      sub.forEach(function(b,i){setTimeout(function(){b.style.transition='clip-path .75s cubic-bezier(.22,.68,0,1.12)';b.style.clipPath='inset(0 0% 0 0)';},220+i*70);});
+      io.unobserve(e.target);
+    });
+  },{threshold:0.12});
+  io.observe(g);
 }());
 
 // ── Reading progress bar ──
