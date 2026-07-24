@@ -653,12 +653,13 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
     <a class="nav-item" href="#maturity"><span class="nav-num">5</span>Integration Depth</a>
     <a class="nav-item" href="#cockpit"><span class="nav-num">6</span>Live Dashboard</a>
     <a class="nav-item" href="#requires"><span class="nav-num">7</span>Prerequisites</a>
+    <a class="nav-item" href="#data-inputs"><span class="nav-num">8</span>Data Requirements</a>
 
     <div class="sidebar-label">The Proposal</div>
-    <a class="nav-item" href="#team"><span class="nav-num">8</span>The Team</a>
-    <a class="nav-item" href="#timeline"><span class="nav-num">9</span>14-Week Plan</a>
-    <a class="nav-item" href="#investment"><span class="nav-num">10</span>Investment &amp; ROI</a>
-    <a class="nav-item" href="#next-steps"><span class="nav-num">11</span>Get Started</a>
+    <a class="nav-item" href="#team"><span class="nav-num">9</span>The Team</a>
+    <a class="nav-item" href="#timeline"><span class="nav-num">10</span>14-Week Plan</a>
+    <a class="nav-item" href="#investment"><span class="nav-num">11</span>Investment &amp; ROI</a>
+    <a class="nav-item" href="#next-steps"><span class="nav-num">12</span>Get Started</a>
 
     <div class="sidebar-cta">
       <p>Ready to start? Commission a structured discovery with the NFR AI team.</p>
@@ -1108,6 +1109,231 @@ footer a{color:rgba(255,255,255,.9);text-decoration:none;font-weight:600}
           </tbody>
         </table>
       </div>
+    </section>
+
+    <!-- ═══════════════ 8. DATA INPUT REQUIREMENTS -->
+    <section class="section" id="data-inputs">
+      <div class="section-tag">Data Requirements</div>
+      <div class="section-header">
+        <h2>What data feeds the platform — and where it comes from.</h2>
+        <p>Seven source domains feed the Level 3 AI Risk Cockpit. This catalogue defines mandatory fields, source systems, integration method, complexity, and ownership for each. Accenture configures and validates all technical integrations during Phase 2 — client responsibility is data access rights, SME availability for quality sign-off, and data governance approvals.</p>
+      </div>
+
+      <div class="table-wrap" style="margin-bottom:32px">
+        <table>
+          <thead>
+            <tr>
+              <th style="min-width:145px">Data Domain</th>
+              <th>Mandatory Fields</th>
+              <th style="min-width:172px">Typical Source</th>
+              <th style="min-width:118px;text-align:center">Integration</th>
+              <th style="text-align:center;min-width:88px">Complexity</th>
+              <th style="text-align:center;min-width:88px">Owner</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">AI Model Inventory</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">Core registry</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">Model ID · Name · Type (ML / GenAI / Embedded) · Business owner · Department · Deployment date · SR&nbsp;11-7 materiality tier (H/M/L) · Status (live / retired)</td>
+              <td style="font-size:12px;color:var(--ts)">Archer · MetricStream · ServiceNow GRC · Excel / CSV</td>
+              <td style="text-align:center"><span class="chip chip-purple">REST API / CSV</span></td>
+              <td style="text-align:center"><span class="chip chip-green">Low</span></td>
+              <td style="text-align:center"><span class="pill pill-client">Client</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">Validation Records</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">MRM lifecycle</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">Model ID · Last validation date · Next due date · Validation status · Open findings count · Validator name · Sign-off evidence reference</td>
+              <td style="font-size:12px;color:var(--ts)">MRM SoR validation module (Archer / MetricStream / MRMIS)</td>
+              <td style="text-align:center"><span class="chip chip-purple">REST API</span></td>
+              <td style="text-align:center"><span class="chip chip-amber">Medium</span></td>
+              <td style="text-align:center"><span class="pill pill-client">Client</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">Regulatory Mapping</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">Compliance layer</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">Model ID · Applicable regulations · EU AI Act high-risk flag · DORA ICT register ref · Obligation level (H/M/L) · Jurisdiction · Last review date</td>
+              <td style="font-size:12px;color:var(--ts)">Compliance team / Accenture pre-built mapping templates</td>
+              <td style="text-align:center"><span class="chip chip-purple">CSV / Form</span></td>
+              <td style="text-align:center"><span class="chip chip-green">Low</span></td>
+              <td style="text-align:center"><span class="pill pill-joint">Joint</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">ICT Third-Party Register</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">DORA Art.&nbsp;28</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">Vendor name · AI product / service · Contract reference · Critical/Important flag · Data residency country · Exit plan reference · Sub-outsourcing chain depth</td>
+              <td style="font-size:12px;color:var(--ts)">Procurement / Legal · Existing DORA register (if any)</td>
+              <td style="text-align:center"><span class="chip chip-purple">CSV / Manual</span></td>
+              <td style="text-align:center"><span class="chip chip-amber">Medium</span></td>
+              <td style="text-align:center"><span class="pill pill-client">Client</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">Shadow AI Detection</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">Unapproved tool scan</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">CASB access log stream · DNS / proxy query events · Approved tool allowlist · Unapproved access events · User identity (pseudonymised at source)</td>
+              <td style="font-size:12px;color:var(--ts)">Zscaler · Prisma Access · Microsoft Defender for Cloud Apps · Netskope</td>
+              <td style="text-align:center"><span class="chip chip-purple">Syslog / API</span></td>
+              <td style="text-align:center"><span class="chip chip-red">High</span></td>
+              <td style="text-align:center"><span class="pill pill-joint">Joint</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">User Identity &amp; Access</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">RBAC / SSO</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">User identity · Email · Role assignment (CRO / MRM Lead / Validator / SOC / Audit) · Department · SSO token</td>
+              <td style="font-size:12px;color:var(--ts)">Active Directory · Azure AD / Entra ID · Okta</td>
+              <td style="text-align:center"><span class="chip chip-purple">SAML / OIDC</span></td>
+              <td style="text-align:center"><span class="chip chip-green">Low</span></td>
+              <td style="text-align:center"><span class="pill pill-client">Client</span></td>
+            </tr>
+            <tr>
+              <td><strong style="color:var(--tp);font-size:13px">Incident &amp; Escalation Log</strong><br><span style="font-size:10px;color:var(--tm);font-family:var(--mono)">Audit trail input</span></td>
+              <td style="font-size:12.5px;color:var(--ts)">Incident ID · Linked model ID · Severity (Critical / High / Medium) · Status · Owner · Root cause category · Resolution date · Regulatory notification flag</td>
+              <td style="font-size:12px;color:var(--ts)">ServiceNow · Jira · BMC Remedy · Manual form</td>
+              <td style="text-align:center"><span class="chip chip-purple">REST API / Webhook</span></td>
+              <td style="text-align:center"><span class="chip chip-amber">Medium</span></td>
+              <td style="text-align:center"><span class="pill pill-joint">Joint</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subhead">Data quality baseline</h3>
+      <div class="prereq-grid">
+        <div class="prereq-col">
+          <h4><i class="ti ti-clock" style="color:#A100FF"></i>Freshness</h4>
+          <ul>
+            <li>Model inventory: updated monthly — max 30-day staleness for any live asset</li>
+            <li>Validation status: updated within 24 hours of completion or any status change</li>
+            <li>Shadow AI scan: daily log export from CASB / SIEM (minimum 24-hour refresh cycle)</li>
+            <li>Incident log: near-real-time for Critical severity; 24-hour SLA for High</li>
+          </ul>
+        </div>
+        <div class="prereq-col c2">
+          <h4><i class="ti ti-list-check" style="color:#0891B2"></i>Completeness</h4>
+          <ul>
+            <li>Model inventory: 100% production asset coverage — no exceptions for High SR&nbsp;11-7 tier</li>
+            <li>DORA register: complete for all Critical / Important ICT third-party AI services</li>
+            <li>Regulatory mapping: all High-tier models fully mapped before Phase 2 go-live</li>
+            <li>RBAC roles: all CRO, MRM, SOC, and Audit users provisioned before dashboard launch</li>
+          </ul>
+        </div>
+        <div class="prereq-col c3">
+          <h4><i class="ti ti-shield-lock" style="color:#1A7A52"></i>Governance &amp; Access</h4>
+          <ul>
+            <li>API credentials and IT security approvals confirmed by end of week 2 — delays extend Phase 2</li>
+            <li>Personal data pseudonymised at source before ingestion (GDPR Art.&nbsp;25 / Art.&nbsp;32)</li>
+            <li>Data sharing agreement in place for audit-trail immutability between MRM and platform</li>
+            <li>Quarterly RBAC access review by nominated data owner — logged in audit trail</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="subhead" style="margin-top:8px">Integration architecture</h3>
+      <div style="background:linear-gradient(135deg,#0F0F24 0%,#08081A 100%);border:1px solid rgba(161,0,255,.14);border-radius:14px;padding:28px 24px 18px;overflow-x:auto">
+        <svg viewBox="0 0 700 240" style="width:100%;min-width:540px" role="img" aria-label="Five source systems connect through an Accenture-configured integration layer to the AI Risk Cockpit">
+          <defs>
+            <marker id="arrowD" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+              <path d="M0,0 L0,7 L7,3.5 Z" fill="rgba(161,0,255,.55)"/>
+            </marker>
+          </defs>
+
+          <!-- Column headers -->
+          <text x="10" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">SOURCE SYSTEMS</text>
+          <text x="268" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">INTEGRATION LAYER</text>
+          <text x="510" y="14" fill="rgba(255,255,255,.28)" font-family="JetBrains Mono,monospace" font-size="8" letter-spacing=".12em">AI RISK COCKPIT L3</text>
+
+          <!-- SOURCE 1 — MRM SoR -->
+          <rect x="8" y="22" width="172" height="34" rx="6" fill="rgba(255,255,255,.04)" stroke="rgba(161,0,255,.22)" stroke-width="1"/>
+          <rect x="8" y="22" width="3" height="34" rx="1.5" fill="#A100FF"/>
+          <text x="20" y="37" fill="rgba(255,255,255,.8)" font-size="10.5" font-weight="700" font-family="sans-serif">MRM System of Record</text>
+          <text x="20" y="49" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="JetBrains Mono,monospace">Archer · MetricStream · GRC</text>
+          <line x1="180" y1="39" x2="260" y2="86" stroke="rgba(161,0,255,.35)" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+          <!-- SOURCE 2 — CASB/SIEM -->
+          <rect x="8" y="66" width="172" height="34" rx="6" fill="rgba(255,255,255,.04)" stroke="rgba(239,68,68,.22)" stroke-width="1"/>
+          <rect x="8" y="66" width="3" height="34" rx="1.5" fill="#EF4444"/>
+          <text x="20" y="81" fill="rgba(255,255,255,.8)" font-size="10.5" font-weight="700" font-family="sans-serif">CASB / SIEM</text>
+          <text x="20" y="93" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="JetBrains Mono,monospace">Zscaler · Defender · Netskope</text>
+          <line x1="180" y1="83" x2="260" y2="108" stroke="rgba(161,0,255,.35)" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+          <!-- SOURCE 3 — Procurement/Legal -->
+          <rect x="8" y="110" width="172" height="34" rx="6" fill="rgba(255,255,255,.04)" stroke="rgba(245,158,11,.22)" stroke-width="1"/>
+          <rect x="8" y="110" width="3" height="34" rx="1.5" fill="#F59E0B"/>
+          <text x="20" y="125" fill="rgba(255,255,255,.8)" font-size="10.5" font-weight="700" font-family="sans-serif">Procurement / Legal</text>
+          <text x="20" y="137" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="JetBrains Mono,monospace">Contracts · DORA register</text>
+          <line x1="180" y1="127" x2="260" y2="127" stroke="rgba(161,0,255,.35)" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+          <!-- SOURCE 4 — IAM/SSO -->
+          <rect x="8" y="154" width="172" height="34" rx="6" fill="rgba(255,255,255,.04)" stroke="rgba(34,197,94,.22)" stroke-width="1"/>
+          <rect x="8" y="154" width="3" height="34" rx="1.5" fill="#22C55E"/>
+          <text x="20" y="169" fill="rgba(255,255,255,.8)" font-size="10.5" font-weight="700" font-family="sans-serif">Identity &amp; Access (SSO)</text>
+          <text x="20" y="181" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="JetBrains Mono,monospace">Azure AD · Okta · SAML</text>
+          <line x1="180" y1="171" x2="260" y2="148" stroke="rgba(161,0,255,.35)" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+          <!-- SOURCE 5 — Incident Mgmt -->
+          <rect x="8" y="198" width="172" height="34" rx="6" fill="rgba(255,255,255,.04)" stroke="rgba(8,145,178,.22)" stroke-width="1"/>
+          <rect x="8" y="198" width="3" height="34" rx="1.5" fill="#0891B2"/>
+          <text x="20" y="213" fill="rgba(255,255,255,.8)" font-size="10.5" font-weight="700" font-family="sans-serif">Incident Management</text>
+          <text x="20" y="225" fill="rgba(255,255,255,.36)" font-size="8.5" font-family="JetBrains Mono,monospace">ServiceNow · Jira · Webhook</text>
+          <line x1="180" y1="215" x2="260" y2="162" stroke="rgba(161,0,255,.35)" stroke-width="1.5" marker-end="url(#arrowD)"/>
+
+          <!-- INTEGRATION LAYER -->
+          <rect x="262" y="22" width="188" height="210" rx="10" fill="rgba(161,0,255,.07)" stroke="rgba(161,0,255,.28)" stroke-width="1.5"/>
+          <circle cx="356" cy="76" r="24" fill="rgba(161,0,255,.13)" stroke="rgba(161,0,255,.32)" stroke-width="1"><animate attributeName="r" values="24;27;24" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.6;1" dur="4s" repeatCount="indefinite"/></circle>
+          <text x="356" y="72" text-anchor="middle" fill="#C77BFF" font-size="11" font-weight="700" font-family="Space Grotesk,sans-serif">Accenture</text>
+          <text x="356" y="86" text-anchor="middle" fill="#C77BFF" font-size="11" font-weight="700" font-family="Space Grotesk,sans-serif">Integration Hub</text>
+          <text x="356" y="118" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9" font-family="sans-serif">API connectors &amp; schema validation</text>
+          <text x="356" y="134" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9" font-family="sans-serif">data normalisation &amp; deduplication</text>
+          <text x="356" y="150" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9" font-family="sans-serif">pseudonymisation (GDPR Art. 25)</text>
+          <text x="356" y="166" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9" font-family="sans-serif">read-only · EU data residency</text>
+          <text x="356" y="182" text-anchor="middle" fill="rgba(255,255,255,.45)" font-size="9" font-family="sans-serif">audit log of all ingestion events</text>
+          <text x="356" y="210" text-anchor="middle" fill="rgba(161,0,255,.6)" font-size="8" font-family="JetBrains Mono,monospace">Configured by Accenture · Phase 2</text>
+
+          <!-- Arrow: Integration Layer → Platform -->
+          <line x1="450" y1="127" x2="500" y2="127" stroke="#A100FF" stroke-width="2" marker-end="url(#arrowD)"/>
+          <text x="475" y="119" text-anchor="middle" fill="rgba(161,0,255,.65)" font-family="JetBrains Mono,monospace" font-size="8">read-only</text>
+
+          <!-- PLATFORM PREVIEW -->
+          <rect x="503" y="22" width="190" height="210" rx="10" fill="rgba(161,0,255,.1)" stroke="#A100FF" stroke-width="1.5"/>
+          <!-- KPI row -->
+          <rect x="515" y="36" width="38" height="22" rx="3" fill="#1A1A2E" stroke="#262642"/>
+          <text x="534" y="51" text-anchor="middle" fill="#A100FF" font-size="13" font-weight="800" font-family="Space Grotesk,sans-serif">25</text>
+          <rect x="557" y="36" width="40" height="22" rx="3" fill="#1A1A2E" stroke="#262642"/>
+          <text x="577" y="51" text-anchor="middle" fill="#38D9C0" font-size="12" font-weight="800" font-family="Space Grotesk,sans-serif">68%</text>
+          <rect x="601" y="36" width="38" height="22" rx="3" fill="#1A1A2E" stroke="#262642"/>
+          <text x="620" y="51" text-anchor="middle" fill="#FF6B6B" font-size="13" font-weight="800" font-family="Space Grotesk,sans-serif">3<animate attributeName="opacity" values="1;.35;1" dur="3s" repeatCount="indefinite"/></text>
+          <rect x="643" y="36" width="38" height="22" rx="3" fill="#1A1A2E" stroke="#262642"/>
+          <text x="662" y="51" text-anchor="middle" fill="#FBBF24" font-size="13" font-weight="800" font-family="Space Grotesk,sans-serif">4</text>
+          <!-- Bars panel -->
+          <rect x="515" y="68" width="168" height="52" rx="4" fill="#12121F" stroke="#241239"/>
+          <text x="523" y="80" fill="#7E7396" font-size="7.5" font-family="sans-serif">Validation Coverage</text>
+          <rect x="523" y="85" width="148" height="7" rx="3" fill="#22242E"/>
+          <rect x="523" y="85" width="100" height="7" rx="3" fill="#22C55E"/>
+          <rect x="523" y="96" width="148" height="7" rx="3" fill="#22242E"/>
+          <rect x="523" y="96" width="62" height="7" rx="3" fill="#F59E0B"/>
+          <rect x="523" y="107" width="148" height="7" rx="3" fill="#22242E"/>
+          <rect x="523" y="107" width="24" height="7" rx="3" fill="#EF4444"/>
+          <!-- Heat-map panel -->
+          <rect x="515" y="128" width="168" height="56" rx="4" fill="#12121F" stroke="#241239"/>
+          <text x="523" y="141" fill="#7E7396" font-size="7.5" font-family="sans-serif">Regulatory Exposure</text>
+          <rect x="523" y="147" width="22" height="9" rx="2" fill="#EF4444" opacity=".85"/>
+          <rect x="548" y="147" width="22" height="9" rx="2" fill="#EF4444" opacity=".85"/>
+          <rect x="573" y="147" width="22" height="9" rx="2" fill="#F59E0B" opacity=".85"/>
+          <rect x="598" y="147" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="623" y="147" width="22" height="9" rx="2" fill="#F59E0B" opacity=".85"/>
+          <rect x="648" y="147" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="523" y="160" width="22" height="9" rx="2" fill="#F59E0B" opacity=".85"/>
+          <rect x="548" y="160" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="573" y="160" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="598" y="160" width="22" height="9" rx="2" fill="#EF4444" opacity=".85"/>
+          <rect x="623" y="160" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <rect x="648" y="160" width="22" height="9" rx="2" fill="#22C55E" opacity=".8"/>
+          <!-- Audit trail panel -->
+          <rect x="515" y="192" width="168" height="30" rx="4" fill="#12121F" stroke="#241239"/>
+          <rect x="523" y="199" width="36" height="10" rx="2" fill="rgba(34,197,94,.15)"/>
+          <text x="541" y="207" fill="#4ADE80" font-size="6" font-weight="700" text-anchor="middle">APPROVED</text>
+          <text x="564" y="207" fill="rgba(255,255,255,.45)" font-size="7" font-family="sans-serif">Credit Scoring v4</text>
+          <rect x="523" y="213" width="36" height="10" rx="2" fill="rgba(239,68,68,.15)"/>
+          <text x="541" y="221" fill="#FF6B6B" font-size="6" font-weight="700" text-anchor="middle">CRITICAL</text>
+          <text x="564" y="221" fill="rgba(255,255,255,.45)" font-size="7" font-family="sans-serif">Shadow AI — Treasury</text>
+        </svg>
+      </div>
+      <p style="font-size:11px;color:var(--tm);margin-top:10px;font-family:var(--mono)">All integrations use read-only credentials scoped to the minimum necessary dataset. No write-back to source systems. Data residency within the EU by default; configurable per engagement.</p>
     </section>
 
     <div class="group-divider">The Proposal</div>
